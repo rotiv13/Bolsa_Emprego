@@ -1,0 +1,35 @@
+<aside class="col-md-6">
+  <div class="row">
+    <aside class="col-md-12">
+      <section class="user_info">
+        <h1>
+          As minhas candidaturas
+        </h1>
+        Candidaturas(Followed)
+      </section>
+    </aside>
+    <aside class="col-md-12">
+      <section class="entity_interest">
+        <h1>
+          Empresas interessadas em mim
+        </h1>
+        Followers
+      </section>
+    </aside>
+  </div>
+
+</aside>
+<aside class="col-md-6">
+  <div class="row">
+    <aside class="col-md-12">
+      <section class="user_edit">
+        <h1>
+          <%= @user.name %>
+
+        </h1>
+        <%= link_to "Editar dados", '#', class: 'btn btn-default' %>
+        <%= link_to "Alterar password", '#', class: 'btn btn-default' %>
+      </section>
+    </aside>
+  </div>
+</aside>

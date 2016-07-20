@@ -1,0 +1,30 @@
+<% provide(:title, @candidate.name) %>
+<div class="row">
+  <aside class="col-md-3">
+    <section class="user_info">
+      <h1>
+        <%= @candidate.name %>
+      </h1>
+      <%= gravatar_for @candidate %>
+    </section>
+  </aside>
+  <aside class="col-md-9">
+    <section class="presentation">
+      <p>
+        <%= @candidate.presentation %>
+      </p>
+      <h4>Actividade Profissional</h4>
+      <p>
+        <%= @candidate.profession_area %>
+      </p>
+    </section>
+    <hr>
+    <section class="presentation">
+      <%= render 'prof_data' %>
+    </section>
+    <hr>
+    <section class="presentation">
+      <%= render 'contacts' %>
+    </section>
+  </aside>
+</div>

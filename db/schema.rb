@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720111653) do
+ActiveRecord::Schema.define(version: 20160720131427) do
+
+  create_table "candidates", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.text     "address"
+    t.string   "postal_code"
+    t.string   "locality"
+    t.integer  "phone"
+    t.integer  "cellphone"
+    t.string   "page"
+    t.date     "date_of_birth"
+    t.integer  "ccid"
+    t.string   "profession_area"
+    t.text     "presentation"
+    t.string   "habilitations"
+    t.text     "skills"
+    t.string   "professional_situ"
+    t.text     "professional_exp"
+    t.string   "password_digest"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["email"], name: "index_candidates_on_email", unique: true
+  end
+
+  create_table "entities", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.text     "address"
+    t.string   "postal_code"
+    t.string   "locality"
+    t.integer  "phone"
+    t.integer  "cellphone"
+    t.string   "page"
+    t.integer  "nif"
+    t.string   "professional_acti"
+    t.text     "presentation"
+    t.string   "password_digest"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["email"], name: "index_entities_on_email", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
