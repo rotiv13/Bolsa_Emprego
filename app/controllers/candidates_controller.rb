@@ -3,6 +3,10 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new
   end
 
+  def index
+    @candidates = Candidate.paginate(page: params[:page])
+  end
+
   def create
     @candidate = Candidate.new(candidate_params)
     if @candidate.save

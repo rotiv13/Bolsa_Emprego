@@ -2,6 +2,11 @@ class EntitiesController < ApplicationController
   def new
     @entitie = Entitie.new
   end
+
+  def index
+    @entities = Entitie.paginate(page: params[:page])
+  end
+
   def create
     @entitie = Entitie.new(entitie_params)
     if @entitie.save
