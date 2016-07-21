@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/new_entitie' , to:'users#new_entitie'
   post '/new_entitie', to:'users#create'
   get '/index', to: 'users#index'
+  post '/index', to: 'users#index'
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

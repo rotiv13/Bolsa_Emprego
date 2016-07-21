@@ -5,18 +5,31 @@
   </aside>
 </div>
 <div class="row">
-  <aside class="col-md-4">
-
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+    <% end %>
   </aside>
 
-  <aside class="col-md-4">
-
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <% field_array = User.distinct.pluck(:prof_area) %>
+        <%= f.select(:field, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
   </aside>
 
-  <aside class="col-md-4">
-
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <% field_array = User.distinct.pluck(:locality) %>
+        <%= f.select(:locality, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
   </aside>
-
 </div>
 <div class="row">
   <% @users.each do |user|  %>

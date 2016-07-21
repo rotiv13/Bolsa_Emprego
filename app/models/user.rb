@@ -24,6 +24,28 @@ class User < ApplicationRecord
           BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
+
+    def search(search)
+      if search
+        where("name LIKE '%#{search}%'")
+      else
+        find(:all)
+      end
+    end
+    def filter(filter)
+      if filter
+        find(:all,:conditions => ['prof_area LIKE ?','#{filter}'])
+      else
+        find(:all)
+      end
+    end
+    def local(local)
+      if local
+        find(:all, :conditions => ['locality LIKE ?','#{local}'])
+      else
+        find(:all)
+      end
+    end
   end
 
 end

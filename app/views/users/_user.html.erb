@@ -1,13 +1,19 @@
 <aside class="col-md-12">
   <section>
     <div class="col-md-3" style="margin-right: 10px">
-    <%= gravatar_for(user) %>
+      <%= gravatar_for(user) %>
     </div>
     <div class="col-md-8">
-    <%= link_to user.name, user %>
-    <p><%= user.prof_area %></p>
-      <p><%= user.prof_experience %></p>
-    <p><%= user.skills %></p>
+      <%= link_to user.name, user %>
+      <%= params[:entitie] %>
+      <% if params[:entitie] == 'true' %>
+          <p>Ofertas</p>
+          <p><%= user.presentation %></p>
+      <% else %>
+          <p><%= user.prof_area %></p>
+          <p><%= user.prof_experience %></p>
+          <p><%= user.skills %></p>
+      <% end %>
     </div>
   </section>
 </aside>
