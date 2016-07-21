@@ -1,4 +1,5 @@
-<%= form_for(@candidate) do |f| %>
+<%= form_for(@entitie) do |f| %>
+    <%= render 'shared/error_messages_entities' %>
     <div>
       <div class="row" id="login_candidate_info">
         <div class="col-md-6">
@@ -9,16 +10,15 @@
           <%= f.password_field :password, class: 'form-control' %>
         </div>
 
-        <div class="col-md-3"><%= f.label :password_confirmation, "Confirmation" %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %></div>
-
-
+        <div class="col-md-3"><%= f.label :password_confirmation, "Confirmação" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
       </div>
       <hr>
       <div id="info_candidate">
         <div class="row">
           <div class="col-md-6 col ">
-            <%= f.label :name, "Nome" %>
+            <%= f.label :name, "Nome Empresa" %>
             <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
@@ -46,59 +46,33 @@
             <%= f.telephone_field :cellphone, class: 'form-control' %>
           </div>
           <div class="col-md-6">
-            <%= f.label :page, "Página Pessoal" %>
+            <%= f.label :page, "Página" %>
             <%= f.text_field :page, class: 'form-control' %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-3">
-            <%= f.label :date_of_birth, "Data de Nascimento" %>
-            <%= f.date_field :date_of_birth, class: 'form-control' %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :ccid, "Cartão do Cidadão" %>
-            <%= f.text_field :ccid, class: 'form-control' %>
+            <%= f.label :nif, "NIF" %>
+            <%= f.text_field :nif, class: 'form-control' %>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-md-3">
-          </div>
-          <div class="col-md-3">
-            <%= f.label :profession_area, "Área Profissional" %>
-            <%= f.select(:profession_area, options_for_select([['Programador Web'],['Web Designer']])) %>
+            <%= f.label :professional_acti, "Atividade Profissional" %>
+            <%= f.select(:professional_acti, options_for_select([['Informática',1],['Educação',2]])) %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-              <%= f.label :presentation, "Apresentação" %>
-              <%= f.text_area :presentation, class: 'form-control' %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :habilitations, "Nível de Habilitações" %>
-            <%= f.select(:habilitations, options_for_select([['Secundário'],['Licenciatura'],['Mestrado'],['Doutoramento']])) %>
-          </div>
-          <div class="col-md-12">
-            <%= f.label :skills, "Habilitações Literárias" %>
-            <%= f.text_area :skills, class: 'form-control' %>
-          </div>
-          <div class="col-md-3">
-            <%= f.label :professional_situ, "Situação Profissional" %>
-            <%= f.select(:professional_situ, options_for_select([['Empregado'],['Desempregado']])) %>
-          </div>
-          <div class="col-md-12">
-            <%= f.label :professional_exp, "Experiência Profissional" %>
-            <%= f.text_area :professional_exp, class: 'form-control' %>
+            <%= f.label :presentation, "Apresentação" %>
+            <%= f.text_area :presentation, class: 'form-control' %>
           </div>
         </div>
-
-
 
       </div>
     </div>
     <div class="col-md-6 col-md-offset-3">
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     </div>
-
-
 <% end %>

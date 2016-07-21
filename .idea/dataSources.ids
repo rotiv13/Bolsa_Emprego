@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="6a54bf08-5cf7-42c5-b268-96a8bfffb385">
+  <data-source name="Rails Bolsa_Emprego: development" uuid="c1a993aa-92ed-48e7-b930-57cb177a99eb">
     <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
@@ -72,5 +72,10 @@
       <primary-key columns="id"/>
       <index name="index_users_on_email" unique="true" columns="email"/>
     </table>
+  </data-source>
+  <data-source name="Rails Bolsa_Emprego: test" uuid="38ed67c9-a8ed-4c1e-8a7c-772b090fa2ef">
+    <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
   </data-source>
 </component>

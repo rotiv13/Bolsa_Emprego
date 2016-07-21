@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1752011312">
-    <data-source source="LOCAL" name="Sqlite (Xerial) - development.sqlite3" uuid="6a54bf08-5cf7-42c5-b268-96a8bfffb385">
+  <component name="DataSourceManagerImpl" format="xml" hash="540094273">
+    <data-source source="LOCAL" name="Rails Bolsa_Emprego: development" uuid="c1a993aa-92ed-48e7-b930-57cb177a99eb">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
+    </data-source>
+    <data-source source="LOCAL" name="Rails Bolsa_Emprego: test" uuid="38ed67c9-a8ed-4c1e-8a7c-772b090fa2ef">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
     </data-source>
   </component>
 </project>
