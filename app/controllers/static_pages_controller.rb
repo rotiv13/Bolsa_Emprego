@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
-
+    @users = User.all.order(created_at: :desc)
+    @entities = @users.where(entitie: 't').limit(3)
+    @candidates = @users.where(entitie: 'f').limit(3)
   end
 
   def help

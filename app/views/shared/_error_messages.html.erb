@@ -1,10 +1,10 @@
-<% if @candidate.errors.any? %>
+<% if @user.errors.any? %>
     <div id="error_explanation">
       <div class="alert alert-danger">
-        O formulário contém <%= pluralize(@candidate.errors.count, "erro") %>.
+        O formulário contém <%= pluralize(@user.errors.count, "erro") %>.
       </div>
       <ul>
-        <% @candidate.errors.full_messages.each do |msg| %>
+        <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
         <% end %>
       </ul>

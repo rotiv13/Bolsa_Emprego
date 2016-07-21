@@ -25,17 +25,19 @@
       <h1>
         Últimas Empresas
       </h1>
-      Empresas
-      <%= link_to 'Ver todas as Empresas', '#' %>
+      <%= render @entities %>
+      <%= link_to 'Ver todas as Empresas', index_path(entitie: true) %>
     </section>
   </aside>
   <aside class="col-md-6">
     <section class="">
       <h1>
-        Últimas Ofertas
+        Últimos Candidatos
       </h1>
-      Ofertas
-      <%= link_to 'Ver todos os Candidatos', '#' %>
+      <div class="col-md-12">
+      <%= render @candidates %>
+      <%= link_to 'Ver todos os Candidatos', index_path(entitie: false) %>
+      </div>
     </section>
   </aside>
 </div>

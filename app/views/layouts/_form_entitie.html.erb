@@ -1,5 +1,5 @@
-<%= form_for(@entitie) do |f| %>
-    <%= render 'shared/error_messages_entities' %>
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
     <div>
       <div class="row" id="login_candidate_info">
         <div class="col-md-6">
@@ -9,6 +9,7 @@
         <div class="col-md-3"><%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
         </div>
+        <%= f.hidden_field :entitie, value: true %>
 
         <div class="col-md-3"><%= f.label :password_confirmation, "Confirmação" %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
@@ -52,15 +53,15 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <%= f.label :nif, "NIF" %>
-            <%= f.text_field :nif, class: 'form-control' %>
+            <%= f.label :idnum, "NIF" %>
+            <%= f.text_field :idnum, class: 'form-control' %>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-md-3">
-            <%= f.label :professional_acti, "Atividade Profissional" %>
-            <%= f.select(:professional_acti, options_for_select([['Informática',1],['Educação',2]])) %>
+            <%= f.label :prof_area, "Atividade Profissional" %>
+            <%= f.select(:prof_area, options_for_select([['Informática',1],['Educação',2]])) %>
           </div>
         </div>
         <div class="row">

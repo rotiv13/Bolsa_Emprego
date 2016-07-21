@@ -11,8 +11,8 @@
     <nav>
       <ul class="nav navbar-nav navbar-left">
         <li><%= link_to "Home",    root_path %></li>
-        <li><%= link_to "Entidades",    '#' %></li>
-        <li><%= link_to "Candidatos",   '#' %></li>
+        <li><%= link_to "Entidades",    index_path(entitie: true, title: 'Entidades') %></li>
+        <li><%= link_to "Candidatos",   index_path(entitie: false, title: 'Candidatos') %></li>
         <li><%= link_to "Ofertas",    '#'  %></li>
         <li><%= link_to "Notícias",    '#'  %></li>
       </ul>

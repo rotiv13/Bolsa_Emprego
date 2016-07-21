@@ -1,9 +1,38 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% 30.times do |n| %>
+user_<%= n %>:
+   name:  <%= "User #{n}" %>
+   email: <%= "user-#{n}@example.com" %>
+   password_digest: <%= User.digest('password') %>
+   entitie: 0
+   address: "Rua da Lionesa"
+   postal_code: '4050'
+   locality: 'Porto'
+   phone: '123456789'
+   cellphone: '123456789'
+   page: 'google.com'
+   birth_date: <%= Time.zone.now %>
+   idnum: '123456789'
+   prof_area: 'Informática'
+   presentation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. '
+<% end %>
 
-one:
-  name: MyString
-  email: MyString
-
-two:
-  name: MyString
-  email: MyString
+<% 30.times do |n| %>
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n+30}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+  entitie: 0
+  address: "Rua da Lionesa"
+  postal_code: '4050'
+  locality: 'Porto'
+  phone: '123456789'
+  cellphone: '123456789'
+  page: 'google.com'
+  birth_date: <%= Time.zone.now %>
+  idnum: '123456789'
+  prof_area: 'Informática'
+  presentation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. '
+  skills: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. '
+  prof_experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. '
+  skill_level: 'Licenciatura'
+  prof_situation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. '
+<% end %>
