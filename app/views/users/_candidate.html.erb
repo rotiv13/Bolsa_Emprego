@@ -25,10 +25,9 @@
       <section class="user_edit">
         <h1>
           <%= @user.name %>
-
         </h1>
-        <%= link_to "Editar dados", '#', class: 'btn btn-default' %>
-        <%= link_to "Alterar password", '#', class: 'btn btn-default' %>
+        <%= link_to "Editar dados", edit_user_path(current_user,data: false), class: 'btn btn-default' %>
+        <%= link_to "Alterar password", edit_user_path(current_user,data: 'password'), class: 'btn btn-default' %>
       </section>
     </aside>
   </div>

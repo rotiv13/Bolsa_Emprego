@@ -21,8 +21,10 @@ class UsersController < ApplicationController
       @users = @users.where(entitie: 'f').paginate(page: params[:page], per_page: 8)
       @title = 'Candidatos'
     end
+  end
 
-
+  def edit
+    @user = User.find(params[:id])
   end
 
 
@@ -42,6 +44,16 @@ class UsersController < ApplicationController
       else
         render 'new_candidate'
       end
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Perfil Atualizado!"
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 

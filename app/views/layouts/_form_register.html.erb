@@ -1,0 +1,113 @@
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div>
+      <% if yield(:data) == 'register' || yield(:data) == 'password' %>
+          <div class="row" id="login_candidate_info">
+            <div class="col-md-6">
+              <%= f.label :email %>
+              <%= f.email_field :email, class: 'form-control' %>
+            </div>
+            <div class="col-md-3"><%= f.label :password %>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+            <%= f.hidden_field :entitie, value: false %>
+
+            <div class="col-md-3">
+              <%= f.label :password_confirmation, "Confirmar Password" %>
+              <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
+          </div>
+      <% end %>
+      <% if yield(:data) == 'register' %>
+          <hr>
+          <div id="info_candidate">
+            <div class="row">
+              <div class="col-md-6 col ">
+                <%= f.label :name, "Nome" %>
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.label :address, "Morada" %>
+                <%= f.text_area :address, class: 'form-control' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.label :postal_code, "Código Postal" %>
+                <%= f.text_field :postal_code, class: 'form-control' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.label :locality, "Localidade" %>
+                <%= f.text_field :locality, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.label :phone, "Telefone" %>
+                <%= f.telephone_field :phone, class: 'form-control' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.label :cellphone, "Telemóvel" %>
+                <%= f.telephone_field :cellphone, class: 'form-control' %>
+              </div>
+              <div class="col-md-6">
+                <%= f.label :page, "Página/Website" %>
+                <%= f.text_field :page, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.label :birth_date, "Data de Nascimento" %>
+                <%= f.date_field :birth_date, class: 'form-control' %>
+              </div>
+              <div class="col-md-3">
+                <%= f.label :idnum, yield(:idnumber) %>
+                <%= f.text_field :idnum, class: 'form-control' %>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <% if yield(:entitie) == 'true' %>
+                    <%= f.label :prof_area, "Atividade Profissional" %>
+                    <%= f.select(:prof_area, options_for_select([['Informática',1],['Educação',2]])) %>
+                <% else %>
+                    <%= f.label :prof_area, "Área Profissional" %>
+                    <%= f.select(:prof_area, options_for_select(['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes'])) %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <%= f.label :presentation, "Apresentação" %>
+                <%= f.text_area :presentation, class: 'form-control' %>
+              </div>
+              <% if yield(:entitie) == 'false' %>
+                  <div class="col-md-3">
+                    <%= f.label :skill_level, "Nível de Habilitações" %>
+                    <%= f.select(:skill_level, options_for_select([['Secundário'],['Licenciatura'],['Mestrado'],['Doutoramento']])) %>
+                  </div>
+                  <div class="col-md-12">
+                    <%= f.label :skills, "Habilitações Literárias" %>
+                    <%= f.text_area :skills, class: 'form-control' %>
+                  </div>
+                  <div class="col-md-3">
+                    <%= f.label :prof_situation, "Situação Profissional" %>
+                    <%= f.select(:prof_situation, options_for_select([['Empregado'],['Desempregado']])) %>
+                  </div>
+                  <div class="col-md-12">
+                    <%= f.label :prof_experience, "Experiência Profissional" %>
+                    <%= f.text_area :prof_experience, class: 'form-control' %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <%else %>
+      <% end %>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    </div>
+
+
+<% end %>
