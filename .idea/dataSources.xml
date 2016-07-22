@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="827530586">
+  <component name="DataSourceManagerImpl" format="xml" hash="931716663">
     <data-source source="LOCAL" name="Rails Bolsa_Emprego: development" uuid="c1a993aa-92ed-48e7-b930-57cb177a99eb">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>

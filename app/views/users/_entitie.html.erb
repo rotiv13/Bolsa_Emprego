@@ -30,6 +30,8 @@
           <%= @user.name %>
 
         </h1>
+        <%= image_tag @user.picture.url if @user.picture? %>
+
         <%= link_to "Editar dados", '#', class: 'btn btn-default' %>
         <%= link_to "Alterar password", '#', class: 'btn btn-default' %>
       </section>

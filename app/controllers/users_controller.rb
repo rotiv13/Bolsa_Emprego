@@ -72,6 +72,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :entitie, :address, :postal_code, :locality,
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
-                                 :skill_level, :skills, :prof_situation, :prof_experience)
+                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture)
   end
 end

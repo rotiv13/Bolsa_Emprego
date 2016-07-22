@@ -238,7 +238,7 @@ input {
 
 /* microposts */
 
-.microposts {
+.profile {
   list-style: none;
   padding: 0;
   li {
@@ -262,8 +262,9 @@ input {
     display: block;
     margin-left: 60px;
   }
-  .gravatar {
+  img {
     float: left;
+    max-height:150px;
     margin-right: 10px;
     margin-top: 5px;
   }

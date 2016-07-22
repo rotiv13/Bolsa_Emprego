@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
+  mount_uploader :picture, PictureUploader
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
@@ -16,6 +17,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
   validates :idnum, presence: true
   validates :presentation, presence: true
+  validate :picture_size
 
   class << self
     #Returns the hash digest of the given string.
@@ -64,5 +66,13 @@ class User < ApplicationRecord
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  private
+
+  def picture_size
+    if picture.size > 5.megabytes
+      errors.add(:picture, "tamamnho deve ser menor que 5MB")
+    end
   end
 end
