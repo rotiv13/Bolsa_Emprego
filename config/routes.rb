@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  get 'candidates/new'
-
-  get 'entities/new'
-
-  get '/signup', to: 'users#new'
-
+  #ROOT
   root 'static_pages#home'
-
+  #OFFERS
+  #NEWS
+  resources :news
+  get '/new_news', to: 'news#new'
+  post '/new_news', to: 'news#create'
+  #USERS
+  get '/signup', to: 'users#new'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
@@ -17,5 +18,5 @@ Rails.application.routes.draw do
   get '/index', to: 'users#index'
   post '/index', to: 'users#index'
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

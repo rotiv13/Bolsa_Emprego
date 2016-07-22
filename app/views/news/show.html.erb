@@ -1,0 +1,13 @@
+<% provide(:title, 'Notícia') %>
+<div class="row">
+  <aside class="col-md-4">
+    <h3><%= @news.title %></h3>
+    <p><%= @news.created_at.strftime("%Y-%m-%d") %> a <%= @news.date %></p>
+  </aside>
+</div>
+<div class="row">
+  <p><%= @news.text %> </p>
+</div>
+<div class="row">
+  <%= link_to "Ver todas", news_index_url %>
+</div>

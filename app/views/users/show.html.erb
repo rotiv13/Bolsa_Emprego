@@ -1,4 +1,8 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <!-- colocar aqui o if para saber se faz render do candidate ou da entidade-->
+  <%  if @user.entitie? %>
+  <%= render 'entitie' %>
+  <% else %>
+  <%= render 'candidate' %>
+  <% end %>
 </div>

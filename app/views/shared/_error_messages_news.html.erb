@@ -1,0 +1,12 @@
+<% if @news.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        O formulário contém <%= pluralize(@news.errors.count, "erro") %>.
+      </div>
+      <ul>
+        <% @news.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

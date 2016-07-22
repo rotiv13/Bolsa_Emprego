@@ -1,0 +1,14 @@
+<% provide(:title, 'Notícias') %>
+<div class="row">
+  <aside class="col-md-4">
+    <h3>Notícias</h3>
+  </aside>
+</div>
+<div class="row">
+  <% @news.each do |news| %>
+      <div class="col-md-6">
+        <%= render news %>
+      </div>
+  <% end %>
+  <% will_paginate %>
+</div>

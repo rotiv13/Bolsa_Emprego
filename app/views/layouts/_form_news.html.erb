@@ -1,0 +1,59 @@
+<%= form_for @news do |f| %>
+    <%= render 'shared/error_messages_news' %>
+    <div>
+      <div id="new_info">
+        <div class="row">
+          <div class="col-md-6 ">
+            <%= f.label :title, "Título" %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :date, "Data" %>
+            <%= f.date_field :date, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label :summary, "Sumário da Notícia" %>
+            <%= f.text_area :summary, class: 'form-control',placeholder: 'Breve descrição da notícia (max. 140 caracteres)' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label :text, "Texto da Notícia" %>
+            <%= f.text_area :text, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            Upload da Imagem
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h5><strong>Destaque</strong></h5>
+            <br>
+            <div class="checkbox col-md-6">
+              <%= f.label :destaque do %>
+                 Aparece em destaque <%= f.check_box :destaque, {}, true, false %>
+              <% end %>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <h5><strong>Activa</strong></h5>
+            <br>
+            <div class="checkbox col-md-6">
+              <%= f.label :active do %>
+                  Sim <%= f.check_box :active, {}, true, false %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-3">
+        <%= f.submit "Guardar Notícia", class: "btn btn-primary" %>
+      </div>
+    </div>
+<% end %>
