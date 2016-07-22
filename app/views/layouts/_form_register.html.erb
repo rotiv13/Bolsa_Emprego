@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
     <div>
-      <% if yield(:data) == 'register' || yield(:data) == 'password' %>
+      <% if yield(:data) == 'register' || params[:data] == 'password' %>
           <div class="row" id="login_candidate_info">
             <div class="col-md-6">
               <%= f.label :email %>
@@ -17,9 +17,10 @@
               <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
           </div>
-      <% end %>
-      <% if yield(:data) == 'register' %>
           <hr>
+      <% end %>
+      <% if yield(:data) == 'register' || params[:data] == 'edit' %>
+
           <div id="info_candidate">
             <div class="row">
               <div class="col-md-6 col ">

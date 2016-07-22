@@ -1,3 +1,5 @@
+<% provide(:entitie, 'false') %>
+
 <div class="row"><aside class="col-md-6">
   <div class="row">
     <aside class="col-md-12">
@@ -26,7 +28,7 @@
         <h1>
           <%= @user.name %>
         </h1>
-        <%= link_to "Editar dados", edit_user_path(current_user,data: false), class: 'btn btn-default' %>
+        <%= link_to "Editar dados", edit_user_path(current_user,data: 'edit'), class: 'btn btn-default' %>
         <%= link_to "Alterar password", edit_user_path(current_user,data: 'password'), class: 'btn btn-default' %>
       </section>
     </aside>

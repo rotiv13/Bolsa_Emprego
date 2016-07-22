@@ -1,8 +1,10 @@
 <% provide(:title, 'Editar Dados') %>
-<% provide(:button_text, 'Guardar Alterções') %>
+<% provide(:button_text, 'Guardar Alterações') %>
+<% provide(:data, yield(:data)) %>
 <h1>Editar os meus dados</h1>
 <div class="row">
   <div class="col-md-12 ">
+    <p><%= yield(params[:data]) %></p>
     <%=  render 'layouts/form_register' %>
   </div>
 </div>
