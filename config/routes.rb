@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   #ROOT
   root 'static_pages#home'
   #OFFERS
@@ -18,5 +20,9 @@ Rails.application.routes.draw do
   get '/index', to: 'users#index'
   post '/index', to: 'users#index'
   resources :users
+  #SESSIONS
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 
 end
