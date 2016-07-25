@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row profile">
-  <%  if @user.entitie? %>
+  <%  if @user.entitie == '2' %>
   <%= render 'entitie' %>
   <% else %>
   <%= render 'candidate' %>

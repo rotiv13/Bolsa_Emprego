@@ -101,7 +101,7 @@
         <data-type>VARCHAR(0,-1)|12</data-type>
       </column>
       <column id="32" parent="6" name="entitie">
-        <data-type>BOOLEAN(0,-1)|4</data-type>
+        <data-type>VARCHAR(0,-1)|12</data-type>
       </column>
       <column id="33" parent="6" name="address">
         <data-type>TEXT(0,-1)|12</data-type>
@@ -150,13 +150,30 @@
       </column>
       <column id="48" parent="6" name="picture">
         <data-type>VARCHAR(0,-1)|12</data-type>
+        <default-expression>&apos;https://robohash.org/sitsequiquia.png?size=300x300&apos;</default-expression>
       </column>
-      <index id="49" parent="6" name="index_users_on_email">
+      <column id="49" parent="6" name="curriculum">
+        <data-type>VARCHAR(0,-1)|12</data-type>
+      </column>
+      <column id="50" parent="6" name="activation_digest">
+        <data-type>VARCHAR(0,-1)|12</data-type>
+      </column>
+      <column id="51" parent="6" name="activated">
+        <data-type>BOOLEAN(0,-1)|4</data-type>
+        <default-expression>&apos;f&apos;</default-expression>
+      </column>
+      <column id="52" parent="6" name="activated_at">
+        <data-type>DATETIME(0,-1)|12</data-type>
+      </column>
+      <column id="53" parent="6" name="admin">
+        <data-type>BOOLEAN(0,-1)|4</data-type>
+      </column>
+      <index id="54" parent="6" name="index_users_on_email">
         <columns>email</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="50" parent="6">
+      <key id="55" parent="6">
         <columns>id</columns>
         <primary>1</primary>
       </key>

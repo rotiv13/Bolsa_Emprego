@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722165653) do
+ActiveRecord::Schema.define(version: 20160725090054) do
 
   create_table "news", force: :cascade do |t|
     t.string   "title"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20160722165653) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                                                       null: false
+    t.datetime "updated_at",                                                                       null: false
     t.string   "password_digest"
-    t.boolean  "entitie"
+    t.string   "entitie"
     t.text     "address"
     t.string   "postal_code"
     t.string   "locality"
@@ -45,8 +45,12 @@ ActiveRecord::Schema.define(version: 20160722165653) do
     t.string   "prof_situation"
     t.text     "prof_experience"
     t.string   "remember_digest"
-    t.string   "picture"
+    t.string   "picture",           default: "https://robohash.org/sitsequiquia.png?size=300x300"
     t.string   "curriculum"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -11,11 +11,15 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
     end
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 
   # Checks if the user is logged in
@@ -41,5 +45,14 @@ module SessionsHelper
     user.forget
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:forwading_url] || default)
+    session.delete(:forwading_url)
+  end
+
+  def store_location
+    session[:forwading_url] = request.original_url if request.get?
   end
 end

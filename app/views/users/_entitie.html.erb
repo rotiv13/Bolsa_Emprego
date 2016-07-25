@@ -28,12 +28,12 @@
       <section class="user_edit">
         <h1>
           <%= @user.name %>
-
         </h1>
-        <%= image_tag @user.picture.url if @user.picture? %>
-
-        <%= link_to "Editar dados", '#', class: 'btn btn-default' %>
-        <%= link_to "Alterar password", '#', class: 'btn btn-default' %>
+        <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
+        <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
+        <div class="prof_img">
+          <%= image_tag @user.picture.url if @user.picture? %>
+        </div>
       </section>
     </aside>
     <aside class="col-md-12">

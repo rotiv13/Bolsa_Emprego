@@ -1,5 +1,5 @@
 <% provide(:entitie, 'false') %>
-
+<% if current_user?(@user) %>
 <div class="row"><aside class="col-md-6">
   <div class="row">
     <aside class="col-md-12">
@@ -26,12 +26,12 @@
     <aside class="col-md-12">
       <section class="user_edit">
         <h1>
-          <%= @user.name %>
+          <%= current_user.name %>
         </h1>
-        <%= link_to "Editar dados", edit_user_path(current_user,data: 'edit'), class: 'btn btn-default' %>
-        <%= link_to "Alterar password", edit_user_path(current_user,data: 'password'), class: 'btn btn-default' %>
+        <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
+        <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
         <div class="prof_img">
-          <%= image_tag @user.picture.url if @user.picture? %>
+          <%= image_tag current_user.picture.url if current_user.picture? %>
         </div>
       </section>
     </aside>
@@ -39,3 +39,6 @@
 </aside>
 
 </div>
+<% else %>
+
+<% end %>

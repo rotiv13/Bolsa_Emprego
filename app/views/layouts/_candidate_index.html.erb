@@ -1,8 +1,10 @@
 <aside class="col-md-6">
   <section>
-    <%= gravatar_for(user) %>
+    <%= image_tag user.picture.url if user.picture? %>
     <%= link_to user.name, user %>
     <p><%= user.prof_area %></p>
+
+    asdasdasdasd
     <p><%= user.prof_experience %></p>
     <p><%= user.skills %></p>
   </section>
