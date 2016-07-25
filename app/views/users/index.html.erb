@@ -33,10 +33,10 @@
 </div>
 <div class="row">
   <% @users.each do |user|  %>
-      <div class="col-md-6">
-        <%= render user %>
-      </div>
-  <% end %>
+          <div class="col-md-6">
+            <%= render user %>
+          </div>
+<% end %>
 
-  <%= will_paginate %>
 </div>
+<%= will_paginate %>

@@ -10,14 +10,14 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, confirmation: true ,allow_nil: true
-  validates :address, presence: true
-  validates :postal_code, presence: true, length:{minimum: 4}
-  validates :locality, presence: true
-  validates :cellphone, presence: true , length: {is: 9}, numericality: true
-  validates :phone, numericality: true, length:  {is: 9}
-  validates :birth_date, presence: true
-  validates :idnum, presence: true
-  validates :presentation, presence: true
+  validates :address, presence: true, allow_nil: true
+  validates :postal_code, presence: true, length:{minimum: 4}, allow_nil: true
+  validates :locality, presence: true, allow_nil: true
+  validates :cellphone, presence: true , length: {is: 9}, numericality: true , allow_nil: true
+  validates :phone, numericality: true, length:  {is: 9}, allow_nil: true
+  validates :birth_date, presence: true, allow_nil: true
+  validates :idnum, presence: true, allow_nil: true
+  validates :presentation, presence: true, allow_nil: true
   validate :picture_size
 
   class << self

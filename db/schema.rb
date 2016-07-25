@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160725090054) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                                                       null: false
-    t.datetime "updated_at",                                                                       null: false
+    t.datetime "created_at",                                                                                                             null: false
+    t.datetime "updated_at",                                                                                                             null: false
     t.string   "password_digest"
     t.string   "entitie"
     t.text     "address"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160725090054) do
     t.string   "prof_situation"
     t.text     "prof_experience"
     t.string   "remember_digest"
-    t.string   "picture",           default: "https://robohash.org/sitsequiquia.png?size=300x300"
+    t.string   "picture",           default: "https://rohttp://www.iconsfind.com/wp-content/uploads/2015/08/20150831_55e46b18e2a80.png"
     t.string   "curriculum"
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
