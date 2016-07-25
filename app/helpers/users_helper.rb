@@ -1,11 +1,11 @@
 module UsersHelper
   def type(user)
-    if user.entitie == '0'
-      "Backoffice"
+    if user.entitie == '2'
+      "Entidade"
     elsif user.entitie == '1'
       "Candidato"
     else
-      "Entidade"
+      "Backoffice"
     end
   end
 
