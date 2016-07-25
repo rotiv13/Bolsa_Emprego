@@ -1,0 +1,39 @@
+<aside><section><h1>
+  Utilizadores
+</h1>
+</section></aside>
+
+<div class="row">
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+    <% end %>
+  </aside>
+</div>
+<div class="row tables">
+  <table class="col-md-12 ">
+    <tr>
+      <th class="col-md-3">Nome</th>
+      <th class="col-md-2">Data</th>
+      <th class="col-md-2">Destaque</th>
+      <th class="col-md-2">Activo</th>
+      <th class="col-md-3">Ações</th>
+    </tr>
+    <% @news.each do |news| %>
+        <tr>
+          <td class="col-md-3"><%= news.title %></td>
+          <td class="col-md-2"><%= news.date %></td>
+          <td class="col-md-2"><%= news.destaque %></td>
+          <td class="col-md-2"><%= news.active %></td>
+          <td class="col-md-3"><%= link_to "Detalhe", backoffice_url(news), class: 'btn btn-info' %>
+            <%= link_to "Editar", edit_backoffice_path(news) %>
+          </td>
+        </tr>
+    <% end %>
+
+  </table>
+
+  <%= link_to "Inserir", new_news_path, class: 'btn btn-default' %>
+
+  <%= will_paginate(@news) %>
+</div>

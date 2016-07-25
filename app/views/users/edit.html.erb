@@ -2,12 +2,16 @@
 <% provide(:button_text, 'Guardar Alterações') %>
 <% provide(:data, yield(:data)) %>
 <div class="row">
-<aside class="col-md-4">
-  <h3>Editar os meus dados</h3>
-</aside>
+  <aside class="col-md-4">
+    <h3>Editar os meus dados</h3>
+  </aside>
 </div>
 <div class="row">
   <div class="col-md-12 ">
-    <%=  render 'layouts/form_candidate' %>
+    <% if @user.entitie == '1' %>
+        <%=  render 'layouts/form_candidate' %>
+    <% else %>
+        <%=  render 'layouts/form_entitie' %>
+    <% end %>
   </div>
 </div>

@@ -2,7 +2,9 @@
 <div class="row profile">
   <%  if @user.entitie == '2' %>
       <%= render 'entitie' %>
-  <% else %>
+  <% elsif @user.entitie == '1' %>
       <%= render 'candidate' %>
+  <% else %>
+      <%= render 'users/admin' %>
   <% end %>
 </div>

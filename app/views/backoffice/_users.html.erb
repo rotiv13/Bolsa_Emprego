@@ -1,0 +1,68 @@
+<div class="row">
+  <aside class="col-md-4">
+    <h3>Utilizadores</h3>
+  </aside>
+</div>
+
+<div class="row">
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+    <% end %>
+  </aside>
+
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <% field_array = User.distinct.pluck(:prof_area) %>
+        <%= f.select(:field, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
+  </aside>
+
+  <aside class="col-md-3">
+    <%= form_for(users_path) do |f| %>
+        <% field_array = User.distinct.pluck(:locality) %>
+        <%= f.select(:locality, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
+  </aside>
+</div>
+<div class="row tables">
+  <table class="col-md-12 ">
+    <tr>
+      <th class="col-md-3">Nome</th>
+      <th class="col-md-3">Tipo</th>
+      <th class="col-md-3">Activo</th>
+      <th class="col-md-3">Ações</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <th class="col-md-3"><%= user.name %></th>
+          <th class="col-md-3"><%= type(user) %></th>
+          <th class="col-md-3"><%= user_active(user) %></th>
+          <th class="col-md-3"><%= link_to "Detalhe", backoffice_url(user), class: 'btn btn-info' %>
+            <%= link_to "Editar", edit_backoffice_path(user), class: 'btn btn-warning' %>
+            <% if admin_user?(current_user) %>
+                <%= link_to "Apagar", user, method: :delete,
+                            data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+            <% end %>
+          </th>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to "Inserir", new_backoffice_path, class: 'btn btn-default' %>
+  </div>
+</div>
+
+<div class="row">
+  <%= will_paginate(@users) %>
+
+</div>

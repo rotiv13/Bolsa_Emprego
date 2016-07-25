@@ -33,8 +33,8 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "Utilizador apagado"
-    redirect_to users_url
+    flash[:success] = "Utilizador apagado!"
+    redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : use
   end
 
 
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Perfil Atualizado!"
-      redirect_to @user
+      redirect_to admin_user?(current_user) ? backoffice_url(@user) : @user
     else
       render 'edit'
     end
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
   end
 
   def admin_user
