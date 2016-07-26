@@ -1,4 +1,5 @@
 <% provide(:title, 'Inserir/Editar') %>
+<% provide(:data, params[:data]) %>
 <div class="row">
   <aside class="col-md-4">
     <h3>Inserir/Editar</h3>
@@ -6,6 +7,6 @@
 </div>
 <div class="row">
   <div class="col-md-12 ">
-    <%= render 'layouts/form_backoffice' %>
+    <%= render 'layouts/form_user_backoffice' %>
   </div>
 </div>

@@ -150,7 +150,7 @@
       </column>
       <column id="48" parent="6" name="picture">
         <data-type>VARCHAR(0,-1)|12</data-type>
-        <default-expression>&apos;https://robohash.org/sitsequiquia.png?size=300x300&apos;</default-expression>
+        <default-expression>&apos;https://rohttp://www.iconsfind.com/wp-content/uploads/2015/08/20150831_55e46b18e2a80.png&apos;</default-expression>
       </column>
       <column id="49" parent="6" name="curriculum">
         <data-type>VARCHAR(0,-1)|12</data-type>

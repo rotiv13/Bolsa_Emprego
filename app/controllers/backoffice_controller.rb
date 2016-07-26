@@ -1,5 +1,6 @@
 class BackofficeController < ApplicationController
   def home
+    render 'backoffice/home'
   end
 
   def new

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
 
   #BACKOFFICE
+  get '/backoffice/home' ,to: 'backoffice#home'
   resources :backoffice
-  get '/backoffice', to: 'backoffice#index'
 
 end

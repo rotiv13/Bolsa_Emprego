@@ -1,20 +1,29 @@
 class NewsController < ApplicationController
-
-
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
   def new
     @news = News.new
   end
+
+
+  def edit
+  end
+
 
   def show
     @news = News.find(params[:id])
   end
 
   def index
-    @news = News.all.paginate(page: params[:page], per_page: 10)
+    @news = News.all
+    @news = @news.paginate(page: params[:page], per_page: 10)
+
+    if params[:search]
+      @news = @news.search(params[:search])
+    end
   end
 
   def create
-    @news = News.new(noticia_params)
+    @news = News.new(news_params)
     if @news.save
       flash[:success] = "Notícia criada com sucesso!"
       redirect_to @news
@@ -23,17 +32,19 @@ class NewsController < ApplicationController
     end
   end
 
-  def udpate
+  def update
 
   end
 
   def destroy
-
+    News.find(params[:id]).destroy
+    flash[:success] = "Notícia apagada!"
+    redirect_to backoffice_index_url(data: 'news')
   end
 
 
   private
-  def noticia_params
+  def news_params
     params.require(:news).permit(:title, :date, :summary, :text, :destaque, :active)
   end
 end

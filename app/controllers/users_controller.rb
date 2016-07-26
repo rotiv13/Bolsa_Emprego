@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    if params[:search]
-      @users = @users.search(params[:search])
+    if params[:name]
+      @users = @users.search(params[:name])
     end
     if params[:locality]
       @user = @users.filter(param[:locality])
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Utilizador apagado!"
-    redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : use
+    redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : index_url
   end
 
 
@@ -45,9 +45,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
-      redirect_to root_url
+      unless @user.activated
+        @user.send_activation_email
+        flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
+      end
+      redirect_to admin_user?(current_user) ? backoffice_url(@user) : root_url
     else
       if @user.entitie == '2'
         render 'new_entitie'
@@ -82,7 +84,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :entitie, :address, :postal_code, :locality,
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
-                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture)
+                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated)
   end
 
   def logged_in_user
