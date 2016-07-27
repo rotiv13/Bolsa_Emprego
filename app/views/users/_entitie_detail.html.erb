@@ -1,0 +1,48 @@
+<aside class="col-md-12">
+  <section>
+    <h1>
+      <%= @user.name %>
+    </h1>
+  </section>
+</aside>
+<aside class="col-md-2 user_info_avatar">
+  <section>
+    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' %>
+  </section>
+  <section>
+    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
+  </section>
+  <% if admin_user?(@user) || current_user?(@user) %>
+      <section>
+        <%= link_to "Editar", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
+      </section>
+  <% end %>
+</aside>
+<aside class="col-md-10">
+  <section class="user_edit">
+    <p>
+      <%= @user.presentation %>
+    </p>
+    <p><strong>Actividade Profissional</strong></p>
+    <p><%= @user.prof_area %></p>
+  </section>
+  <section>
+    <p><strong>Morada</strong></p>
+    <p><%= @user.address %></p>
+    <p><%= @user.postal_code %> <%= @user.locality %></p>
+  </section>
+
+  <section>
+    <p><strong>Contactos</strong></p>
+    <p>Telemóvel: <%= @user.cellphone %> | Telefone: <%= @user.cellphone%></p>
+    <p><%= @user.email %></p>
+    <p><%= @user.page %><p>
+  </section>
+</aside>
+
+<aside class="col-md-12">
+  <section>
+  <h1>Ofertas Activas</h1>
+  OFERTAS
+  </section>
+</aside>

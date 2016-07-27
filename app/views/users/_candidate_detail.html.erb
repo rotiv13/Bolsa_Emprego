@@ -1,0 +1,61 @@
+<aside class="col-md-12 user_info_avatar">
+  <section>
+    <h1>
+      <%= @user.name %>
+    </h1>
+  </section>
+</aside>
+<aside class="col-md-2 user_info_avatar">
+  <section>
+    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' %>
+  </section>
+  <section>
+    <%= link_to "Curriculum Vitae", @user.curriculum? ? @user.curriculum.url : '#' %>
+  </section>
+
+  <section>
+    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
+  </section>
+  <% if admin_user?(@user) || current_user?(@user) %>
+      <section>
+        <%= link_to "Editar", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
+      </section>
+  <% end %>
+</aside>
+<aside class="col-md-10">
+  <section class="user_edit">
+    <p>
+      <%= @user.presentation %>
+    </p>
+    <p><strong>Actividade Profissional</strong></p>
+    <p><%= @user.prof_area %></p>
+  </section>
+  <section>
+    <h3><strong>Dados Profissionais</strong></h3>
+    <p><strong>Situação Profissional</strong></p>
+    <p><%= @user.prof_situation %></p>
+    <p><strong>Nível Habilitações</strong></p>
+    <p><%= @user.skill_level %></p>
+    <p><strong>Habilitações Literárias</strong></p>
+    <p><%= @user.skills %></p>
+    <p><strong>Experiência Profissional</strong></p>
+    <p><%= @user.prof_experience %></p>
+  </section>
+  <section>
+    <h3><strong>Dados Pessoais</strong></h3>
+    <p><strong>Morada</strong></p>
+    <p><%= @user.address %></p>
+    <p><%= @user.postal_code %> <%= @user.locality %></p>
+    <p><strong>Contactos</strong></p>
+    <p><%= @user.phone %> / <%= @user.cellphone %></p>
+    <p><%= @user.email %></p>
+    <p><%=  %></p>
+  </section>
+
+
+</aside>
+<aside class="col-md-2">
+  <section>
+    <%= link_to "Ver candidatos", index_path(entitie: false, title: 'Candidatos') %>
+  </section>
+</aside>

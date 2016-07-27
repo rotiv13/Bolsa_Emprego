@@ -7,11 +7,13 @@
               <%= f.label :email %>
               <%= f.email_field :email, class: 'form-control' %>
             </div>
-            <div class="col-md-3"><%= f.label :password %>
+            </div>
+          <div class="row">
+            <div class="col-md-6"><%= f.label :password %>
               <%= f.password_field :password, class: 'form-control' %>
             </div>
                 <%= f.hidden_field :entitie, value: '1' %>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <%= f.label :password_confirmation, "Confirmar Password" %>
               <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
@@ -22,54 +24,53 @@
 
           <div id="info_candidate" class="profile">
             <div class="row">
-              <div class="col-md-3" style="margin-bottom: 20px">
-                <%= image_tag @user.picture.url if @user.picture? %>
-                <%= f.file_field :picture, style:'margin-top:180px;' %>
-              </div>
-            </div>
-            <div class="row">
               <div class="col-md-6 ">
                 <%= f.label :name, "Nome" %>
                 <%= f.text_field :name, class: 'form-control'%>
               </div>
+              <div class="col-md-3">
+                <%= f.label :picture, "Foto" %>
+                <%= f.file_field :picture %>
+              </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <%= f.label :address, "Morada" %>
                 <%= f.text_area :address, class: 'form-control' %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label :postal_code, "Código Postal" %>
                 <%= f.text_field :postal_code, class: 'form-control' %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 col-md-offset-4">
                 <%= f.label :locality, "Localidade" %>
                 <%= f.text_field :locality, class: 'form-control' %>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label :phone, "Telefone" %>
                 <%= f.telephone_field :phone, class: 'form-control' %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label :cellphone, "Telemóvel" %>
                 <%= f.telephone_field :cellphone, class: 'form-control' %>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 col-md-offset-2">
                 <%= f.label :page, "Página/Website" %>
                 <%= f.text_field :page, class: 'form-control' %>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label :birth_date, "Data de Nascimento" %>
                 <%= f.date_field :birth_date, class: 'form-control' %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2 col-md-offset-4">
                 <%= f.label :idnum, yield(:idnumber) %>
                 <%= f.text_field :idnum, class: 'form-control' %>
               </div>
+
             </div>
             <hr>
             <div class="row">
@@ -77,7 +78,7 @@
                 <%= f.label :curriculum, "Curriculum Vitae" %>
                 <%= f.file_field :curriculum %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2 col-md-offset-3">
 
                 <%= f.label :prof_area, "Área Profissional" %>
                 <%= f.select(:prof_area, options_for_select(['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes'])) %>
@@ -87,27 +88,27 @@
           <div class="row">
             <div class="col-md-12">
               <%= f.label :presentation, "Apresentação" %>
-              <%= f.text_area :presentation, class: 'form-control' %>
+              <%= f.text_area :presentation, class: 'form-control', placeholder: 'Apresentação geral do candidato (max. 140 carácteres)' %>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <%= f.label :skill_level, "Nível de Habilitações" %>
               <%= f.select(:skill_level, options_for_select([['Secundário'],['Licenciatura'],['Mestrado'],['Doutoramento']])) %>
             </div>
             <div class="col-md-12">
               <%= f.label :skills, "Habilitações Literárias" %>
-              <%= f.text_area :skills, class: 'form-control' %>
+              <%= f.text_area :skills, class: 'form-control', placeholder: 'Percurso académico, habilitações, etc.' %>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <%= f.label :prof_situation, "Situação Profissional" %>
               <%= f.select(:prof_situation, options_for_select([['Empregado'],['Desempregado']])) %>
             </div>
             <div class="col-md-12">
               <%= f.label :prof_experience, "Experiência Profissional" %>
-              <%= f.text_area :prof_experience, class: 'form-control' %>
+              <%= f.text_area :prof_experience, class: 'form-control', placeholder:'Projecto e tecnologias que trabalhou na empresa anterior.' %>
             </div>
           </div>
       <% end %>
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-2">
         <%= f.submit yield(:button_text), class: "btn btn-primary" %>
       </div>
     </div>
@@ -115,6 +116,12 @@
 
 <script type="text/javascript">
   $('#user_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('O tamanho máximo é de 5MB. Por favor escolha uma imagem mais pequena.');
+    }
+  });
+  $('#user_curriculum').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 5) {
       alert('O tamanho máximo é de 5MB. Por favor escolha uma imagem mais pequena.');
