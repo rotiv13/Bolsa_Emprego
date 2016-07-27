@@ -1,0 +1,68 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h3>Utilizadores</h3>
+    </section>
+  </aside>
+</div>
+
+<div class="row">
+  <aside class="col-md-3">
+    <%= form_for users_path, method: 'get' do |f| %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+    <% end %>
+  </aside>
+
+  <aside class="col-md-3">
+    <%= form_for users_path, method: 'get' do |f| %>
+        <%= f.select(:field, options_for_select([['Tipo',3],['Backoffice',0],['Candidato',1],['Entidade',2]]),{}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
+  </aside>
+
+</div>
+<div class="row">
+  <aside class="tables">
+    <table class="col-md-12 ">
+      <tr>
+        <th class="col-md-3">Nome</th>
+        <th class="col-md-3">Tipo</th>
+        <th class="col-md-3">Activo</th>
+        <th class="col-md-3">Ações</th>
+      </tr>
+      <% @users.each do |user| %>
+          <tr>
+            <td class="col-md-3"><%= user.name %></td>
+            <td class="col-md-3"><%= type(user) %></td>
+            <td class="col-md-3"><%= user_active(user) %></td>
+            <td class="col-md-3"><%= link_to "Detalhe", backoffice_url(user), class: 'btn btn-info' %>
+              <%= link_to "Editar", edit_backoffice_path(user), class: 'btn btn-warning' %>
+              <% if admin_user?(current_user) %>
+                  <%= link_to "Apagar", user, method: :delete,
+                              data: { confirm: "Tem a certeza que pretende eliminar este utilizador?" }, class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </aside>
+</div>
+
+<div class="row">
+  <aside class="col-md-3">
+    <section>
+      <%= link_to "Inserir", new_backoffice_path, class: 'btn btn-default' %>
+    </section>
+  </aside>
+</div>
+
+<div class="row">
+  <aside>
+    <section>
+      <%= will_paginate(@users) %>
+    </section>
+  </aside>
+
+</div>

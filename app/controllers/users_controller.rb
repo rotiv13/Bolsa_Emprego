@@ -33,8 +33,8 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "Utilizador apagado"
-    redirect_to users_url
+    flash[:success] = "Utilizador apagado!"
+    redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : index_url
   end
 
 
@@ -45,9 +45,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
-      redirect_to root_url
+      unless @user.activated
+        @user.send_activation_email
+        flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
+      end
+      redirect_to admin_user?(current_user) ? backoffice_url(@user) : root_url
     else
       if @user.entitie == '2'
         render 'new_entitie'
@@ -61,7 +63,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Perfil Atualizado!"
-      redirect_to @user
+      redirect_to admin_user?(current_user) ? backoffice_url(@user) : @user
     else
       render 'edit'
     end
@@ -82,7 +84,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :entitie, :address, :postal_code, :locality,
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
-                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture)
+                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated)
   end
 
   def logged_in_user
@@ -95,7 +97,7 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
   end
 
   def admin_user

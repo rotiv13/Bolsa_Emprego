@@ -16,10 +16,11 @@
   <% end %>
 
   <%= yield %>
+  <% unless admin_user?(current_user) %>
+      <%= render 'layouts/footer' %>
+  <% end %>
 
-  <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
-
 </div>
 </body>
 </html>

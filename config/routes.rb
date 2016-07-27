@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+
 
   #ROOT
   root 'static_pages#home'
@@ -26,5 +26,9 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   #ACCOUNT ACTIVATIONS
   resources :account_activations, only: [:edit]
+
+  #BACKOFFICE
+  get '/backoffice/home' ,to: 'backoffice#home'
+  resources :backoffice
 
 end

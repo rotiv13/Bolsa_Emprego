@@ -1,6 +1,10 @@
 <header class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <%= link_to "bolsa emprego", root_path, id: "logo" %>
+    <% if !current_user.nil? && current_user.entitie == '0' %>
+        <%= link_to "bolsa emprego", backoffice_home_path, id: "logo" %>
+    <% else %>
+        <%= link_to "bolsa emprego", root_path, id: "logo" %>
+    <% end %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -16,19 +20,30 @@
 
     <nav>
       <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to "Home",    root_path %></li>
-        <li class="divider"></li>
 
-        <li><%= link_to "Entidades",    index_path(entitie: true, title: 'Entidades') %></li>
-        <li class="divider"></li>
 
-        <li><%= link_to "Candidatos",   index_path(entitie: false, title: 'Candidatos') %></li>
-        <li class="divider"></li>
+        <% if !current_user.nil? && current_user.entitie == '0' %>
+            <li><%= link_to "Home",    backoffice_home_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Utilizadores",   backoffice_index_url(data:'users') %></li>
+            <li class="divider"></li>
 
-        <li><%= link_to "Ofertas",    '#'  %></li>
-        <li class="divider"></li>
+            <li><%= link_to "Notícias", backoffice_index_url(data: 'news')  %></li>
+        <% else %>
+            <li><%= link_to "Home",    root_path %></li>
+            <li class="divider"></li>
 
-        <li><%= link_to "Notícias", news_index_url  %></li>
+            <li><%= link_to "Entidades",    index_path(entitie: true, title: 'Entidades') %></li>
+            <li class="divider"></li>
+
+            <li><%= link_to "Candidatos",   index_path(entitie: false, title: 'Candidatos') %></li>
+            <li class="divider"></li>
+
+            <li><%= link_to "Ofertas",    '#'  %></li>
+            <li class="divider"></li>
+
+            <li><%= link_to "Notícias", news_index_url  %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

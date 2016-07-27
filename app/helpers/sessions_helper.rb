@@ -19,12 +19,18 @@ module SessionsHelper
   end
 
   def current_user?(user)
-    user == current_user
+    user == current_user || admin_user?(user)
   end
 
   # Checks if the user is logged in
   def logged_in?
     !current_user.nil?
+  end
+
+  def admin_user?(user)
+    if user
+      user.entitie == '0'
+    end
   end
 
   # Logs out the current user
