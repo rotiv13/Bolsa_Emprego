@@ -1,0 +1,20 @@
+
+<aside class="col-md-12">
+  <section>
+
+    <div class="col-md-3" style="margin-right: 10px">
+      Picture
+    </div>
+    <div class="col-md-8">
+      <p><%= link_to offer.title, offer %></p>
+      <p><%= offer.date_begin %> a <%= offer.date_end %></p>
+      <p><%= offer.prof_area %></p>
+      <p><%= offer.description.first(100) %>...</p>
+    </div>
+    <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
+    <% if admin_user?(current_user) %>
+    <%=  link_to 'Editar', '#', class: 'btn btn-defaul' %>
+        <% end %>
+  </section>
+</aside>
+

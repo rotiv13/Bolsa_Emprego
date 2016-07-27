@@ -1,0 +1,42 @@
+<aside class="col-md-12 user_info_avatar">
+  <section>
+    <h1>
+      <%= @offer.title %>
+    </h1>
+  </section>
+</aside>
+<aside class="col-md-2 user_info_avatar">
+  <section>
+    picture
+  </section>
+  <section>
+    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
+  </section>
+  <% if admin_user?(current_user) %>
+      <section>
+        <%= link_to "Editar", offers_edit_path(@offer), class: 'btn btn-default' %>
+      </section>
+  <% end %>
+</aside>
+<aside class="col-md-10">
+  <section class="user_edit">
+    <p>
+      <%= @offer.description %>
+    </p>
+    <p><%= @offer.date_begin %> a <%= @offer.date_end %> </p>
+    <p><strong>Actividade Profissional</strong></p>
+    <p><%= @offer.prof_area %></p>
+    <p><strong>Tipo de Contrato</strong></p>
+    <p><%= @offer.type_contract %></p>
+    <p><strong>Salário</strong></p>
+    <p><%= @offer.salary %></p>
+  </section>
+</aside>
+
+<div class="row">
+  <aside class="col-md-6">
+    <section>
+      <%= render @other_offer %>
+    </section>
+  </aside>
+</div>

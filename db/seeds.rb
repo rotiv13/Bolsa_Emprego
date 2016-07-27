@@ -85,7 +85,6 @@ end
                page: page,
                birth_date: Time.zone.now,
                idnum: '123456789',
-               picture: picture,
                prof_area: prof_area,
                presentation: presentation,
                activated: true,
@@ -103,3 +102,18 @@ end
                summary:summary,
                text:text)
 end
+
+# 15.times do |n|
+#   title  = Faker::Book.title
+#   date_begin = Faker::Date.between(Date.today, 1.month.from_now)
+#   date_end = Faker::Date.between(1.month.from_now, 2.month.from_now)
+#   summary = Faker::Lorem.sentence(20)
+#   Offer.create!(title: title,
+#                 date_begin: date_begin,
+#                 date_end: date_end,
+#                 prof_area: 'Informática',
+#                 description:summary,
+#                 type_contract: "Full-time",
+#                 salary: '1000-1500',
+#   user_id: 1)
+# end

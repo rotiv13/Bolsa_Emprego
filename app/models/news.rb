@@ -5,7 +5,7 @@ class News < ApplicationRecord
   validates :summary, presence: true, length: {maximum: 140}
   validates :text, presence: true
 
-  def search(search)
+  def self.search(search)
     if search
       where("title LIKE '%#{search}%'")
     else

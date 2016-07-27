@@ -1,0 +1,40 @@
+<% provide(:title, 'Ofertas') %>
+<div class="row">
+  <aside class="col-md-4">
+    <h3>Ofertas</h3>
+  </aside>
+</div>
+<div class="row">
+  <aside class="col-md-3">
+    <%= form_for offers_path, method: 'get' do |f| %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+    <% end %>
+  </aside>
+
+  <aside class="col-md-3">
+    <%= form_for offers_path, method: 'get' do |f| %>
+        <% field_array = Offer.distinct.pluck(:prof_area) %>
+        <%= f.select(:fields , options_for_select(field_array),{ :include_blank => true}, :onChange => "javascript: this.form.submit();") %>
+    <% end %>
+  </aside>
+
+  <aside class="col-md-3">
+    <%= form_for offers_path do |f| %>
+        <% field_array = User.distinct.pluck(:locality) %>
+        <%= f.select(:locality, options_for_select(field_array),{:include_blank => true}, :onChange => "javascript: this.form.submit.click();") %>
+        <div class="hidden">
+          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
+        </div>
+    <% end %>
+  </aside>
+</div>
+
+<div class="row">
+  <% @offers.each do |offer|  %>
+      <div class="col-md-6">
+        <%= render offer %>
+      </div>
+  <% end %>
+
+</div>
+<%= will_paginate %>

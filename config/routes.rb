@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+
+
   #ROOT
   root 'static_pages#home'
   #OFFERS
@@ -31,4 +33,14 @@ Rails.application.routes.draw do
   get '/backoffice/home' ,to: 'backoffice#home'
   resources :backoffice
 
+  #OFFERS
+  resources :offers
+  get 'offers/new'
+
+  get '/offer', to: 'offers#index'
+  get '/offers', to: 'offers#search'
+
+  get 'offers/show'
+
+  get 'offers/edit'
 end

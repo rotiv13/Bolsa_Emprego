@@ -33,11 +33,7 @@ class User < ApplicationRecord
     end
 
     def search(search)
-      if search
-        where("name LIKE '%#{search}%'")
-      else
-        find(:all)
-      end
+      where("name LIKE '%#{search}%'")
     end
     def filter(filter)
       if filter

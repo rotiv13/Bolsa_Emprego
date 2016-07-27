@@ -2,8 +2,8 @@
 <aside class="col-md-12">
   <section>
 
-    <div class="col-md-3" style="margin-right: 10px">
-      <%= image_tag user.picture.url if user.picture? %>
+    <div class="col-md-3" style="margin-right: 10px;">
+      <%= image_tag user.picture? ? user.picture.url : '/assets/default_avatar.png', style: 'width:100px; height:100px' %>
     </div>
     <div class="col-md-8">
       <%= link_to user.name, user %>
