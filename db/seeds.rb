@@ -25,6 +25,46 @@ User.create!(name: 'BackOffice',
              admin: true
 )
 
+User.create!(name: 'Candidato',
+             email: 'vitorafonso_32@hotmail.com',
+             password:              '123456',
+             password_confirmation: '123456',
+             entitie: 1,
+             address: 'Bolsa de Emprego',
+             postal_code: '4050',
+             locality: 'Porto',
+             phone: '123456789',
+             cellphone: '123456789',
+             page: 'bolsaemprego.com',
+             birth_date: Time.zone.now,
+             idnum: '123456789',
+             prof_area: 'Admin',
+             presentation: 'Administrador do Website Bolsa de Emprego',
+             activated: true,
+             activated_at: Time.zone.now,
+             admin: false
+)
+
+User.create!(name: 'Entidade',
+             email: 'vitorafonso@hotmail.com',
+             password:              '123456',
+             password_confirmation: '123456',
+             entitie: 2,
+             address: 'Bolsa de Emprego',
+             postal_code: '4050',
+             locality: 'Porto',
+             phone: '123456789',
+             cellphone: '123456789',
+             page: 'bolsaemprego.com',
+             birth_date: Time.zone.now,
+             idnum: '123456789',
+             prof_area: 'Admin',
+             presentation: 'Administrador do Website Bolsa de Emprego',
+             activated: true,
+             activated_at: Time.zone.now,
+             admin: false
+)
+
 
 
 20.times do |n|
@@ -117,3 +157,10 @@ end
 #                 salary: '1000-1500',
 #   user_id: 1)
 # end
+
+users = User.order(:created_at).where('entitie = 2').take(6)
+5.times do
+  title = Faker::Book.title
+  content = Faker::Lorem.sentence(10)
+  users.each { |user| user.offers.create!(title:title, description: content, active: true) }
+end

@@ -27,6 +27,12 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def entity?
+    logged_in?
+    @user = User.find(@current_user)
+    @user.entitie == '2'
+  end
+
   def admin_user?(user)
     if user
       user.entitie == '0'

@@ -1,0 +1,89 @@
+<%= form_for @offer do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div>
+      <div id="new_info">
+        <div class="row">
+          <div class="col-md-6 ">
+            <%= f.label :title, "Título" %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :date_begin, "Data Início:" %>
+            <%= f.text_field :date_begin,'data-provide' => 'datepicker', class: 'form-control' %>
+
+          </div>
+          <%= f.hidden_field :user, value: current_user.id %>
+          <div class="col-md-3">
+            <%= f.label :date_end, "Data Fim: "%>
+            <%= f.text_field :date_end,'data-provide' => 'datepicker', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label :description, "Descrição" %>
+            <%= f.text_area :description, class: 'form-control',placeholder: 'Descrição da Oferta' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <%= f.label :picture, "Foto" %>
+            <%= f.file_field :picture %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label "Empresa" %>
+            <p><%= link_to current_user.name, user_path(current_user.id) %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+
+            <%= f.label :prof_area, "Área Profissional" %>
+            <%= f.select(:prof_area, options_for_select(['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']),include_blank: true) %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+
+            <%= f.label :prof_area, "Tipo de Contrato" %>
+            <%= f.select(:prof_area, options_for_select(['Full-Time','Part-Time'])) %>
+          </div>
+
+          <div class="col-md-2 col-md-offset-4">
+            <%= f.label :prof_area, "Salário" %>
+            <%= f.select(:prof_area, options_for_select(['500-1000','1000-1500','1500-2000','2000-2500'])) %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <h5><strong>Activa</strong></h5>
+            <br>
+            <div class="checkbox">
+              <p>
+                <%= f.label :active do %>
+                    Sim <%= f.check_box :active, {}, 'true', 'false' %>
+                    <% if :active == 'true' %>
+                        <% @offer.activate %>
+                    <% else %>
+                        <% @offer.deactivate %>
+                    <% end %>
+                <% end %>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        <%= f.submit "Ok", class: "btn btn-primary" %>
+        </div>
+        <div class="col-md-2">
+            <%= link_to "Cancelar", user_path(current_user.id), class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

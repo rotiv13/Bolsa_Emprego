@@ -1,5 +1,5 @@
 <%= form_for(@user, html: {multipart: true}) do |f| %>
-    <%= render 'shared/error_messages' %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div>
       <% if yield(:data) == 'register' || params[:data] == 'password' %>
           <div class="row" id="login_candidate_info">
@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-md-2">
                 <%= f.label :birth_date, "Data de Nascimento" %>
-                <%= f.date_field :birth_date, class: 'form-control' %>
+                <%= f.text_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
               </div>
               <div class="col-md-2 col-md-offset-4">
                 <%= f.label :idnum, yield(:idnumber) %>

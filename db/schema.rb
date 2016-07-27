@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727102923) do
+ActiveRecord::Schema.define(version: 20160727151157) do
 
   create_table "news", force: :cascade do |t|
     t.string   "title"
@@ -32,8 +32,10 @@ ActiveRecord::Schema.define(version: 20160727102923) do
     t.string   "type_contract"
     t.string   "salary"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "active",        default: false
+    t.string   "picture"
     t.index ["user_id", "created_at"], name: "index_offers_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end

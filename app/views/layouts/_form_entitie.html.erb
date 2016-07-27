@@ -1,5 +1,5 @@
 <%= form_for(@user, html: {multipart: true}) do |f| %>
-    <%= render 'shared/error_messages' %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div>
       <% if yield(:data) == 'register' || params[:data] == 'password' %>
           <div class="row" id="login_candidate_info">

@@ -9,13 +9,9 @@
   <section>
     picture
   </section>
-  <section>
     <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
-  </section>
-  <% if admin_user?(current_user) %>
-      <section>
-        <%= link_to "Editar", offers_edit_path(@offer), class: 'btn btn-default' %>
-      </section>
+  <% if admin_user?(current_user) || current_user?(@offer.user) %>
+        <%= link_to "Editar", offers_edit_path, class: 'btn btn-default' %>
   <% end %>
 </aside>
 <aside class="col-md-10">

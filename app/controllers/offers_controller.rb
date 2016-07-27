@@ -1,8 +1,10 @@
 class OffersController < ApplicationController
-  before_action :logged_in_entity, only: [:edit, :destroy, :update]
+  before_action :logged_in_user , only: [:edit, :destroy, :update]
+  before_action :logged_in_entity
 
   def new
     @offer = Offer.new
+
   end
 
   def search
@@ -28,12 +30,13 @@ class OffersController < ApplicationController
   end
 
   def edit
+    @offer = Offer.find(params[:id])
   end
 
   def create
     @offer = Offer.new(offer_params)
     if @offer.save
-      flash[:success] = "Oferta Guardade com Sucesso!"
+      flash[:success] = "Oferta Guardada com Sucesso!"
       redirect_to offers_path
     else
       render 'new'
@@ -41,18 +44,9 @@ class OffersController < ApplicationController
   end
 
   private
-  def logged_in_entity
-    unless logged_in?
-      store_location
-      flash[:danger] = "Por favor efectue o login na aplicação."
-      redirect_to login_url
-    end
-  end
-
-  private
 
   def offer_params
     params.require(:offer).permit(:title, :date_begin, :date_end, :description,
-                                  :salary, :type_contract, :prof_area)
+                                  :salary, :type_contract, :prof_area, :user)
   end
 end

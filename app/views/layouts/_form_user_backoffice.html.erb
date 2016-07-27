@@ -1,4 +1,6 @@
 <%= form_for @user do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
     <div>
       <div id="new_info">
         <% if yield(:data) != 'password' %>

@@ -1,5 +1,6 @@
 <%= form_for @news do |f| %>
-    <%= render 'shared/error_messages_news' %>
+    <%= render 'shared/error_messages', object: f.object %>
+
     <div>
       <div id="new_info">
         <div class="row">
@@ -9,7 +10,7 @@
           </div>
           <div class="col-md-6">
             <%= f.label :date, "Data" %>
-            <%= f.date_field :date, class: 'form-control' %>
+            <%= f.date_field :date, 'data-provide' => 'datepicker', class: 'form-control' %>
           </div>
         </div>
         <div class="row">

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @offers = @user.offers.limit(2)
   end
 
   def index
@@ -87,13 +88,7 @@ class UsersController < ApplicationController
                                  :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated)
   end
 
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Por favor efectue o login na aplicação."
-      redirect_to login_url
-    end
-  end
+
 
   def correct_user
     @user = User.find(params[:id])
