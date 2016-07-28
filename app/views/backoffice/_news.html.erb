@@ -23,8 +23,8 @@
         <tr>
           <td class="col-md-3"><%= news.title %></td>
           <td class="col-md-2"><%= news.date %></td>
-          <td class="col-md-2"><%= news.destaque %></td>
-          <td class="col-md-2"><%= news.active %></td>
+          <td class="col-md-2"><%= news_destaque(news) %></td>
+          <td class="col-md-2"><%= news_active(news) %></td>
           <td class="col-md-3"><%= link_to "Detalhe", backoffice_url(news), class: 'btn btn-info' %>
             <%= link_to "Editar", edit_backoffice_path(news) , class: 'btn btn-warning' %>
             <% if admin_user?(current_user) %>

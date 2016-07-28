@@ -140,11 +140,13 @@ end
   summary = Faker::Lorem.sentence(10)
   text = Faker::Lorem.paragraph(4)
   destaque = true
+  active = true
   News.create!(title: title,
                date: date,
                summary:summary,
                text:text,
-               destaque: destaque)
+               destaque: destaque,
+               active: active)
 end
 
 # 15.times do |n|

@@ -8,11 +8,6 @@ class OffersController < ApplicationController
 
   end
 
-  def search
-    if params[:prof_area]
-      @offers = @offers.fields(params[:prof_area])
-    end
-  end
 
   def index
     @offers = Offer.all.where(active: true)

@@ -8,16 +8,14 @@ class Offer < ApplicationRecord
   validates :date_begin, presence: true
   validates :date_end, presence: true
 
-  def self.search(search)
-    where("title like '%#{search}%'")
+  class << self
+    def search(search)
+      where("title like '#{search}%'")
+    end
   end
 
   def activate
     update_attribute(:active, true)
-  end
-
-  def make_active(id)
-    activate
   end
 
   def deactivate
