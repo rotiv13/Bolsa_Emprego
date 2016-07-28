@@ -11,8 +11,6 @@ class UsersController < ApplicationController
     @offers_deactive = @offers.where(active: false).limit(2)
 
   end
-
-
   def index
     @users = User.all
     if params[:search]
@@ -31,6 +29,34 @@ class UsersController < ApplicationController
       @users = @users.where(entitie: '1').paginate(page: params[:page], per_page: 8)
       @title = 'Candidatos'
     end
+  end
+
+  def index_candidate
+    @users = User.all.where(entitie: '1')
+    if params[:search]
+      @users = @users.search(params[:search])
+    end
+    if params[:locality]
+      @user = @users.filter(param[:locality])
+    end
+    if params[:field]
+      @user = @users.local(param[:locality])
+    end
+    @users = @users.paginate(page: params[:page], per_page: 8)
+  end
+
+  def index_entitie
+    @users = User.all.where(entitie: '2')
+    if params[:search]
+      @users = @users.search(params[:search])
+    end
+    if params[:locality]
+      @user = @users.filter(param[:locality])
+    end
+    if params[:field]
+      @user = @users.local(param[:locality])
+    end
+    @users = @users.paginate(page: params[:page], per_page: 8)
   end
 
   def edit
@@ -100,7 +126,5 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
   end
 
-  def admin_user
-    redirect_to(root_url) unless current_user.entitie == '0'
-  end
+
 end

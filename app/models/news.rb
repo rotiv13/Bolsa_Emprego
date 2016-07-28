@@ -6,13 +6,12 @@ class News < ApplicationRecord
   validates :summary, presence: true, length: {maximum: 140}
   validates :text, presence: true
 
-
-  def self.search(search)
-    if search
-      where("title LIKE '%#{search}%'")
-    else
-      find(:all)
-    end
+class << self
+  def search(search)
+    puts 'OLA model'
+    self.where("title LIKE '#{search}%'")
   end
+
+end
 
 end

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_user
+    redirect_to(root_url) unless current_user.entitie == '0'
+  end
+
   def logged_in_entity
     unless entity?
       redirect_to root_url

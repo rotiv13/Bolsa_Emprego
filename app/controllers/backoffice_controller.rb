@@ -1,4 +1,6 @@
 class BackofficeController < ApplicationController
+  before_action :admin_user, only: [:edit, :create, :show, :index_news, :index_news, :home]
+
   def home
     render 'backoffice/home'
   end
@@ -13,16 +15,22 @@ class BackofficeController < ApplicationController
       flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
       redirect_to  backoffice_url(@user)
     else
-        render 'new'
-      end
+      render 'new'
+    end
   end
 
-  def index
-    if params[:data] == "news"
-      @news = News.all.paginate(page: params[:page], per_page: 10)
-    else
-      @users = User.all.paginate(page: params[:page], per_page: 10)
+  def index_news
+    @news = News.all
+
+    if params[:search]
+      puts "OLA"
+      @news  = @news.search(params[:search])
     end
+    @news = @news.paginate(page: params[:page], per_page: 10)
+  end
+
+  def index_users
+    @users = User.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show

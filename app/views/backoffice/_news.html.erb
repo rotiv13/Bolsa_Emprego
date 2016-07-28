@@ -1,11 +1,11 @@
 <aside><section><h1>
-  Utilizadores
+  Notícias
 </h1>
 </section></aside>
 
 <div class="row">
   <aside class="col-md-3">
-    <%= form_for(@news) do |f| %>
+    <%= form_for backoffice_news_path, method:'get' do |f| %>
         <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
     <% end %>
   </aside>

@@ -31,20 +31,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-2">
             <h5><strong>Destaque</strong></h5>
             <br>
-            <div class="checkbox col-md-6">
+            <div class="checkbox">
               <%= f.label :destaque do %>
-                 Aparece em destaque <%= f.check_box :destaque, {}, true, false %>
+                  Aparece em destaque <%= f.check_box :destaque, {}, true, false %>
               <% end %>
             </div>
-
           </div>
-          <div class="col-md-6">
+          <div class="col-md-2 col-md-offset-4">
             <h5><strong>Activa</strong></h5>
             <br>
-            <div class="checkbox col-md-6">
+            <div class="checkbox ">
               <%= f.label :active do %>
                   Sim <%= f.check_box :active, {}, true, false %>
               <% end %>
@@ -53,8 +52,14 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-md-offset-3">
-        <%= f.submit "Guardar Notícia", class: "btn btn-primary" %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-2">
+          <%= f.submit "Ok", class: "btn btn-primary" %>
+
+        </div>
+        <div class="col-md-2">
+          <%= link_to "Cancelar", backoffice_index_url(data: 'news'), class: 'btn btn-default' %>
+        </div>
       </div>
     </div>
 <% end %>

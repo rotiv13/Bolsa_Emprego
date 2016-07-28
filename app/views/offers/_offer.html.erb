@@ -18,7 +18,8 @@
             <% if current_user.entitie == '2' &&  current_user?(offer.user) %>
                 <% if !current_page?(:controller => 'offers', :action => 'index') %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
-                    <%= link_to 'Cancelar', '#', class: 'btn btn-default' %>
+                    <%= link_to 'Cancelar', offer, method: :delete,
+                                data: { confirm: "Tem a certeza que pretende desactivar esta oferta?" }, class: 'btn btn-default' %>
                 <% else %>
                     <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
@@ -32,7 +33,7 @@
             <% end %>
         <% end %>
     <% else %>
-        <%= link_to "Reativar", '#' , class: 'btn btn-default' %>
+        <%= link_to "Reativar", edit_offer_path(offer.id) , class: 'btn btn-default' %>
     <% end %>
   </section>
 </aside>

@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
   #ROOT
   root 'static_pages#home'
   #OFFERS
@@ -19,8 +15,8 @@ Rails.application.routes.draw do
   post '/new_candidate', to:'users#create'
   get '/new_entitie' , to:'users#new_entitie'
   post '/new_entitie', to:'users#create'
-  get '/index', to: 'users#index'
-  post '/index', to: 'users#index'
+  get '/index/entitie', to: 'users#index_entitie'
+  get '/index/candidate', to: 'users#index_candidate'
   resources :users
   #SESSIONS
   get    '/login',   to: 'sessions#new'
@@ -30,7 +26,10 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
 
   #BACKOFFICE
-  get '/backoffice/home' ,to: 'backoffice#home'
+  get '/backoffice' ,to: 'backoffice#home'
+  get '/backoffice/users', to: 'backoffice#index_users'
+  get '/backoffice/news', to: 'backoffice#index_news'
+
   resources :backoffice
 
   #OFFERS

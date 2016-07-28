@@ -26,7 +26,7 @@
         Últimas Empresas
       </h1>
       <%= render @entities %>
-      <%= link_to 'Ver todas as Empresas', index_path(entitie: true) %>
+      <%= link_to 'Ver todas as Empresas', index_entitie_path %>
     </section>
   </aside>
   <aside class="col-md-6">
@@ -36,7 +36,7 @@
       </h1>
       <div class="col-md-12">
       <%= render @candidates %>
-      <%= link_to 'Ver todos os Candidatos', index_path(entitie: false) %>
+      <%= link_to 'Ver todos os Candidatos', index_candidate_path %>
       </div>
     </section>
   </aside>

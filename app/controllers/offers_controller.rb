@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, :except => :destroy
-  before_action :logged_in_entity, only: [:create, :edit, :destroy, :update]
+  before_action :logged_in_entity, :admin_user, only: [:edit]
+
 
   def new
     @offer = Offer.new
@@ -44,10 +45,12 @@ class OffersController < ApplicationController
   end
 
   def update
-    @offer = current_user.offers.find(params[:id])
+    @offer = Offer.find(params[:id])
+    @user = @offer.user
+    @offer = @user.offers.find(params[:id])
     if @offer.update_attributes(offer_params)
-      flash[:sucess] = "Ofertas Atualizada!"
-      redirect_to offers_path
+      flash[:success] = "Ofertas Atualizada!"
+      redirect_to @user
     else
       render 'edit'
     end
@@ -55,8 +58,8 @@ class OffersController < ApplicationController
 
 
   def destroy
-    current_user.offer.find(params[:id]).destroy
-    flash[:sucess] = "Oferta Cancelada!"
+    current_user.offers.find(params[:id]).destroy
+    flash[:success] = "Oferta Cancelada!"
     redirect_to current_user
   end
 

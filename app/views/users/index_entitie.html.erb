@@ -1,7 +1,7 @@
-<% provide(:title, @title) %>
+<% provide(:title, 'Entidades') %>
 <div class="row">
   <aside class="col-md-4">
-    <h3><%= @title %></h3>
+    <h3>Entidades</h3>
   </aside>
 </div>
 <div class="row">
@@ -13,7 +13,7 @@
 
   <aside class="col-md-3">
     <%= form_for users_path, method: 'get' do |f| %>
-        <% field_array = User.distinct.pluck(:prof_area) %>
+        <% field_array = @users.distinct.pluck(:prof_area) %>
         <%= f.select(:field, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
         <div class="hidden">
           <%= f.submit "Apply", :name => "submit", :remote => "true" %>
@@ -23,7 +23,7 @@
 
   <aside class="col-md-3">
     <%= form_for(users_path) do |f| %>
-        <% field_array = User.distinct.pluck(:locality) %>
+        <% field_array = @users.distinct.pluck(:locality) %>
         <%= f.select(:locality, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit.click();") %>
         <div class="hidden">
           <%= f.submit "Apply", :name => "submit", :remote => "true" %>
@@ -37,6 +37,11 @@
         <%= render user %>
       </div>
   <% end %>
-
 </div>
 <%= will_paginate %>
+
+<div class="row">
+  <% unless logged_in? %>
+      <%= link_to "Quero-me registar", new_user_path %>
+  <% end %>
+</div>

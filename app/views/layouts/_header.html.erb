@@ -1,14 +1,15 @@
 <header class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <% if !current_user.nil? && current_user.entitie == '0' %>
-        <%= link_to "bolsa emprego", backoffice_home_path, id: "logo" %>
-    <% else %>
-        <%= link_to "bolsa emprego", root_path, id: "logo" %>
-    <% end %>
+    <%= link_to "bolsa emprego", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-            <li><%= link_to @current_user.name,  current_user %></li>
+            <% if admin_user?(current_user) %>
+                <li><%= link_to @current_user.name,  backoffice_url %></li>
+            <% else %>
+                <li><%= link_to @current_user.name,  current_user %></li>
+            <% end %>
+
             <li><%= link_to "Sair", logout_path, method: "delete" %></li>
         <% else %>
             <li><%= link_to "Registar-me",    new_user_path %></li>
@@ -21,22 +22,18 @@
     <nav>
       <ul class="nav navbar-nav navbar-left">
 
-
-        <% if !current_user.nil? && current_user.entitie == '0' %>
-            <li><%= link_to "Home",    backoffice_home_path %></li>
+        <li><%= link_to "Home",    root_path %></li>
+        <li class="divider"></li>
+        <% if current_page?(controller: 'backoffice') %>
+            <li><%= link_to "Utilizadores",   backoffice_users_url %></li>
             <li class="divider"></li>
-            <li><%= link_to "Utilizadores",   backoffice_index_url(data:'users') %></li>
-            <li class="divider"></li>
 
-            <li><%= link_to "Notícias", backoffice_index_url(data: 'news')  %></li>
+            <li><%= link_to "Notícias", backoffice_news_url(data: 'news')  %></li>
         <% else %>
-            <li><%= link_to "Home",    root_path %></li>
+            <li><%= link_to "Entidades",    index_entitie_path %></li>
             <li class="divider"></li>
 
-            <li><%= link_to "Entidades",    index_path(entitie: true, title: 'Entidades') %></li>
-            <li class="divider"></li>
-
-            <li><%= link_to "Candidatos",   index_path(entitie: false, title: 'Candidatos') %></li>
+            <li><%= link_to "Candidatos",   index_candidate_path %></li>
             <li class="divider"></li>
 
             <li><%= link_to "Ofertas",    offers_path  %></li>

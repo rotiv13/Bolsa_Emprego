@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :admin_user?, only: [:edit, :update, :destroy]
+  before_action :admin_user , only: [:edit, :update, :destroy]
   def new
     @news = News.new
   end
@@ -17,10 +17,6 @@ class NewsController < ApplicationController
   def index
     @news = News.all
     @news = @news.paginate(page: params[:page], per_page: 10)
-
-    if params[:search]
-      @news = @news.search(params[:search])
-    end
   end
 
   def create
@@ -40,7 +36,7 @@ class NewsController < ApplicationController
   def destroy
     News.find(params[:id]).destroy
     flash[:success] = "Notícia apagada!"
-    redirect_to backoffice_index_url(data: 'news')
+    redirect_to backoffice_news_url
   end
 
 
