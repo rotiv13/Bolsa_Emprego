@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="Rails Bolsa_Emprego: development" uuid="c1a993aa-92ed-48e7-b930-57cb177a99eb">
-      <auth-required>false</auth-required>
-    </data-source>
-    <data-source name="Rails Bolsa_Emprego: test" uuid="38ed67c9-a8ed-4c1e-8a7c-772b090fa2ef" />
-  </component>
-</project>
