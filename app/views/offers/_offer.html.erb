@@ -9,21 +9,30 @@
       <p><%= link_to offer.title, offer %></p>
       <p><%= offer.date_begin %> a <%= offer.date_end %></p>
 
-          <p><%= offer.user.name %></p>
+      <p><%= offer.user.name %></p>
       <p><%= offer.prof_area %></p>
       <p><%= offer.description.first(100) %>...</p>
     </div>
-    <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
-        <% if type(current_user) == '2'  %>
-            <%=  link_to 'Editar', '#' , class: 'btn btn-default' %>
-            <%= link_to 'Cancelar', '#', class: 'btn btn-default' %>
-        <% else %>
-            <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
+    <% if offer.active %>
+        <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
+            <% if current_user.entitie == '2' &&  current_user?(offer.user) %>
+                <% if !current_page?(:controller => 'offers', :action => 'index') %>
+                    <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
+                    <%= link_to 'Cancelar', '#', class: 'btn btn-default' %>
+                <% else %>
+                    <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
+                    <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
+                <% end %>
+            <% else %>
+                <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
 
-            <% if admin_user?(current_user) || current_user?(offer.user) %>
-                <%=  link_to 'Editar', '#', class: 'btn btn-default' %>
+                <% if admin_user?(current_user) || current_user?(offer.user) %>
+                    <%=  link_to 'Editar', edit_offer_path(offer.id), class: 'btn btn-default' %>
+                <% end %>
             <% end %>
         <% end %>
+    <% else %>
+        <%= link_to "Reativar", '#' , class: 'btn btn-default' %>
     <% end %>
   </section>
 </aside>

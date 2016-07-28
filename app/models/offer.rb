@@ -16,6 +16,10 @@ class Offer < ApplicationRecord
     update_attribute(:active, true)
   end
 
+  def make_active(id)
+    activate
+  end
+
   def deactivate
     update_attribute(:active, false)
   end

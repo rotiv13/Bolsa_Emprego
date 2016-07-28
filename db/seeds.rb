@@ -75,7 +75,9 @@ User.create!(name: 'Entidade',
   address = Faker::Address.street_address + " "+ Faker::Address.street_name
   postal_code = Faker::Address.zip
   locality = Faker::Address.city
-  prof_area = Faker::Company.profession
+  prof_area = ['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes'].shuffle.sample
+  skill_level = ['Secundário','Licenciatura','Mestrado','Doutoramento'].shuffle.sample
+  prof_situation = ['Empregado','Desempregado'].shuffle.sample
   presentation = Faker::Lorem.sentence(10)
   birth_date = Faker::Date.between(40.years.ago, 20.years.ago)
   User.create!(name: name,
@@ -95,8 +97,8 @@ User.create!(name: 'Entidade',
                presentation: presentation,
                skills: 'Lorem ipsum ',
                prof_experience: 'Lorem ipsum dolor ',
-               skill_level: 'Licenciatura',
-               prof_situation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. ',
+               skill_level: skill_level,
+               prof_situation: prof_situation,
                activated: true,
                activated_at: Time.zone.now,
                admin: false)
@@ -110,7 +112,7 @@ end
   address = Faker::Address.street_address + " "+ Faker::Address.street_name
   postal_code = Faker::Address.zip
   locality = Faker::Address.city
-  prof_area = Faker::Company.profession
+  prof_area = ['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços'].shuffle.sample
   presentation = Faker::Lorem.sentence(10)
   User.create!(name: name,
                email: email,
@@ -164,9 +166,11 @@ users = User.order(:created_at).where('entitie = 2').take(6)
 5.times do
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
+  prof_area = ['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes','Asistente Social'].shuffle.sample
   date_begin = Faker::Date.between(Date.today, 2.months.from_now)
   date_end = Faker::Date.between(2.months.from_now, 4.months.from_now)
   users.each { |user| user.offers.create!(title:title, description: content,
                                           date_begin: date_begin, date_end: date_end,
-                                          active: true) }
+                                          active: true, prof_area: prof_area)
+  }
 end

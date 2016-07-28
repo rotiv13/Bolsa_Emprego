@@ -35,7 +35,7 @@ class User < ApplicationRecord
     end
 
     def search(search)
-      where("name LIKE '%#{search}%'")
+      where("name LIKE '#{search}%'")
     end
     def filter(filter)
       if filter

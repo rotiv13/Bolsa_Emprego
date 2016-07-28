@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :logged_in_user , only: [:edit, :destroy, :update]
+  before_action :logged_in_user, :except => :destroy
   before_action :logged_in_entity, only: [:create, :edit, :destroy, :update]
 
   def new
@@ -14,7 +14,7 @@ class OffersController < ApplicationController
   end
 
   def index
-    @offers = Offer.all
+    @offers = Offer.all.where(active: true)
     if params[:search]
       @offers=@offers.search(params[:search])
     end
@@ -43,10 +43,28 @@ class OffersController < ApplicationController
     end
   end
 
+  def update
+    @offer = current_user.offers.find(params[:id])
+    if @offer.update_attributes(offer_params)
+      flash[:sucess] = "Ofertas Atualizada!"
+      redirect_to offers_path
+    else
+      render 'edit'
+    end
+  end
+
+
+  def destroy
+    current_user.offer.find(params[:id]).destroy
+    flash[:sucess] = "Oferta Cancelada!"
+    redirect_to current_user
+  end
+
+
   private
 
   def offer_params
     params.require(:offer).permit(:title, :date_begin, :date_end, :description,
-                                  :salary, :type_contract, :prof_area )
+                                  :salary, :type_contract, :prof_area, :active, :picture )
   end
 end

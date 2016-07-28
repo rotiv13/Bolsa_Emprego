@@ -7,11 +7,11 @@
 </aside>
 <aside class="col-md-2 user_info_avatar">
   <section>
-    picture
+    <%= image_tag @offer.picture? ? @offer.picture.url : 'default_avatar.png' ,style: 'width:100%;' %>
   </section>
-    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
+    <%= link_to "Candidatar-me", '#', class: 'btn btn-default' %>
   <% if admin_user?(current_user) || current_user?(@offer.user) %>
-        <%= link_to "Editar", offers_edit_path, class: 'btn btn-default' %>
+        <%= link_to "Editar", edit_offer_path, class: 'btn btn-default' %>
   <% end %>
 </aside>
 <aside class="col-md-10">
@@ -34,6 +34,9 @@
 <div class="row">
   <aside class="col-md-6">
     <section>
+      <h1>
+        Outras ofertas na mesma área
+      </h1>
       <%= render @other_offer %>
     </section>
   </aside>

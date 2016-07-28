@@ -6,9 +6,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @offers = @user.offers
-    @offers_limit = @offers.limit(2)
-    @offers_active = @offers.where('active like ?', true).limit(4)
+    @offers_active = @offers.where(active: true).limit(4)
+    @offers_limit = @offers_active.limit(2)
+    @offers_deactive = @offers.where(active: false).limit(2)
+
   end
+
 
   def index
     @users = User.all
