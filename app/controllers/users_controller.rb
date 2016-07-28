@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @offers = @user.offers.limit(2)
+    @offers = @user.offers
+    @offers_limit = @offers.limit(2)
+    @offers_active = @offers.where('active like ?', true).limit(4)
   end
 
   def index
@@ -85,7 +87,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :entitie, :address, :postal_code, :locality,
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
-                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated)
+                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated, :curriculum)
   end
 
 

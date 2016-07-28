@@ -93,8 +93,8 @@ User.create!(name: 'Entidade',
                idnum: '123456789',
                prof_area: prof_area,
                presentation: presentation,
-               skills: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. ',
-               prof_experience: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. ',
+               skills: 'Lorem ipsum ',
+               prof_experience: 'Lorem ipsum dolor ',
                skill_level: 'Licenciatura',
                prof_situation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum. ',
                activated: true,
@@ -137,10 +137,12 @@ end
   date = Faker::Date.between(Date.today, 2.years.from_now)
   summary = Faker::Lorem.sentence(10)
   text = Faker::Lorem.paragraph(4)
+  destaque = true
   News.create!(title: title,
                date: date,
                summary:summary,
-               text:text)
+               text:text,
+               destaque: destaque)
 end
 
 # 15.times do |n|
@@ -162,5 +164,9 @@ users = User.order(:created_at).where('entitie = 2').take(6)
 5.times do
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
-  users.each { |user| user.offers.create!(title:title, description: content, active: true) }
+  date_begin = Faker::Date.between(Date.today, 2.months.from_now)
+  date_end = Faker::Date.between(2.months.from_now, 4.months.from_now)
+  users.each { |user| user.offers.create!(title:title, description: content,
+                                          date_begin: date_begin, date_end: date_end,
+                                          active: true) }
 end

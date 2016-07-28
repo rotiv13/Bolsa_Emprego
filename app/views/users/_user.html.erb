@@ -2,13 +2,15 @@
 <aside class="col-md-12">
   <section>
 
-    <div class="col-md-3" style="margin-right: 10px;">
-      <%= image_tag user.picture? ? user.picture.url : '/assets/default_avatar.png', style: 'width:100px; height:100px' %>
+    <div class="col-md-2" >
+      <%= image_tag user.picture? ? user.picture.url : '/assets/default_avatar.png', style: 'width:100%;' %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <%= link_to user.name, user %>
-      <% if params[:entitie] == 'true' %>
-          <p>Ofertas</p>
+      <% if user.entitie == '2' %>
+          <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
+              <p><%= pluralize(user.offers.count, "ofertas activas") %></p>
+          <% end %>
           <p><%= user.presentation %></p>
       <% else %>
           <p><%= user.prof_area %></p>

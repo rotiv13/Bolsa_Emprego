@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :logged_in_user , only: [:edit, :destroy, :update]
-  before_action :logged_in_entity
+  before_action :logged_in_entity, only: [:create, :edit, :destroy, :update]
 
   def new
     @offer = Offer.new
@@ -34,7 +34,7 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.new(offer_params)
+    @offer = current_user.offers.build(offer_params)
     if @offer.save
       flash[:success] = "Oferta Guardada com Sucesso!"
       redirect_to offers_path
@@ -47,6 +47,6 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer).permit(:title, :date_begin, :date_end, :description,
-                                  :salary, :type_contract, :prof_area, :user)
+                                  :salary, :type_contract, :prof_area )
   end
 end

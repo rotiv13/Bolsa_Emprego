@@ -7,7 +7,7 @@
 </aside>
 <aside class="col-md-2 user_info_avatar">
   <section>
-    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' %>
+    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' , style: 'width:100%;' %>
   </section>
   <section>
     <%= link_to "Curriculum Vitae", @user.curriculum? ? @user.curriculum.url : '#' %>

@@ -12,7 +12,7 @@
             <%= f.text_field :date_begin,'data-provide' => 'datepicker', class: 'form-control' %>
 
           </div>
-          <%= f.hidden_field :user, value: current_user.id %>
+          <%= f.hidden_field :user , value: current_user %>
           <div class="col-md-3">
             <%= f.label :date_end, "Data Fim: "%>
             <%= f.text_field :date_end,'data-provide' => 'datepicker', class: 'form-control' %>

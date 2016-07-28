@@ -20,6 +20,8 @@
       <%= @offer.description %>
     </p>
     <p><%= @offer.date_begin %> a <%= @offer.date_end %> </p>
+    <p><strong>Empresa</strong></p>
+    <p><%= link_to @offer.user.name, user_path %></p>
     <p><strong>Actividade Profissional</strong></p>
     <p><%= @offer.prof_area %></p>
     <p><strong>Tipo de Contrato</strong></p>

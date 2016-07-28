@@ -29,7 +29,7 @@ module SessionsHelper
 
   def entity?
     logged_in?
-    @user = User.find(@current_user)
+    @user = User.find(current_user.id)
     @user.entitie == '2'
   end
 

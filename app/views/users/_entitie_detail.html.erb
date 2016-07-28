@@ -42,7 +42,16 @@
 
 <aside class="col-md-12">
   <section>
-  <h1>Ofertas Activas</h1>
-  OFERTAS
+    <h1>Ofertas Activas</h1>
+    <% @offers_active.each do |offer| %>
+        <div class="col-md-6">
+          <%= render offer %>
+        </div>
+    <% end %>
+  </section>
+</aside>
+<aside class="col-md-12">
+  <section>
+    <%= link_to 'Ver entidades', index_path(entitie: true, title: 'Entidades') %>
   </section>
 </aside>
