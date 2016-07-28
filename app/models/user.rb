@@ -38,10 +38,13 @@ class User < ApplicationRecord
       where("name LIKE '#{search}%'")
     end
     def filter(filter)
-      find(:all,:conditions => ['prof_area LIKE ?','#{filter}'])
+      where("prof_area like '#{filter}")
+    end
+    def type(type)
+      where("entitie like '#{type}")
     end
     def local(local)
-      find(:all, :conditions => ['locality LIKE ?','#{local}'])
+      where("locality like '#{local}")
     end
   end
 

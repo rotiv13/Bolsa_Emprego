@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get '/backoffice' ,to: 'backoffice#home'
   get '/backoffice/users', to: 'backoffice#index_users'
   get '/backoffice/news', to: 'backoffice#index_news'
+  get '/backoffice/users/:id', to: 'backoffice#show_users', as: 'backoffice_show_users'
+  get '/backoffice/news/:id', to: 'backoffice#show_news', as: 'backoffice_show_news'
+  get '/backoffice/news/:id/edit', to:'backoffice#edit_news', as: 'backoffice_edit_news'
+  get '/backoffice/users/:id/edit', to:'backoffice#edit_users', as: 'backoffice_edit_users'
 
   resources :backoffice
 

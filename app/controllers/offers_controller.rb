@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
-  before_action :logged_in_user, :except => :destroy
-  before_action :logged_in_entity, :admin_user, only: [:edit]
+  before_action :logged_in_user, only: [:edit,:destroy,:update]
+  before_action :admin_user, only: [:edit, :destroy, :update]
 
 
   def new
@@ -45,7 +45,7 @@ class OffersController < ApplicationController
     @offer = @user.offers.find(params[:id])
     if @offer.update_attributes(offer_params)
       flash[:success] = "Ofertas Atualizada!"
-      redirect_to @user
+      redirect_to @offer
     else
       render 'edit'
     end

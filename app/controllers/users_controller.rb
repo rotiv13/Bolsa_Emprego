@@ -11,25 +11,7 @@ class UsersController < ApplicationController
     @offers_deactive = @offers.where(active: false).limit(2)
 
   end
-  def index
-    @users = User.all
-    if params[:search]
-      @users = @users.search(params[:search])
-    end
-    if params[:locality]
-      @user = @users.filter(param[:locality])
-    end
-    if params[:field]
-      @user = @users.local(param[:locality])
-    end
-    if params[:entitie] == 'true'
-      @users = @users.where(entitie: '2').paginate(page: params[:page], per_page: 8)
-      @title = 'Entidades'
-    else
-      @users = @users.where(entitie: '1').paginate(page: params[:page], per_page: 8)
-      @title = 'Candidatos'
-    end
-  end
+
 
   def index_candidate
     @users = User.all.where(entitie: '1')
@@ -81,7 +63,7 @@ class UsersController < ApplicationController
         @user.send_activation_email
         flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
       end
-      redirect_to admin_user?(current_user) ? backoffice_url(@user) : root_url
+      redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : root_url
     else
       if @user.entitie == '2'
         render 'new_entitie'
@@ -95,7 +77,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Perfil Atualizado!"
-      redirect_to admin_user?(current_user) ? backoffice_url(@user) : @user
+      redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
     else
       render 'edit'
     end

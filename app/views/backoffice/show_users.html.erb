@@ -35,12 +35,12 @@
   </aside>
 </div>
 <div class="row">
-  <%= link_to "Editar", edit_backoffice_path(@user),class: 'btn btn-default' %>
-  <%= link_to "Alterar Password", edit_backoffice_path(@user, data: 'password'),class: 'btn btn-default' %>
+  <%= link_to "Editar", backoffice_edit_users_path(@user),class: 'btn btn-default' %>
+  <%= link_to "Alterar Password", backoffice_edit_users_path(@user, data: 'password'),class: 'btn btn-default' %>
   <% if admin_user?(current_user) %>
       <%= link_to "Apagar", @user, method: :delete,
                   data: { confirm: "Tem a certeza que pretende eliminar este utilizador?" }, class: 'btn btn-danger' %>
   <% end %>
   <%= link_to "Inserir", new_backoffice_url,class: 'btn btn-default' %>
-  <%= link_to "Listagem", backoffice_index_url ,class: 'btn btn-default' %>
+  <%= link_to "Listagem", backoffice_users_path ,class: 'btn btn-default' %>
 </div>

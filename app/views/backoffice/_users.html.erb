@@ -8,14 +8,14 @@
 
 <div class="row">
   <aside class="col-md-3">
-    <%= form_for users_path, method: 'get' do |f| %>
+    <%= form_for backoffice_users_path, method: 'get' do |f| %>
         <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
     <% end %>
   </aside>
 
   <aside class="col-md-3">
-    <%= form_for users_path, method: 'get' do |f| %>
-        <%= f.select(:field, options_for_select([['Tipo',3],['Backoffice',0],['Candidato',1],['Entidade',2]]),{}, :onChange => "javascript: this.form.submit.click();") %>
+    <%= form_for backoffice_users_path, method: 'get' do |f| %>
+        <%= f.select(:type, options_for_select([['Tipo',3],['Backoffice',0],['Candidato',1],['Entidade',2]]),{}, :onChange => "javascript: this.form.submit.click();") %>
         <div class="hidden">
           <%= f.submit "Apply", :name => "submit", :remote => "true" %>
         </div>
@@ -37,8 +37,8 @@
             <td class="col-md-3"><%= user.name %></td>
             <td class="col-md-3"><%= type(user) %></td>
             <td class="col-md-3"><%= user_active(user) %></td>
-            <td class="col-md-3"><%= link_to "Detalhe", backoffice_url(user), class: 'btn btn-info' %>
-              <%= link_to "Editar", edit_backoffice_path(user), class: 'btn btn-warning' %>
+            <td class="col-md-3"><%= link_to "Detalhe", backoffice_show_users_path(user), class: 'btn btn-info' %>
+              <%= link_to "Editar", backoffice_edit_users_path(user), class: 'btn btn-warning' %>
               <% if admin_user?(current_user) %>
                   <%= link_to "Apagar", user, method: :delete,
                               data: { confirm: "Tem a certeza que pretende eliminar este utilizador?" }, class: 'btn btn-danger' %>

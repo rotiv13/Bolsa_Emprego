@@ -10,7 +10,7 @@
           </div>
           <div class="col-md-6">
             <%= f.label :date, "Data" %>
-            <%= f.date_field :date, 'data-provide' => 'datepicker', class: 'form-control' %>
+            <%= f.text_field :date, 'data-provide' => 'datepicker', class: 'form-control' %>
           </div>
         </div>
         <div class="row">
@@ -26,8 +26,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
-            Upload da Imagem
+          <div class="col-md-3">
+            <%= f.label :picture, "Imagem" %>
+            <%= f.file_field :picture, class:'form-control' %>
           </div>
         </div>
         <div class="row">
@@ -36,7 +37,12 @@
             <br>
             <div class="checkbox">
               <%= f.label :destaque do %>
-                  Aparece em destaque <%= f.check_box :destaque, {}, true, false %>
+                  Aparece em destaque <%= f.check_box :destaque, {}, 'true' , 'false' %>
+                  <% if :destaque == 'true' %>
+                      <% @news.destaque %>
+                  <% else %>
+                      <% @news.not_destaque %>
+                  <% end %>
               <% end %>
             </div>
           </div>
@@ -45,7 +51,12 @@
             <br>
             <div class="checkbox ">
               <%= f.label :active do %>
-                  Sim <%= f.check_box :active, {}, true, false %>
+                  Sim <%= f.check_box :active, {}, 'true', 'false' %>
+                  <% if :active == 'true' %>
+                      <% @news.activate %>
+                  <% else %>
+                      <% @news.deactivate %>
+                  <% end %>
               <% end %>
             </div>
 
@@ -58,7 +69,7 @@
 
         </div>
         <div class="col-md-2">
-          <%= link_to "Cancelar", backoffice_index_url(data: 'news'), class: 'btn btn-default' %>
+          <%= link_to "Cancelar", backoffice_news_path, class: 'btn btn-default' %>
         </div>
       </div>
     </div>

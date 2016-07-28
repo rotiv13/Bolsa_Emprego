@@ -1,0 +1,63 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h3>Detalhe da Notícia</h3>
+    </section>
+  </aside>
+</div>
+<div class="row">
+  <aside class="col-md-6">
+    <section>
+      <p><strong>Título</strong></p>
+      <p><%= @news.title %></p>
+    </section>
+  </aside>
+  <aside class="col-md-6">
+    <section>
+      <p><strong>Data</strong></p>
+      <p><%= @news.created_at.strftime("%Y-%m-%d") %></p>
+    </section>
+  </aside>
+</div>
+
+<div class="row">
+  <aside class="col-md-12">
+    <section>
+      <p><strong>Sumário</strong></p>
+      <p><%= @news.summary %></p>
+      <p><strong>Texto</strong></p>
+      <p><%= @news.text %></p>
+    </section>
+  </aside>
+</div>
+<div class="row">
+  <aside class="col-md-2">
+    <section>
+      <p><strong>Imagem</strong></p>
+      <%= image_tag @news.picture? ? @news.picture.url : 'default_avatar.png', style: 'width:100%;' %>
+    </section>
+  </aside>
+</div>
+<div class="row">
+  <aside class="col-md-6">
+    <section>
+      <p><strong>Destaque</strong></p>
+      <p><%= news_destaque(@news) %></p>
+    </section>
+  </aside>
+  <aside class="col-md-6">
+    <section>
+      <p><strong>Activa</strong></p>
+      <p><%= news_active(@news) %></p>
+    </section>
+  </aside>
+</div>
+<div class="row">
+  <%= link_to "Editar", backoffice_edit_news_path(@news),class: 'btn btn-default' %>
+  <% if admin_user?(current_user) %>
+      <%= link_to "Apagar", @news, method: :delete,
+                  data: { confirm: "Tem a certeza que pretende eliminar esta notícia?" }, class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to "Inserir", new_news_path,class: 'btn btn-default' %>
+  <%= link_to "Listagem", backoffice_news_path ,class: 'btn btn-default' %>
+</div>
