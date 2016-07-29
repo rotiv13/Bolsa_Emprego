@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   post '/new_entitie', to:'users#create'
   get '/index/entitie', to: 'users#index_entitie'
   get '/index/candidate', to: 'users#index_candidate'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   #SESSIONS
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
