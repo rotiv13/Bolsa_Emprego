@@ -7,15 +7,21 @@
     <div class="col-md-9">
       <%= link_to user.name, user %>
       <% if user.entitie == '2' %>
-          <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
-              <p><%= pluralize(user.offers.count, "ofertas activas") %></p>
-          <% end %>
-          <p><%= user.presentation.first(70) %></p>
+          <p>
+            <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
+                <%= pluralize(user.offers.count, "ofertas activas") %><br>
+            <% end %>
+            <%= user.presentation.first(70) %></p>
       <% else %>
           <p><%= user.prof_area %> <br><%= user.prof_experience %> <br><%= user.skills %></p>
       <% end %>
     </div>
-
+    <div class="col-md-4">
+      <% if logged_in? && current_user.entitie == '2' %>
+          <% @user = user %>
+          <%= render 'form_follow' %>
+      <% end %>
+    </div>
   </section>
 </aside>
 

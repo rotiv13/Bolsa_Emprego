@@ -2,19 +2,25 @@
 <aside>
   <section>
 
-    <div class="col-md-2">
+    <div class="col-md-3">
       <%= image_tag offer.picture? ? offer.picture.url : 'default_avatar.png', style: 'width:100% ;' %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.prof_area %><br><%= offer.description.first(100) %>...</p>
     </div>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
             <% if logged_in? && current_user.entitie == '2' &&  current_user?(offer.user) %>
                 <% if !current_page?(:controller => 'offers', :action => 'index') %>
+                    <div class="col-md-2">
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
-                    <%= link_to 'Cancelar', offer, method: :delete,
-                                data: { confirm: "Tem a certeza que pretende desactivar esta oferta?" }, class: 'btn btn-default' %>
+                      </div>
+                    <div class="col-md-3">
+                      <%= form_for offer_path, method:'update' do |f| %>
+                          <%= hidden_field_tag :active, false %>
+                          <%= f.submit "Cancelar", class:'btn btn-default' %>
+                      <% end %>
+                    </div>
                 <% else %>
                     <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>

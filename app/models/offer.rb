@@ -1,6 +1,6 @@
 class Offer < ApplicationRecord
   belongs_to :user
-  default_scope -> { order(created_at: :asc) }
+  default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
   validates :description, presence: true
@@ -11,6 +11,10 @@ class Offer < ApplicationRecord
   class << self
     def search(search)
       where("title like '#{search}%'")
+    end
+
+    def fields(field)
+      where("prof_area like '#{field}'")
     end
   end
 

@@ -42,14 +42,8 @@ Rails.application.routes.draw do
 
   #OFFERS
   resources :offers
-  get 'offers/new'
-
   get '/offer', to: 'offers#index'
-  get '/offers', to: 'offers#search'
 
-  get 'offers/show'
-
-  get 'offers/edit'
 
   #RELATIONSHIPS
   resources :relationships, only: [:create, :destroy]

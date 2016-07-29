@@ -8,7 +8,7 @@
         <% if @user.offers.any? %>
             <%= render @offers_limit %>
         <% end %>
-        <%= link_to "Inserir Oferta", offers_new_path, class: 'btn btn-default' %>
+        <%= link_to "Inserir Oferta", new_offer_path, class: 'btn btn-default' %>
       </div>
       <div class="col-md-6">
         <h1>
@@ -17,7 +17,7 @@
         <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
         <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
         <div class="prof_img">
-          <%= image_tag @user.picture.url if @user.picture? %>
+          <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' %>
         </div>
       </div>
     </section>

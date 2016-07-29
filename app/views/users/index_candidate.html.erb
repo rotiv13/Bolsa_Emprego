@@ -37,10 +37,6 @@
   <% @users.each do |user|  %>
       <div class="col-md-6">
         <%= render user %>
-        <% if logged_in?  %>
-            <% @user = user %>
-            <% render 'form_follow' %>
-        <% end %>
         <% if admin_user?(current_user)  %>
             <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
         <% end %>
