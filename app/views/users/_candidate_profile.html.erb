@@ -15,7 +15,8 @@
         <h1>
           Empresas interessadas em mim
         </h1>
-        Followers
+        <%= render @user.followers %>
+        <%=  @user.followers.count %>
       </section>
     </aside>
   </div>

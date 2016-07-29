@@ -6,12 +6,7 @@
       <%= image_tag offer.picture? ? offer.picture.url : 'default_avatar.png', style: 'width:100% ;' %>
     </div>
     <div class="col-md-10">
-      <p><%= link_to offer.title, offer %></p>
-      <p><%= offer.date_begin %> a <%= offer.date_end %></p>
-
-      <p><%= offer.user.name %></p>
-      <p><%= offer.prof_area %></p>
-      <p><%= offer.description.first(100) %>...</p>
+      <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.prof_area %><br><%= offer.description.first(100) %>...</p>
     </div>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>

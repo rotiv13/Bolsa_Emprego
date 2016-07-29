@@ -32,7 +32,8 @@
       <div class="col-md-6">
         <%= render user %>
         <% if logged_in? && current_user.entitie == '1' %>
-            <%= link_to "Interessado/a", '#', class: 'btn btn-default' %>
+            <% @user = user %>
+            <% render 'layouts/form_follow' %>
         <% end %>
         <% if admin_user?(current_user) || current_user?(user) %>
             <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
@@ -41,7 +42,7 @@
   <% end %>
 </div>
 <%= will_paginate %>
-w
+
 <div class="row">
   <% unless logged_in? %>
       <%= link_to "Quero-me registar", new_user_path %>

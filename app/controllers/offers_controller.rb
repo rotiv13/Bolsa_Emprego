@@ -2,13 +2,10 @@ class OffersController < ApplicationController
   before_action :logged_in_user, only: [:edit,:destroy,:update]
   before_action :admin_user, only: [:edit, :destroy, :update]
 
-
   def new
     @offer = Offer.new
 
   end
-
-
   def index
     @offers = Offer.all.where(active: true)
     if params[:search]

@@ -14,13 +14,13 @@
   </section>
 
   <section>
-    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
-  </section>
-  <% if admin_user?(@user) || current_user?(@user) %>
-      <section>
+    <% if logged_in? && current_user.entitie == '2' %>
+        <% render 'form_follow' %>
+    <% end %>
+    <% if admin_user?(@user) || current_user?(@user) %>
         <%= link_to "Editar", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
-      </section>
-  <% end %>
+    <% end %>
+  </section>
 </aside>
 <aside class="col-md-10">
   <section class="user_edit">

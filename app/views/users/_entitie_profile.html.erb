@@ -1,41 +1,41 @@
 <div class="row">
-  <aside class="col-md-7">
-    <aside class="col-md-12">
-      <section class="user_info">
+  <aside >
+    <section class="user_info">
+      <div class="col-md-6">
         <h1>
           Ofertas
         </h1>
         <% if @user.offers.any? %>
             <%= render @offers_limit %>
         <% end %>
-      </section>
-      <section>
         <%= link_to "Inserir Oferta", offers_new_path, class: 'btn btn-default' %>
-      </section>
-    </aside>
-    <aside class="col-md-12">
-      <section class="entity_interest">
+      </div>
+      <div class="col-md-6">
+        <h1>
+          <%= @user.name %>
+        </h1>
+        <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
+        <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
+        <div class="prof_img">
+          <%= image_tag @user.picture.url if @user.picture? %>
+        </div>
+      </div>
+    </section>
+    <section class="entity_interest">
+      <div class="col-md-6">
         <h1>
           Histórico
         </h1>
         <%= render @offers_deactive %>
-      </section>
-    </aside>
-
-</aside>
-  <aside class="col-md-5">
-      <aside class="col-md-12">
-        <section class="user_edit">
-          <h1>
-            <%= @user.name %>
-          </h1>
-          <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
-          <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
-          <div class="prof_img">
-            <%= image_tag @user.picture.url if @user.picture? %>
-          </div>
-        </section>
-      </aside>
+      </div>
+      <div class="col-md-6">
+        <h1>
+          Candidatos interessados
+        </h1>
+        <% if @user.followers.any? %>
+            <%= render @user.followers %>
+        <% end %>
+      </div>
+    </section>
   </aside>
-
 </div>

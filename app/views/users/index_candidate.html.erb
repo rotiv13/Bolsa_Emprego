@@ -36,13 +36,16 @@
 <div class="row">
   <% @users.each do |user|  %>
       <div class="col-md-6">
-        <%= render user %>
-        <% if logged_in? && current_user.entitie == '2' %>
-            <%= link_to "Interessado/a", '#', class: 'btn btn-default' %>
-        <% end %>
-        <% if admin_user?(current_user)  %>
-            <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
-        <% end %>
+        <section>
+          <%= render user %>
+        </section>
+        <section>
+          <% @user = user %>
+          <% render 'form_follow' if logged_in? %>
+          <% if admin_user?(current_user)  %>
+              <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
+          <% end %>
+        </section>
       </div>
   <% end %>
 </div>

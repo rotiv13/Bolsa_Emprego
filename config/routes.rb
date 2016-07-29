@@ -46,4 +46,7 @@ Rails.application.routes.draw do
   get 'offers/show'
 
   get 'offers/edit'
+
+  #RELATIONSHIPS
+  resources :relationships, only: [:create, :destroy]
 end

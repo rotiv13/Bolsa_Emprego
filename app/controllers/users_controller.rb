@@ -9,9 +9,7 @@ class UsersController < ApplicationController
     @offers_active = @offers.where(active: true).limit(4)
     @offers_limit = @offers_active.limit(2)
     @offers_deactive = @offers.where(active: false).limit(2)
-
   end
-
 
   def index_candidate
     @users = User.all.where(entitie: '1')
@@ -58,7 +56,6 @@ class UsersController < ApplicationController
     redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : index_url
   end
 
-
   def new
     @user = User.new
   end
@@ -98,7 +95,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   private
 
   def user_params
@@ -108,12 +104,9 @@ class UsersController < ApplicationController
                                  :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated, :curriculum)
   end
 
-
-
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
   end
-
 
 end
