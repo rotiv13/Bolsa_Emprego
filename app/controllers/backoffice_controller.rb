@@ -23,9 +23,10 @@ class BackofficeController < ApplicationController
     if params[:search]
       @users = @users.search(params[:search])
     end
-    puts params[:type]
-    if params[:type]
-      @users = @users.type(params[:type])
+    if params['/backoffice/users']
+      if params['/backoffice/users'][:type]
+        @users = @users.type(params['/backoffice/users'][:type])
+      end
     end
     @users = @users.paginate(page: params[:page], per_page: 10)
   end

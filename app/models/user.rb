@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :idnum, presence: true, allow_nil: true
   validates :presentation, presence: true, allow_nil: true
   validate :picture_size
+  validate :curriculum_size
 
   class << self
     #Returns the hash digest of the given string.
@@ -38,16 +39,18 @@ class User < ApplicationRecord
       where("name LIKE '#{search}%'")
     end
     def filter(filter)
-      where("prof_area like '#{filter}")
+      where("prof_area like '#{filter}'")
     end
     def type(type)
-      where("entitie like '#{type}")
+      where("entitie like '#{type}'")
     end
     def local(local)
-      where("locality like '#{local}")
+      where("locality like '#{local}'")
+    end
+    def situation(situation)
+      where("prof_situation like '#{situation}'")
     end
   end
-
 
   def activate
     update_attribute(:activated, true)
@@ -90,6 +93,11 @@ class User < ApplicationRecord
 
   def picture_size
     if picture.size > 5.megabytes
+      errors.add(:picture, "tamamnho deve ser menor que 5MB")
+    end
+  end
+  def curriculum_size
+    if curriculum.size > 5.megabytes
       errors.add(:picture, "tamamnho deve ser menor que 5MB")
     end
   end

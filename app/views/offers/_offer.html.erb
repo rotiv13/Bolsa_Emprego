@@ -15,7 +15,7 @@
     </div>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
-            <% if current_user.entitie == '2' &&  current_user?(offer.user) %>
+            <% if logged_in? && current_user.entitie == '2' &&  current_user?(offer.user) %>
                 <% if !current_page?(:controller => 'offers', :action => 'index') %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                     <%= link_to 'Cancelar', offer, method: :delete,

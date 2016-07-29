@@ -18,11 +18,16 @@ class UsersController < ApplicationController
     if params[:search]
       @users = @users.search(params[:search])
     end
-    if params[:locality]
-      @user = @users.filter(param[:locality])
-    end
-    if params[:field]
-      @user = @users.local(param[:locality])
+    if params['/index/candidate']
+      if params['/index/candidate'][:locality]
+        @users = @users.local(params['/index/candidate'][:locality])
+      end
+      if params['/index/candidate'][:field]
+        @users = @users.filter(params['/index/candidate'][:field])
+      end
+      if params['/index/candidate'][:situation]
+        @users = @users.situation(params['/index/candidate'][:situation])
+      end
     end
     @users = @users.paginate(page: params[:page], per_page: 8)
   end
@@ -32,11 +37,13 @@ class UsersController < ApplicationController
     if params[:search]
       @users = @users.search(params[:search])
     end
-    if params[:locality]
-      @user = @users.filter(param[:locality])
-    end
-    if params[:field]
-      @user = @users.local(param[:locality])
+    if params['/index/entitie']
+      if params['/index/entitie'][:locality]
+        @users = @users.local(params['/index/entitie'][:locality])
+      end
+      if params['/index/entitie'][:field]
+        @users = @users.filter(params['/index/entitie'][:field])
+      end
     end
     @users = @users.paginate(page: params[:page], per_page: 8)
   end

@@ -1,20 +1,18 @@
 
-<aside class="col-md-12">
+<aside>
   <section>
-    <div class="col-md-2" >
+    <div class="col-md-3" >
       <%= image_tag user.picture? ? user.picture.url : '/assets/default_avatar.png', style: 'width:100%;' %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <%= link_to user.name, user %>
       <% if user.entitie == '2' %>
           <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
               <p><%= pluralize(user.offers.count, "ofertas activas") %></p>
           <% end %>
-          <p><%= user.presentation %></p>
+          <p><%= user.presentation.first(70) %></p>
       <% else %>
-          <p><%= user.prof_area %></p>
-          <p><%= user.prof_experience %></p>
-          <p><%= user.skills %></p>
+          <p><%= user.prof_area %> <br><%= user.prof_experience %> <br><%= user.skills %></p>
       <% end %>
     </div>
   </section>

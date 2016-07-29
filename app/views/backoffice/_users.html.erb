@@ -15,10 +15,7 @@
 
   <aside class="col-md-3">
     <%= form_for backoffice_users_path, method: 'get' do |f| %>
-        <%= f.select(:type, options_for_select([['Tipo',3],['Backoffice',0],['Candidato',1],['Entidade',2]]),{}, :onChange => "javascript: this.form.submit.click();") %>
-        <div class="hidden">
-          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
-        </div>
+        <%= f.select(:type, options_for_select([['Backoffice',0],['Candidato',1],['Entidade',2]]),{ include_blank: true}, :onChange => "javascript: this.form.submit();")  %>
     <% end %>
   </aside>
 
