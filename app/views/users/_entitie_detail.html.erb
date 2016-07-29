@@ -7,10 +7,12 @@
 </aside>
 <aside class="col-md-2 user_info_avatar">
   <section>
-    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' %>
+    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' , style: 'width: 100%' %>
   </section>
   <section>
-    <%= link_to "Interressado/a", '#', class: 'btn btn-default' %>
+    <% if logged_in? %>
+        <%= render 'form_follow' %>
+    <% end %>
   </section>
   <% if admin_user?(@user) || current_user?(@user) %>
       <section>

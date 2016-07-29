@@ -5,9 +5,7 @@
         <h1>
           Candidaturas
         </h1>
-        <% if @user.offers.any? %>
-            <%= render @offers %>
-        <% end %>
+            <%= render @user.offer_following %>
       </section>
     </aside>
     <aside class="col-md-12">
@@ -16,7 +14,6 @@
           Empresas interessadas em mim
         </h1>
         <%= render @user.followers %>
-        <%=  @user.followers.count %>
       </section>
     </aside>
   </div>

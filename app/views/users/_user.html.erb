@@ -16,12 +16,7 @@
           <p><%= user.prof_area %> <br><%= user.prof_experience %> <br><%= user.skills %></p>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <% if logged_in? && current_user.entitie == '2' %>
-          <% @user = user %>
-          <%= render 'form_follow' %>
-      <% end %>
-    </div>
+
   </section>
 </aside>
 

@@ -14,8 +14,12 @@
   </section>
 
   <section>
-    <% if logged_in? && current_user.entitie == '2' %>
-        <% render 'form_follow' %>
+    <% if logged_in? %>
+          <% if current_user.following?(@user) %>
+              <%= render 'unfollow' %>
+          <% else %>
+              <%= render 'follow' %>
+          <% end %>
     <% end %>
     <% if admin_user?(@user) || current_user?(@user) %>
         <%= link_to "Editar", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
