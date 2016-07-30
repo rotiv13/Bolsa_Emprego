@@ -14,7 +14,7 @@ class Offer < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
-  validates :user_follower_id, presence: true
+  validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
   validates :date_begin, presence: true
