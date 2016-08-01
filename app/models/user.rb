@@ -47,7 +47,7 @@ class User < ApplicationRecord
   validate :curriculum_size
 
   class << self
-    #Returns the hash digest of the given string.
+
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
           BCrypt::Engine.cost
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     end
 
     def search(search)
-      where("name LIKE '#{search}%'")
+      where("name LIKE '#{search}%' OR presentation like '%#{search}%'")
     end
     def filter(filter)
       where("prof_area like '#{filter}'")
@@ -122,12 +122,10 @@ class User < ApplicationRecord
     offer_active_relationships.create(of_cand_id: offer.id)
   end
 
-  # Unfollows a user.
   def offer_unfollow(offer)
     offer_active_relationships.find_by(of_cand_id: offer.id).destroy
   end
 
-  # Returns true if the current user is following the offer.
   def offerings?(offer)
     offerings.include?(offer)
   end
@@ -145,12 +143,12 @@ class User < ApplicationRecord
 
   def picture_size
     if picture.size > 5.megabytes
-      errors.add(:picture, "tamamnho deve ser menor que 5MB")
+      errors.add(:picture, "tamanho deve ser menor que 5MB")
     end
   end
   def curriculum_size
     if curriculum.size > 5.megabytes
-      errors.add(:curriculum, "tamamnho deve ser menor que 5MB")
+      errors.add(:curriculum, "tamanho deve ser menor que 5MB")
     end
   end
 end

@@ -9,4 +9,8 @@ module ApplicationHelper
     end
   end
 
+
+  def paginate(collection, params= {})
+    will_paginate collection, {link_options: {'data-remote': true}, params: params}
+  end
 end

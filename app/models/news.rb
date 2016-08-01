@@ -7,7 +7,6 @@ class News < ApplicationRecord
 
   class << self
     def search(search)
-      puts 'OLA model'
       self.where("title LIKE '#{search}%'")
     end
 
@@ -20,7 +19,7 @@ class News < ApplicationRecord
     update_attribute(:active, false)
   end
 
-  def destaque
+  def destaques
     update_attribute(:destaque, true)
   end
 

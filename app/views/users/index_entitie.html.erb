@@ -6,23 +6,23 @@
 </div>
 <div class="row">
   <aside class="col-md-3">
-    <%= form_for index_entitie_path, method: 'get' do |f| %>
+    <%= form_for index_entitie_path, method: 'get' , remote: true do |f| %>
         <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
     <% end %>
   </aside>
 
   <aside class="col-md-3">
-    <%= form_for index_entitie_path, method: 'get' do |f| %>
+    <%= form_for index_entitie_path, method: 'get', remote: true do |f| %>
         <% field_array = @users.distinct.pluck(:prof_area) %>
-        <%= f.select(:field, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit();") %>
+        <%= f.select(:field, options_for_select(field_array),{include_blank: 'Área de actividade...'}, :onChange => "javascript: this.form.submit();") %>
 
     <% end %>
   </aside>
 
   <aside class="col-md-3">
-    <%= form_for index_entitie_path, method: 'get' do |f| %>
+    <%= form_for index_entitie_path, method: 'get', remote: true do |f| %>
         <% field_array = @users.distinct.pluck(:locality) %>
-        <%= f.select(:locality, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit();") %>
+        <%= f.select(:locality, options_for_select(field_array),{include_blank: 'Concelho...'}, :onChange => "javascript: this.form.submit();") %>
 
     <% end %>
   </aside>
@@ -43,7 +43,7 @@
       </div>
   <% end %>
 </div>
-<%= will_paginate %>
+<%= paginate(@users)%>
 
 <div class="row">
   <% unless logged_in? %>

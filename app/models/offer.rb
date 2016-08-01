@@ -23,7 +23,6 @@ class Offer < ApplicationRecord
     end
   end
 
-
   def activate
     update_attribute(:active, true)
   end

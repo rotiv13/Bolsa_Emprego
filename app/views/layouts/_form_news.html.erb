@@ -39,7 +39,8 @@
               <%= f.label :destaque do %>
                   Aparece em destaque <%= f.check_box :destaque, {}, 'true' , 'false' %>
                   <% if :destaque == 'true' %>
-                      <% @news.destaque %>
+                      <% puts :destaque %>
+                      <% @news.destaques %>
                   <% else %>
                       <% @news.not_destaque %>
                   <% end %>

@@ -9,17 +9,19 @@
   <section>
     <%= image_tag @offer.picture? ? @offer.picture.url : 'default_avatar.png' ,style: 'width:100%;' %>
   </section>
-  <% if current_user.entitie == '1' %>
-      <% unless current_user?(@offer.user) %>
-          <% if current_user.offerings?(@offer) %>
-              <%= render 'offers/unfollow_offer' %>
-          <% else %>
-              <%= render 'offers/follow_offer' %>
+  <% if logged_in? %>
+      <% if current_user.entitie == '1' %>
+          <% unless current_user?(@offer.user) %>
+              <% if current_user.offerings?(@offer) %>
+                  <%= render 'offers/unfollow_offer' %>
+              <% else %>
+                  <%= render 'offers/follow_offer' %>
+              <% end %>
           <% end %>
       <% end %>
-  <% end %>
-  <% if admin_user?(current_user) || current_user?(@offer.user) %>
-      <%= link_to "Editar", edit_offer_path, class: 'btn btn-default' %>
+      <% if admin_user?(current_user) || current_user?(@offer.user) %>
+          <%= link_to "Editar", edit_offer_path, class: 'btn btn-default' %>
+      <% end %>
   <% end %>
 </aside>
 <aside class="col-md-10">

@@ -6,7 +6,7 @@
       <%= image_tag offer.picture? ? offer.picture.url : 'default_avatar.png', style: 'width:100% ;' %>
     </div>
     <div class="col-md-9">
-      <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.prof_area %><br><%= offer.description.first(100) %>...</p>
+      <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.description.first(80) %>...</p>
     </div>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
@@ -16,9 +16,9 @@
                       <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                     </div>
                     <div class="col-md-3">
-                      <%= form_for offer_path, method:'update' do |f| %>
+                      <%= form_tag offer_update_path, method: 'patch' do %>
                           <%= hidden_field_tag :active, false %>
-                          <%= f.submit "Cancelar", class:'btn btn-default' %>
+                          <%= submit_tag "Cancelar", class:'btn btn-default' %>
                       <% end %>
                     </div>
                 <% else %>
@@ -26,7 +26,7 @@
                 <% end %>
             <% else %>
                 <div class="col-md-4">
-                  <% if current_user.entitie == '1' %>
+                  <% if logged_in? && current_user.entitie == '1' %>
                       <% unless current_user?(offer.user) %>
                           <% @offer = offer %>
                           <% if current_user.offerings?(offer) %>

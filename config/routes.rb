@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :backoffice
 
   #OFFERS
+  patch '/offer/:id', to: 'offers#update', as: 'offer_update'
   resources :offers
   get '/offer', to: 'offers#index'
 

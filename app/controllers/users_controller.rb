@@ -14,8 +14,9 @@ class UsersController < ApplicationController
   end
 
   def index_candidate
-    @users = User.all.where(entitie: '1')
+
     if params[:search]
+      @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
       @users = @users.search(params[:search])
     end
     if params['/index/candidate']
@@ -29,8 +30,7 @@ class UsersController < ApplicationController
         @users = @users.situation(params['/index/candidate'][:situation])
       end
     end
-    @users = @users.paginate(page: params[:page], per_page: 8)
-
+    @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
   end
 
   def index_entitie
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :entitie, :address, :postal_code, :locality,
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
-                                 :skill_level, :skills, :prof_situation, :prof_experience,:picture, :activated, :curriculum)
+                                 :skill_level, :skills, :prof_situation, :prof_experience, :picture, :activated, :curriculum)
   end
 
   def correct_user
