@@ -14,7 +14,7 @@
   <aside class="col-md-3">
     <%= form_for index_entitie_path, method: 'get', remote: true do |f| %>
         <% field_array = @users.distinct.pluck(:prof_area) %>
-        <%= f.select(:field, options_for_select(field_array),{include_blank: 'Área de actividade...'}, :onChange => "javascript: this.form.submit();") %>
+        <%= f.select(:field, options_for_select(field_array),{include_blank: 'Área de actividade'}, :onChange => "javascript: this.form.submit();") %>
 
     <% end %>
   </aside>

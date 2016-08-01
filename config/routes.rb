@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post '/new_candidate', to:'users#create'
   get '/new_entitie' , to:'users#new_entitie'
   post '/new_entitie', to:'users#create'
-  get '/index/entitie', to: 'users#index_entitie'
-  get '/index/candidate', to: 'users#index_candidate'
+  get '/entities', to: 'users#index_entitie', as: 'index_entitie'
+  get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
   resources :users do
     member do
       get :following, :followers, :offerings, :offerends

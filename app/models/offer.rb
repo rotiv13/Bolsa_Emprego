@@ -19,7 +19,11 @@ class Offer < ApplicationRecord
     end
 
     def local(local)
-      User.all.where("locality like '#{local}'")
+      @users = User.all.where("locality like '#{local}'")
+      @users.each do |f|
+        @offers = f.offers.where(active: true)
+      end
+      @offers
     end
   end
 

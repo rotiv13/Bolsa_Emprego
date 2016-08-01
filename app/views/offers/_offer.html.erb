@@ -8,6 +8,8 @@
     <div class="col-md-9">
       <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.description.first(80) %>...</p>
     </div>
+  </section>
+  <section>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
             <% if logged_in? && current_user.entitie == '2' &&  current_user?(offer.user) %>
