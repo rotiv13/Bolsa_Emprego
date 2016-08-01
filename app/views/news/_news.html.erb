@@ -1,9 +1,9 @@
 <aside class="col-md-12">
   <section>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <%= image_tag news.picture? ? news.picture.url : 'default_avatar.png', style: 'width:100%;' %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <%= link_to news.title, news %>
       <p><%= news.created_at.strftime("%Y-%m-%d") %></p>
       <p><%= news.summary %></p>

@@ -25,7 +25,8 @@ class BackofficeController < ApplicationController
     end
     if params['/backoffice/users']
       if params['/backoffice/users'][:type]
-        @users = @users.type(params['/backoffice/users'][:type])
+        @users = @users.type(params['/backoffice/users'][:type]).paginate(page: params[:page], per_page: 8)
+        @users
       end
     end
     @users = @users.paginate(page: params[:page], per_page: 10)

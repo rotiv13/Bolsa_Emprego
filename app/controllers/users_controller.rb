@@ -12,35 +12,35 @@ class UsersController < ApplicationController
   end
 
   def index_candidate
-    @users = User.all.where(entitie: '1')
+    @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
     if params[:search]
-      @users = @users.search(params[:search])
+      @users = @users.search(params[:search]).paginate(page: params[:page], per_page: 8)
     end
     if params['/index/candidate']
       if params['/index/candidate'][:locality]
-        @users = @users.local(params['/index/candidate'][:locality])
+        @users = @users.local(params['/index/candidate'][:locality]).paginate(page: params[:page], per_page: 8)
       end
       if params['/index/candidate'][:field]
-        @users = @users.filter(params['/index/candidate'][:field])
+        @users = @users.filter(params['/index/candidate'][:field]).paginate(page: params[:page], per_page: 8)
       end
       if params['/index/candidate'][:situation]
-        @users = @users.situation(params['/index/candidate'][:situation])
+        @users = @users.situation(params['/index/candidate'][:situation]).paginate(page: params[:page], per_page: 8)
       end
     end
-    @users = @users.paginate(page: params[:page], per_page: 8)
+    @users
   end
 
   def index_entitie
     @users = User.all.where(entitie: '2')
     if params[:search]
-      @users = @users.search(params[:search])
+      @users = @users.search(params[:search]).paginate(page: params[:page], per_page: 8)
     end
     if params['/index/entitie']
       if params['/index/entitie'][:locality]
-        @users = @users.local(params['/index/entitie'][:locality])
+        @users = @users.local(params['/index/entitie'][:locality]).paginate(page: params[:page], per_page: 8)
       end
       if params['/index/entitie'][:field]
-        @users = @users.filter(params['/index/entitie'][:field])
+        @users = @users.filter(params['/index/entitie'][:field]).paginate(page: params[:page], per_page: 8)
       end
     end
     @users = @users.paginate(page: params[:page], per_page: 8)

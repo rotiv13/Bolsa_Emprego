@@ -14,6 +14,10 @@ class OffersController < ApplicationController
       if params['/offers'][:fields]
         @offers=@offers.fields(params['/offers'][:fields])
       end
+
+      if params['/offers'][:locality]
+        @offers=@offers.local(params['/offers'][:locality])
+      end
     end
     @offers =  @offers.paginate(page:params[:page], per_page: 8)
   end

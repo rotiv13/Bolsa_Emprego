@@ -28,6 +28,10 @@ class Offer < ApplicationRecord
     def fields(field)
       where("prof_area like '#{field}'")
     end
+
+    def local(local)
+      User.all.where("locality like '#{local}'")
+    end
   end
 
 

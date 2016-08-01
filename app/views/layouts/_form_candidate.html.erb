@@ -7,14 +7,24 @@
               <%= f.label :email %>
               <%= f.email_field :email, class: 'form-control' %>
             </div>
-            </div>
+          </div>
           <div class="row">
-            <div class="col-md-6"><%= f.label :password %>
+            <% if params[:data] == 'password' %>
+                <div class="col-md-6">
+                  <%= f.label :password_actual, "Password Atual" %>
+                  <%= f.password_field :password_actual, class: 'form-control' %>
+                </div>
+            <% end %>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6">
+              <%= f.label :password %>
               <%= f.password_field :password, class: 'form-control' %>
             </div>
-                <%= f.hidden_field :entitie, value: '1' %>
+            <%= f.hidden_field :entitie, value: '1' %>
             <div class="col-md-6">
-              <%= f.label :password_confirmation, "Confirmar Password" %>
+              <%= f.label :password_confirmation, "Confirmação Password" %>
               <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
           </div>

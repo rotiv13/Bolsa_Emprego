@@ -1,6 +1,6 @@
 <% provide(:entitie, 'false') %>
 <div class="row">
-  <% if current_user?(@user) %>
+  <% if current_user?(@user) && params[:data] == 'profile' %>
       <%= render 'candidate_profile' %>
   <% else %>
       <%= render 'candidate_detail'  %>

@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :admin_user , only: [:edit, :update, :destroy]
+  before_action :admin_user
   def new
     @news = News.new
   end

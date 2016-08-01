@@ -14,17 +14,14 @@
   <aside class="col-md-3">
     <%= form_for offers_path, method: 'get' do |f| %>
         <% field_array = Offer.distinct.pluck(:prof_area) %>
-        <%= f.select(:fields , options_for_select(field_array),{ :include_blank => true}, :onChange => "javascript: this.form.submit();") %>
+        <%= f.select(:fields , options_for_select(field_array),{}, :onChange => "javascript: this.form.submit();") %>
     <% end %>
   </aside>
 
   <aside class="col-md-3">
-    <%= form_for offers_path do |f| %>
-        <% field_array = User.distinct.pluck(:locality) %>
-        <%= f.select(:locality, options_for_select(field_array),{:include_blank => true}, :onChange => "javascript: this.form.submit.click();") %>
-        <div class="hidden">
-          <%= f.submit "Apply", :name => "submit", :remote => "true" %>
-        </div>
+    <%= form_for offers_path , method: 'get' do |f| %>
+        <% field_array = User.where(entitie: '2').distinct.pluck(:locality) %>
+        <%= f.select(:locality, options_for_select(field_array),{}, :onChange => "javascript: this.form.submit();") %>
     <% end %>
   </aside>
 </div>

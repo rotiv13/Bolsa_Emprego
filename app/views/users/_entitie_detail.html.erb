@@ -10,7 +10,7 @@
     <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' , style: 'width: 100%' %>
   </section>
   <section>
-    <% if logged_in? %>
+    <% if logged_in? && !current_user?(@user) %>
         <%= render 'form_follow' %>
     <% end %>
   </section>
