@@ -5,6 +5,8 @@
         <h1>
           Candidaturas
         </h1>
+        <%= render @offers_candidature %>
+        <%= will_paginate @offers_candidature %>
       </section>
     </aside>
     <aside class="col-md-12">
@@ -12,7 +14,7 @@
         <h1>
           Empresas interessadas em mim
         </h1>
-        <%= render @user.followers %>
+        <%= render @followers %>
       </section>
     </aside>
   </div>

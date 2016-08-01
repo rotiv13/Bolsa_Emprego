@@ -25,9 +25,18 @@
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                 <% end %>
             <% else %>
-                <% if current_user.entitie == '1' %>
-                    <%=  link_to 'Candidatar-me', '#' , class: 'btn btn-default' %>
-                <% end %>
+                <div class="col-md-4">
+                  <% if current_user.entitie == '1' %>
+                      <% unless current_user?(offer.user) %>
+                          <% @offer = offer %>
+                          <% if current_user.offerings?(offer) %>
+                              <%= render 'offers/unfollow_offer' %>
+                          <% else %>
+                              <%= render 'offers/follow_offer' %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </div>
                 <% if admin_user?(current_user) || current_user?(offer.user) %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id), class: 'btn btn-default' %>
                 <% end %>

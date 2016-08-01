@@ -1,17 +1,6 @@
 class Offer < ApplicationRecord
   belongs_to :user
 
-  has_many :offer_active_relationships, class_name: "OfferRelationship",
-           foreign_key: "user_fer_id",
-           dependent: :destroy
-
-  has_many :offer_passive_relationships, class_name: "OfferRelationship",
-           foreign_key: "offer_fed_id",
-           dependent: :destroy
-
-  has_many :offer_following, through: :offer_active_relationships, source: :offer_fed
-  has_many :offer_followers, through: :offer_passive_relationships, source: :user_fer
-
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true

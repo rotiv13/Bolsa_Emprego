@@ -9,8 +9,14 @@
   <section>
     <%= image_tag @offer.picture? ? @offer.picture.url : 'default_avatar.png' ,style: 'width:100%;' %>
   </section>
-  <% if logged_in? && current_user.entitie == '1' %>
-      <%= link_to "Candidatar-me", '#', class: 'btn btn-default' %>
+  <% if current_user.entitie == '1' %>
+      <% unless current_user?(@offer.user) %>
+          <% if current_user.offerings?(@offer) %>
+              <%= render 'offers/unfollow_offer' %>
+          <% else %>
+              <%= render 'offers/follow_offer' %>
+          <% end %>
+      <% end %>
   <% end %>
   <% if admin_user?(current_user) || current_user?(@offer.user) %>
       <%= link_to "Editar", edit_offer_path, class: 'btn btn-default' %>
@@ -23,7 +29,7 @@
     </p>
     <p><%= @offer.date_begin %> a <%= @offer.date_end %> </p>
     <p><strong>Empresa</strong></p>
-    <p><%= link_to @offer.user.name, user_path %></p>
+    <p><%= link_to @offer.user.name, user_path(@offer.user.id) %></p>
     <p><strong>Actividade Profissional</strong></p>
     <p><%= @offer.prof_area %></p>
     <p><strong>Tipo de Contrato</strong></p>

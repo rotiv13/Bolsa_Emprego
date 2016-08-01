@@ -6,28 +6,31 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @offers = @user.offers
-    @offers_active = @offers.where(active: true).limit(4)
-    @offers_limit = @offers_active.limit(2)
-    @offers_deactive = @offers.where(active: false).limit(2)
+    @offers_active = @offers.where(active: true).paginate(page:params[:page], per_page:2)
+    @offers_limit = @offers_active.limit(2).paginate(page:params[:page], per_page:2)
+    @offers_deactive = @offers.where(active: false).paginate(page:params[:page], per_page:2)
+    @offers_candidature = @user.offerings.paginate(page:params[:page], per_page:2)
+    @followers = @user.followers.where(entitie: '2').paginate(page:params[:page], per_page:2)
   end
 
   def index_candidate
-    @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
+    @users = User.all.where(entitie: '1')
     if params[:search]
-      @users = @users.search(params[:search]).paginate(page: params[:page], per_page: 8)
+      @users = @users.search(params[:search])
     end
     if params['/index/candidate']
       if params['/index/candidate'][:locality]
-        @users = @users.local(params['/index/candidate'][:locality]).paginate(page: params[:page], per_page: 8)
+        @users = @users.local(params['/index/candidate'][:locality])
       end
       if params['/index/candidate'][:field]
-        @users = @users.filter(params['/index/candidate'][:field]).paginate(page: params[:page], per_page: 8)
+        @users = @users.filter(params['/index/candidate'][:field])
       end
       if params['/index/candidate'][:situation]
-        @users = @users.situation(params['/index/candidate'][:situation]).paginate(page: params[:page], per_page: 8)
+        @users = @users.situation(params['/index/candidate'][:situation])
       end
     end
-    @users
+    @users = @users.paginate(page: params[:page], per_page: 8)
+
   end
 
   def index_entitie

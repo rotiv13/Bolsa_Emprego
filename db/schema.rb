@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729104813) do
+ActiveRecord::Schema.define(version: 20160801113505) do
 
   create_table "news", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160729104813) do
     t.boolean  "destaque"
     t.boolean  "active"
     t.string   "picture"
+  end
+
+  create_table "offer_relationships", force: :cascade do |t|
+    t.integer  "cand_id"
+    t.integer  "of_cand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cand_id", "of_cand_id"], name: "index_offer_relationships_on_cand_id_and_of_cand_id", unique: true
+    t.index ["cand_id"], name: "index_offer_relationships_on_cand_id"
+    t.index ["of_cand_id"], name: "index_offer_relationships_on_of_cand_id"
   end
 
   create_table "offers", force: :cascade do |t|

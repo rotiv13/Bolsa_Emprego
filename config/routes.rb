@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/index/candidate', to: 'users#index_candidate'
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :offerings, :offerends
     end
   end
   #SESSIONS
@@ -47,4 +47,5 @@ Rails.application.routes.draw do
 
   #RELATIONSHIPS
   resources :relationships, only: [:create, :destroy]
+  resources :offer_relationships,       only: [:create, :destroy]
 end

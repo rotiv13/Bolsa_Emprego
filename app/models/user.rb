@@ -4,11 +4,24 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",
            dependent: :destroy
+
+
   has_many :passive_relationships, class_name: "Relationship",
            foreign_key: "followed_id",
            dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+  has_many :offer_active_relationships, class_name: "OfferRelationship",
+           foreign_key: "cand_id",
+           dependent: :destroy
+
+  has_many :offer_passive_relationships, class_name: "OfferRelationship",
+           foreign_key: "of_cand_id",
+           dependent: :destroy
+
+  has_many :offerings, through: :offer_active_relationships, source: :of_cand
+  has_many :offerends, through: :offer_passive_relationships, source: :cand
 
 
   before_save :downcase_email
@@ -104,6 +117,21 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  #offer
+  def offer_follow(offer)
+    offer_active_relationships.create(of_cand_id: offer.id)
+  end
+
+  # Unfollows a user.
+  def offer_unfollow(offer)
+    offer_active_relationships.find_by(of_cand_id: offer.id).destroy
+  end
+
+  # Returns true if the current user is following the offer.
+  def offerings?(offer)
+    offerings.include?(offer)
+  end
+
   private
 
   def downcase_email
@@ -122,7 +150,7 @@ class User < ApplicationRecord
   end
   def curriculum_size
     if curriculum.size > 5.megabytes
-      errors.add(:picture, "tamamnho deve ser menor que 5MB")
+      errors.add(:curriculum, "tamamnho deve ser menor que 5MB")
     end
   end
 end

@@ -1,0 +1,4 @@
+<%= form_for(current_user.offer_active_relationships.find_by(of_cand_id: @offer.id),
+             html: { method: :delete }) do |f| %>
+    <%= f.submit "Retirar Candidatura", class: "btn btn-default" %>
+<% end %>

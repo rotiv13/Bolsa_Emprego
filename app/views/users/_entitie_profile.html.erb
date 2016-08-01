@@ -5,9 +5,8 @@
         <h1>
           Ofertas
         </h1>
-        <% if @user.offers.any? %>
-            <%= render @offers_limit %>
-        <% end %>
+        <%= render @offers_limit %>
+
         <%= link_to "Inserir Oferta", new_offer_path, class: 'btn btn-default' %>
       </div>
       <div class="col-md-6">

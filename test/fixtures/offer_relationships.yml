@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cand_id: 1
+  of_cand_id: 1
+
+two:
+  cand_id: 1
+  of_cand_id: 1

@@ -1,0 +1,2 @@
+module OfferRelationshipsHelper
+end
