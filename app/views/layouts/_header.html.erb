@@ -24,7 +24,7 @@
 
         <li><%= link_to "Home",    root_path %></li>
         <li class="divider"></li>
-        <% if current_page?(controller: 'backoffice') %>
+        <% if current_page?(controller: 'backoffice', action: 'index_users') || current_page?(controller: 'backoffice', action: 'index_news') || current_page?(controller: 'backoffice', action: 'home') %>
             <li><%= link_to "Utilizadores",   backoffice_users_url %></li>
             <li class="divider"></li>
 

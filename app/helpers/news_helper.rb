@@ -8,10 +8,10 @@ module NewsHelper
   end
 
   def news_destaque(news)
-    if news.destaque == 't'
-      "Sim"
+    if news.destaque
+     "Sim"
     else
-      "Não"
+     "Não"
     end
   end
 end

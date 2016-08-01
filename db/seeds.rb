@@ -164,7 +164,7 @@ end
 #   user_id: 1)
 # end
 
-users = User.order(:created_at).where('entitie = 2').take(6)
+users = User.order(:created_at).where(entitie: 2).take(6)
 5.times do
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
@@ -179,8 +179,8 @@ end
 
 users = User.all
 user  = users.second
-following = users[2..20]
-followers = users[3..40]
+following = users[3..20]
+followers = users[20..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
