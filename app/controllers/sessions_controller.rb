@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_back_or user_path(user, data: 'profile')
+        redirect_back_or admin_user?(user) ? backoffice_path : user_path(user, data: 'profile')
       else
         message  = "Esta conta não esta activada. "
         message += "Verifique o seu email para obter o link de activação."

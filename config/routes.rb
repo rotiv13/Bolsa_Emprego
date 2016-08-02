@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :backoffice
 
   #OFFERS
-  patch '/offer/:id', to: 'offers#update', as: 'offer_update'
+  post '/offer/:id/deactivate', to: 'offers#deactivate', as: 'offer_deactivate'
   resources :offers
   get '/offer', to: 'offers#index'
 

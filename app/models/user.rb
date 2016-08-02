@@ -30,6 +30,7 @@ class User < ApplicationRecord
   scope :locality, -> (local) { where locality: local}
   scope :prof_situation, -> (situation) { where prof_situation: situation}
   scope :prof_area, -> (area) { where prof_area: area}
+  scope :type, -> (type) { where entitie: type}
 
 
   before_save :downcase_email
@@ -64,22 +65,6 @@ class User < ApplicationRecord
 
     def new_token
       SecureRandom.urlsafe_base64
-    end
-
-    def search(search)
-      where("name LIKE '#{search}%' OR presentation like '%#{search}%'")
-    end
-    def filter(filter)
-      where("prof_area like '#{filter}'")
-    end
-    def type(type)
-      where("entitie like '#{type}'")
-    end
-    def local(local)
-      where("locality like '#{local}'")
-    end
-    def situation(situation)
-      where("prof_situation like '#{situation}'")
     end
   end
 

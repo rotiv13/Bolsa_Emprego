@@ -8,8 +8,6 @@
     <div class="col-md-9">
       <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.description.first(80) %>...</p>
     </div>
-  </section>
-  <section>
     <% if offer.active %>
         <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
             <% if logged_in? && current_user.entitie == '2' &&  current_user?(offer.user) %>
@@ -18,7 +16,7 @@
                       <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                     </div>
                     <div class="col-md-3">
-                      <%= form_tag offer_update_path, method: 'patch' do %>
+                      <%= form_tag(controller: 'offers', action: 'deactivate', method: 'get') do %>
                           <%= hidden_field_tag :active, false %>
                           <%= submit_tag "Cancelar", class:'btn btn-default' %>
                       <% end %>
@@ -48,4 +46,5 @@
         <%= link_to "Reativar", edit_offer_path(offer.id) , class: 'btn btn-default' %>
     <% end %>
   </section>
+
 </aside>

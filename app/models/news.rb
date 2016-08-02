@@ -4,13 +4,8 @@ class News < ApplicationRecord
   validates :title, presence: true
   validates :summary, presence: true, length: {maximum: 140}
   validates :text, presence: true
+  scope :title, -> (search) { where('title like ?', "#{search}%")}
 
-  class << self
-    def search(search)
-      self.where("title LIKE '#{search}%'")
-    end
-
-  end
   def activate
     update_attribute(:active, true)
   end

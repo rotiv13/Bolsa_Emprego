@@ -9,23 +9,12 @@ class Offer < ApplicationRecord
   validates :date_begin, presence: true
   validates :date_end, presence: true
 
-  class << self
-    def search(search)
-      where("title like '#{search}%'")
-    end
-
-    def fields(field)
-      where("prof_area like '#{field}'")
-    end
-
-    def local(local)
-      @users = User.all.where("locality like '#{local}'")
-      @users.each do |f|
-        @offers = f.offers.where(active: true)
-      end
-      @offers
-    end
-  end
+  scope :entitie, -> { where(entitie: '2')}
+  scope :candidate, -> { where(entitie: '1')}
+scope :active, -> { where active: true}
+  scope :search, -> (search) {where "title like ? ","%#{search}%"}
+  scope :locality, -> (local) { where locality: local}
+  scope :prof_area, -> (area) { where prof_area: area}
 
   def activate
     update_attribute(:active, true)

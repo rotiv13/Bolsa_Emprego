@@ -5,23 +5,19 @@
   </aside>
 </div>
 <div class="row">
-  <aside class="col-md-3">
+  <aside>
     <%= form_for offers_path, method: 'get', remote: true do %>
-        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
-    <% end %>
-  </aside>
-
-  <aside class="col-md-3">
-    <%= form_for offers_path, method: 'get', remote: true do |f| %>
-        <% field_array = Offer.all.distinct.pluck(:prof_area) %>
-        <%= f.select(:fields , options_for_select(field_array),{include_blank: 'Área de actividade...'}, :onChange => "javascript: this.form.submit();") %>
-    <% end %>
-  </aside>
-
-  <aside class="col-md-3">
-    <%= form_for offers_path , method: 'get', remote: true do |f| %>
-        <% field_array = User.where(entitie: '2').distinct.pluck(:locality) %>
-        <%= f.select(:locality, options_for_select(field_array),{include_blank: 'Concelho...'}, :onChange => "javascript: this.form.submit();") %>
+        <div class="col-md-3">
+          <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+        </div>
+        <div class="col-md-3">
+          <% field_array = Offer.all.distinct.pluck(:prof_area) %>
+          <%= select_tag(:prof_area , options_for_select(field_array),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();"}) %>
+        </div>
+        <div class="col-md-3">
+          <% field_array = Offer.all.distinct.pluck(:locality) %>
+          <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();"}) %>
+        </div>
     <% end %>
   </aside>
 </div>

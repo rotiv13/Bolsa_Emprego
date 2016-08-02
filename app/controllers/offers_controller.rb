@@ -6,18 +6,9 @@ class OffersController < ApplicationController
     @user ||= current_user
   end
   def index
-    @offers = Offer.all.where(active: true)
-    if params[:search]
-      @offers=@offers.search(params[:search])
-    end
-    if params['/offers']
-      if params['/offers'][:fields]
-        @offers=@offers.fields(params['/offers'][:fields])
-      end
-
-      if params['/offers'][:locality]
-        @offers=@offers.local(params['/offers'][:locality])
-      end
+    @offers = Offer.active
+    filtering_params(params).each do |key, value|
+      @offers = @offers.public_send(key,value) if value.present?
     end
     @offers =  @offers.paginate(page:params[:page], per_page: 8)
   end
@@ -54,6 +45,16 @@ class OffersController < ApplicationController
     end
   end
 
+  def deactivate
+    @offer = Offer.find(params[:id])
+    @offer.deactivate
+  end
+
+  def activate
+    @offer = Offer.find(params[:id])
+    @offer.activate
+  end
+
 
   def destroy
     current_user.offers.find(params[:id]).destroy
@@ -67,5 +68,9 @@ class OffersController < ApplicationController
   def offer_params
     params.require(:offer).permit(:title, :date_begin, :date_end, :description,
                                   :salary, :type_contract, :prof_area, :active, :picture )
+  end
+
+  def filtering_params(params)
+    params.slice(:search,:locality,:prof_area)
   end
 end

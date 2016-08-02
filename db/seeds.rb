@@ -173,7 +173,7 @@ users = User.order(:created_at).where(entitie: 2).take(6)
   date_end = Faker::Date.between(2.months.from_now, 4.months.from_now)
   users.each { |user| user.offers.create!(title:title, description: content,
                                           date_begin: date_begin, date_end: date_end,
-                                          active: true, prof_area: prof_area)
+                                          active: true, prof_area: prof_area, locality: user.locality)
   }
 end
 

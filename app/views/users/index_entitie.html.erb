@@ -8,12 +8,9 @@
   <aside >
     <%= form_for index_candidate_path, method: 'get', remote: true do  %>
         <div class="col-md-3">
-          <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+          <%= text_field_tag :search,params[:search], placeholder: 'Pesquisa' %>
         </div>
-    <% end %>
-    <%= form_for index_candidate_path, method: 'get', remote: true do  %>
         <div class="col-md-3">
-
           <% field_array = User.entitie.distinct.pluck(:prof_area) %>
           <%= select_tag(:prof_area, options_for_select(field_array),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();"})  %>
         </div>
