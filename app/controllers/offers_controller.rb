@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
-  before_action :logged_in_user, only: [:edit,:destroy,:update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :destroy, :update, :deactivate, :activate]
+  before_action :correct_user, only: [:deactivate, :activate]
 
   def new
     @offer = Offer.new
@@ -53,12 +53,17 @@ class OffersController < ApplicationController
 
   def deactivate
     @offer = Offer.find(params[:id])
+    @user = @offer.user
     @offer.deactivate
+    redirect_to user_path(@user, data: 'profile')
   end
 
   def activate
     @offer = Offer.find(params[:id])
+    @user = @offer.user
     @offer.activate
+    redirect_to user_path(@user, data: 'profile')
+
   end
 
 

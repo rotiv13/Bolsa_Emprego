@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   resources :backoffice
 
   #OFFERS
-  post '/offer/:id/deactivate', to: 'offers#deactivate', as: 'offer_deactivate'
+  put '/offer/:id/deactivate', to: 'offers#deactivate', as: 'offer_deactivate'
+  put '/offer/:id/activate', to: 'offers#activate', as: 'offer_activate'
   resources :offers
   get '/offer', to: 'offers#index'
 

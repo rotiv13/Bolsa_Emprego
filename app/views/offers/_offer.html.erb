@@ -16,10 +16,8 @@
                       <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                     </div>
                     <div class="col-md-3">
-                      <%= form_tag(controller: 'offers', action: 'deactivate', method: 'get') do %>
-                          <%= hidden_field_tag :active, false %>
-                          <%= submit_tag "Cancelar", class:'btn btn-default' %>
-                      <% end %>
+                      <%= link_to "Apagar", offer_deactivate_path(offer.id), method: :put,
+                                  data: { confirm: "Tem a certeza que pretende cancelar esta oferta?" }, class: 'btn btn-danger' %>
                     </div>
                 <% else %>
                     <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
@@ -45,7 +43,7 @@
             <% end %>
         <% end %>
     <% else %>
-        <%= link_to "Reativar", edit_offer_path(offer.id) , class: 'btn btn-default' %>
+        <%= link_to "Reativar", offer_activate_path(offer.id), method: :put, class: 'btn btn-default' %>
     <% end %>
   </section>
 
