@@ -4,35 +4,34 @@
     <h3>Candidatos</h3>
   </aside>
 </div>
+
 <div class="row">
-  <aside class="col-md-3">
-    <%= form_for index_candidate_path, method: 'get', remote: true do |f| %>
-        <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+  <aside >
+    <%= form_for index_candidate_path, method: 'get', remote: true do  %>
+        <div class="col-md-3">
+          <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+        </div>
     <% end %>
-  </aside>
+    <div class="col-md-3">
+      <%= form_for index_candidate_path, method: 'get', remote: true do  %>
+          <% field_array = User.candidate.distinct.pluck(:prof_area) %>
+          <%= select_tag(:prof_area, options_for_select(field_array),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();"})  %>
+          </div>
+          <div class="col-md-3">
 
-  <aside class="col-md-3">
-    <%= form_for index_candidate_path, method: 'get', remote: true do |f| %>
-        <% field_array = @users.distinct.pluck(:prof_area) %>
-        <%= f.select(:field, options_for_select(field_array),{include_blank: 'Área Profissional...'}, :onChange => "javascript: this.form.submit();") %>
+            <% field_array = User.candidate.distinct.pluck(:prof_situation) %>
+            <%= select_tag(:prof_situation, options_for_select(field_array),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();"}) %>
+          </div>
+          <div class="col-md-3">
 
-    <% end %>
-  </aside>
-  <aside class="col-md-3">
-    <%= form_for index_candidate_path, method: 'get', remote: true do |f| %>
-        <% field_array = @users.distinct.pluck(:prof_situation) %>
-        <%= f.select(:situation, options_for_select(field_array),{include_blank: 'Situação Profissional...'}, :onChange => "javascript: this.form.submit();") %>
+            <% field_array = User.candidate.distinct.pluck(:locality) %>
+            <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();"}) %>
+          </div>
+      <% end %>
 
-    <% end %>
-  </aside>
-  <aside class="col-md-3">
-    <%= form_for index_candidate_path, method: 'get', remote: true do |f| %>
-        <% field_array = @users.distinct.pluck(:locality) %>
-        <%= f.select(:locality, options_for_select(field_array),{include_blank: 'Concelho...'}, :onChange => "javascript: this.form.submit();") %>
-
-    <% end %>
-  </aside>
+      </aside>
 </div>
+
 <div class="row">
   <% @users.each do |user|  %>
       <div class="col-md-6">

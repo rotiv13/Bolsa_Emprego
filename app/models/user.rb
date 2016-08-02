@@ -23,6 +23,14 @@ class User < ApplicationRecord
   has_many :offerings, through: :offer_active_relationships, source: :of_cand
   has_many :offerends, through: :offer_passive_relationships, source: :cand
 
+  scope :entitie, -> { where(entitie: '2')}
+  scope :candidate, -> { where(entitie: '1')}
+
+  scope :search, -> (search) {where("name like ? OR presentation like ?","#{search}%","%#{search}%")}
+  scope :locality, -> (local) { where locality: local}
+  scope :prof_situation, -> (situation) { where prof_situation: situation}
+  scope :prof_area, -> (area) { where prof_area: area}
+
 
   before_save :downcase_email
   before_create :create_activation_digest

@@ -15,38 +15,20 @@ class UsersController < ApplicationController
 
   def index_candidate
 
-    if params[:search]
-      @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
-      @users = @users.search(params[:search])
+    @users = User.candidate
+    filtering_params(params).each do |key, value|
+      @users = @users.public_send(key,value) if value.present?
     end
-    if params['/index/candidate']
-      if params['/index/candidate'][:locality]
-        @users = @users.local(params['/index/candidate'][:locality])
-      end
-      if params['/index/candidate'][:field]
-        @users = @users.filter(params['/index/candidate'][:field])
-      end
-      if params['/index/candidate'][:situation]
-        @users = @users.situation(params['/index/candidate'][:situation])
-      end
-    end
-    @users = User.all.where(entitie: '1').paginate(page: params[:page], per_page: 8)
+    @users = @users.paginate(page: params[:page], per_page:8)
   end
 
   def index_entitie
-    @users = User.all.where(entitie: '2')
-    if params[:search]
-      @users = @users.search(params[:search]).paginate(page: params[:page], per_page: 8)
+
+    @users = User.entitie
+    filtering_params(params).each do |key, value|
+      @users = @users.public_send(key,value) if value.present?
     end
-    if params['/index/entitie']
-      if params['/index/entitie'][:locality]
-        @users = @users.local(params['/index/entitie'][:locality]).paginate(page: params[:page], per_page: 8)
-      end
-      if params['/index/entitie'][:field]
-        @users = @users.filter(params['/index/entitie'][:field]).paginate(page: params[:page], per_page: 8)
-      end
-    end
-    @users = @users.paginate(page: params[:page], per_page: 8)
+    @users = @users.paginate(page: params[:page], per_page:8)
   end
 
   def edit
@@ -112,4 +94,8 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
   end
 
+
+  def filtering_params(params)
+    params.slice(:search,:prof_area,:prof_situation,:locality)
+  end
 end
