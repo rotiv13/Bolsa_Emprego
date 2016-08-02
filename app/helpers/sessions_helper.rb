@@ -19,7 +19,7 @@ module SessionsHelper
   end
 
   def current_user?(user)
-    user == current_user || admin_user?(user)
+    user == current_user
   end
 
   # Checks if the user is logged in

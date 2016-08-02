@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :destroy, :update, :deactivate, :activate]
-  before_action :correct_user, only: [:deactivate, :activate]
+  before_action :correct_offer_user, only: [:edit,:update, :deactivate, :activate]
 
   def new
     @offer = Offer.new
@@ -12,10 +12,6 @@ class OffersController < ApplicationController
       @offers = @offers.public_send(key,value) if value.present?
     end
     @offers =  @offers.paginate(page:params[:page], per_page: 8)
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def show
@@ -32,7 +28,7 @@ class OffersController < ApplicationController
   def create
     @offer = current_user.offers.build(offer_params)
     if @offer.save
-      flash[:success] = "Oferta Guardada com Sucesso!"
+      flash[:success] = "Oferta guardada com Sucesso!"
       redirect_to offers_path
     else
       render 'new'
@@ -44,7 +40,7 @@ class OffersController < ApplicationController
     @user = @offer.user
     @offer = @user.offers.find(params[:id])
     if @offer.update_attributes(offer_params)
-      flash[:success] = "Ofertas Atualizada!"
+      flash[:success] = "Oferta atualizada!"
       redirect_to @offer
     else
       render 'edit'
@@ -66,13 +62,11 @@ class OffersController < ApplicationController
 
   end
 
-
   def destroy
     current_user.offers.find(params[:id]).destroy
     flash[:success] = "Oferta Cancelada!"
     redirect_to current_user
   end
-
 
   private
 
@@ -83,5 +77,10 @@ class OffersController < ApplicationController
 
   def filtering_params(params)
     params.slice(:search,:locality,:prof_area)
+  end
+
+  def correct_offer_user
+    @offer = Offer.find(params[:id])
+    redirect_to(root_url) unless current_user?(@offer.user) || admin_user?(current_user)
   end
 end

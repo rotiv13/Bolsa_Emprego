@@ -10,7 +10,7 @@
     <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' , style: 'width: 100%' %>
   </section>
   <section>
-    <% if logged_in? && !current_user?(@user) %>
+    <% if logged_in? && !current_user?(@user) && current_user.entitie == '1' %>
         <%= render 'form_follow' %>
     <% end %>
   </section>
@@ -48,6 +48,7 @@
     <% @offers_active.each do |offer| %>
         <div class="col-md-6">
           <%= render offer %>
+
         </div>
     <% end %>
   </section>
