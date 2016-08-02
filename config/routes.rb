@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   #ROOT
   root 'static_pages#home'
   #OFFERS
@@ -50,4 +54,6 @@ Rails.application.routes.draw do
   #RELATIONSHIPS
   resources :relationships, only: [:create, :destroy]
   resources :offer_relationships,       only: [:create, :destroy]
+
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end
