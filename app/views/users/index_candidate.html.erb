@@ -7,7 +7,7 @@
 
 <div class="row">
   <aside >
-    <%= form_for index_candidate_path, method: 'get', remote: true do  %>
+    <%= form_for index_candidate_path, method: 'get'  do  %>
         <div class="col-md-3">
           <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
         </div>
@@ -16,12 +16,10 @@
           <%= select_tag(:prof_area, options_for_select(field_array),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();"})  %>
         </div>
         <div class="col-md-3">
-
           <% field_array = User.candidate.distinct.pluck(:prof_situation) %>
           <%= select_tag(:prof_situation, options_for_select(field_array),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();"}) %>
         </div>
         <div class="col-md-3">
-
           <% field_array = User.candidate.distinct.pluck(:locality) %>
           <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();"}) %>
         </div>
@@ -34,16 +32,19 @@
   <% @users.each do |user|  %>
       <div class="col-md-6">
         <%= render user %>
-        <div class="col-md-4">
-          <% if logged_in? && current_user.entitie == '2' %>
-              <% @user = user %>
-              <%= render 'form_follow' %>
+        <div class="col-md-12" style="min-height: 40px;">
+          <% if logged_in? && current_user.entitie == '2'  %>
+              <div class="col-md-5">
+                <% @user = user %>
+                <%= render 'form_follow' %>
+              </div>
+          <% end %>
+          <% if admin_user?(current_user) || current_user?(user) %>
+              <div class="col-md-2">
+                <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
+              </div>
           <% end %>
         </div>
-
-        <% if admin_user?(current_user)  %>
-            <%= link_to "Editar", edit_user_path(user,data: 'edit'), class: 'btn btn-default' %>
-        <% end %>
       </div>
   <% end %>
 </div>

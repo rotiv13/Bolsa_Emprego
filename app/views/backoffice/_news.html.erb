@@ -10,13 +10,11 @@
 
 <div class="row">
   <aside >
-    <%= form_for backoffice_news_path, method:'get', remote: true do |f| %>
+    <%= form_for backoffice_news_path, method:'get' do |f| %>
         <div class="col-md-3">
           <%= text_field_tag :title, params[:title], placeholder: 'Pesquisa' %>
         </div>
-        <div class="col-md-2">
-          <%= submit_tag "Pesquisar", class:'btn btn-default' %>
-        </div>
+
     <% end %>
   </aside>
 </div>

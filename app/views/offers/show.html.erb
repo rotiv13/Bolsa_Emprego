@@ -41,13 +41,30 @@
   </section>
 </aside>
 
-<div class="row">
-  <aside class="col-md-6">
-    <section>
-      <h1>
-        Outras ofertas na mesma área
-      </h1>
-      <%= render @other_offer %>
-    </section>
-  </aside>
-</div>
+<% if !current_user?(@offer.user) %>
+    <div class="row">
+      <aside class="col-md-6">
+        <section>
+          <h1>
+            Outras ofertas na mesma área
+          </h1>
+          <%= render @other_offer %>
+        </section>
+      </aside>
+    </div>
+<% else %>
+    <div class="row">
+      <aside class="col-md-6">
+        <section>
+          <h1>
+            Candidatos
+          </h1>
+          <% if @offer_cand.any? %>
+              <%= render @offer_cand %>
+          <% else %>
+              <p>Ainda não existem candidatos para esta oferta</p>
+          <% end %>
+        </section>
+      </aside>
+    </div>
+<% end %>

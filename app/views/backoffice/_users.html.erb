@@ -8,7 +8,7 @@
 
 <div class="row">
   <aside >
-    <%= form_for backoffice_users_path,  method: 'get', remote: true,id: 'form_news'  do |f| %>
+    <%= form_for backoffice_users_path,  method: 'get' do |f| %>
         <div class="col-md-3">
           <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
         </div>
@@ -19,7 +19,7 @@
   </aside>
 
 </div>
-<div class="row">
+<div id="users" class="row">
   <aside class="tables">
     <table class="col-md-12 ">
       <tr>

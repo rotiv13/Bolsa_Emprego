@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def index_candidate
-
     @users = User.candidate
     filtering_params(params).each do |key, value|
       @users = @users.public_send(key,value) if value.present?
@@ -23,12 +22,12 @@ class UsersController < ApplicationController
   end
 
   def index_entitie
-
     @users = User.entitie
     filtering_params(params).each do |key, value|
       @users = @users.public_send(key,value) if value.present?
     end
     @users = @users.paginate(page: params[:page], per_page:8)
+
   end
 
   def edit
@@ -89,10 +88,7 @@ class UsersController < ApplicationController
                                  :skill_level, :skills, :prof_situation, :prof_experience, :picture, :activated, :curriculum)
   end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user) || admin_user?(current_user)
-  end
+
 
 
   def filtering_params(params)

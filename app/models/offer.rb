@@ -9,6 +9,12 @@ class Offer < ApplicationRecord
   validates :date_begin, presence: true
   validates :date_end, presence: true
 
+  has_many :offer_passive_relationships, class_name: "OfferRelationship",
+           foreign_key: "of_cand_id",
+           dependent: :destroy
+
+  has_many :offerends, through: :offer_passive_relationships, source: :cand
+
   scope :entitie, -> { where(entitie: '2')}
   scope :candidate, -> { where(entitie: '1')}
 scope :active, -> { where active: true}

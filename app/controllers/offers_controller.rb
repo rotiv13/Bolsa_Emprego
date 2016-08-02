@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, only: [:edit,:destroy,:update]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @offer = Offer.new
@@ -11,11 +12,16 @@ class OffersController < ApplicationController
       @offers = @offers.public_send(key,value) if value.present?
     end
     @offers =  @offers.paginate(page:params[:page], per_page: 8)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
     @offer = Offer.find(params[:id])
     @other_offer = Offer.all.where('prof_area like ? AND id != ?', @offer.prof_area, @offer.id).limit(2)
+    @offer_cand = @offer.offerends.limit(2)
   end
 
   def edit
