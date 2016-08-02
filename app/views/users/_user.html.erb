@@ -2,7 +2,7 @@
 <aside>
   <section>
     <div class="col-md-3" >
-      <%= image_tag user.picture? ? user.picture.url : '/assets/default_avatar.png', style: 'width:100%;' %>
+      <%= image_tag user.picture? ? user.picture.url : 'default_avatar.png', style: 'width:100%;' %>
     </div>
     <div class="col-md-9">
       <%= link_to user.name, user %>

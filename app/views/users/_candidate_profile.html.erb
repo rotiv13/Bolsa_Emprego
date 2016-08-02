@@ -30,7 +30,7 @@
           <%= link_to "Editar dados", edit_user_path(@user,data: 'edit'), class: 'btn btn-default' %>
           <%= link_to "Alterar password", edit_user_path(@user,data: 'password'), class: 'btn btn-default' %>
           <div class="prof_img">
-            <%= image_tag @user.picture.url if @user.picture? %>
+            <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' %>
           </div>
         </section>
       </aside>

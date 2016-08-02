@@ -7,7 +7,7 @@
 </aside>
 <aside class="col-md-2 user_info_avatar">
   <section>
-    <%= image_tag @user.picture? ? @user.picture.url : '/assets/default_avatar.png' , style: 'width: 100%' %>
+    <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' , style: 'width: 100%' %>
   </section>
   <section>
     <% if logged_in? && !current_user?(@user) && current_user.entitie == '1' %>
