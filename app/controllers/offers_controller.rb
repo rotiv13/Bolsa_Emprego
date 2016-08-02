@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :destroy, :update, :deactivate, :activate]
+  before_action :logged_in_user, only: [:edit, :destroy, :create, :update, :deactivate, :activate]
   before_action :correct_offer_user, only: [:edit,:update, :deactivate, :activate]
 
   def new
