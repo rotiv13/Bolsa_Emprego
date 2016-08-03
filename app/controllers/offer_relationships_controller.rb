@@ -4,13 +4,19 @@ class OfferRelationshipsController < ApplicationController
   def create
     offer = Offer.find(params[:of_cand_id])
     current_user.offer_follow(offer)
-    redirect_to offer
+    respond_to do |format|
+      format.html { redirect_to @offer }
+      format.js
+    end
   end
 
   def destroy
     offer = OfferRelationship.find(params[:id]).of_cand
     current_user.offer_unfollow(offer)
-    redirect_to offer
+    respond_to do |format|
+      format.html { redirect_to @offer }
+      format.js
+    end
 
   end
 end

@@ -14,7 +14,7 @@
   </section>
 
   <section>
-    <% if logged_in? && !current_user?(@user) %>
+    <% if logged_in? && !current_user?(@user) && current_user.entitie == '2' %>
           <% if current_user.following?(@user)  %>
               <%= render 'unfollow' %>
           <% else %>
