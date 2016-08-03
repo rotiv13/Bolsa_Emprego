@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NewsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get news_new_url
+    get new_news_url
     assert_response :success
   end
 
@@ -11,9 +11,5 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get show" do
-    get news_show_url
-    assert_response :success
-  end
 
 end
