@@ -44,6 +44,32 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def create_candidate
+    @user = User.new(user_params)
+    if @user.save
+      unless @user.activated
+        @user.send_activation_email
+        flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
+      end
+      redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : root_url
+    else
+      render 'new_candidate'
+    end
+  end
+
+  def create_entitie
+    @user = User.new(user_params)
+    if @user.save
+      unless @user.activated
+        @user.send_activation_email
+        flash[:info] = "Por favor, verifique o seu email para activar a sua conta."
+      end
+      redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : root_url
+    else
+      render 'new_entitie'
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -53,11 +79,7 @@ class UsersController < ApplicationController
       end
       redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : root_url
     else
-      if @user.entitie == '2'
-        render 'new_entitie'
-      else
-        render 'new_candidate'
-      end
+      render 'backoffice/new'
     end
   end
 

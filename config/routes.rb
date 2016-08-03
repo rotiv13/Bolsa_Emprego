@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get '/new_candidate' , to:'users#new_candidate'
-  post '/new_candidate', to:'users#create'
+  post '/new_candidate', to:'users#create_candidate'
   get '/new_entitie' , to:'users#new_entitie'
-  post '/new_entitie', to:'users#create'
+  post '/new_entitie', to:'users#create_entitie'
   get '/entities', to: 'users#index_entitie', as: 'index_entitie'
   get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
   resources :users do
