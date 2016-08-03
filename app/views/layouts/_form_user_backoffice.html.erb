@@ -1,4 +1,4 @@
-<%= form_for @user, remote: true do |f| %>
+<%= simple_form_for @user, remote: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <div>
@@ -6,8 +6,7 @@
         <% if yield(:data) != 'password' %>
             <div class="row">
               <div class="col-md-6 ">
-                <%= f.label :name, "Nome" %>
-                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.input :name,label: "Nome" %>
               </div>
               <div class="col-md-6">
                 <%= f.label :entitie, "Tipo" %>
@@ -21,27 +20,17 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <%= f.label :email, "Email" %>
-                <%= f.email_field :email, class: 'form-control',placeholder: 'Example: example@example.com' %>
+                <%= f.input :email, label: "Email" ,placeholder: 'Example: example@example.com' %>
               </div>
               <% if @user.password_digest.nil? %>
                   <%= f.hidden_field :password, value: '123456 ' %>
                   <%= f.hidden_field :password_confirmation, value: '123456 ' %>
               <% end %>
               <div class="col-md-6">
-                <h5><strong>Activa</strong></h5>
+                <h5><strong>Activo</strong></h5>
                 <br>
-                <div class="checkbox col-md-2">
-                  <p>
-                    <%= f.label :activated do %>
-                        Sim <%= f.check_box :activated, {}, 'true', 'false' %>
-                        <% if :activated == 'true' %>
-                            <% @user.activate %>
-                        <% else %>
-                            <% @user.deactivate %>
-                        <% end %>
-                    <% end %>
-                  </p>
+                <div class="col-md-4">
+                  <%=  f.input :activated, inline_label: "Sim" %>
                 </div>
               </div>
             </div>
@@ -55,20 +44,18 @@
             </div>
             <div class="row">
               <div class="col-md-6 ">
-                <%= f.label :password, "Password" %>
-                <%= f.password_field :password, class: 'form-control' %>
+                <%= f.input :password, label: "Password", hint:"Minímo de 6 carácteres" %>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 ">
-                <%= f.label :password_confirmation, "Confirmação da Password" %>
-                <%= f.password_field :password_confirmation, class: 'form-control' %>
+                <%= f.input :password_confirmation, label: "Confirmação da Password" %>
               </div>
             </div>
         <% end %>
         <div class="row">
           <div class="col-md-2">
-            <%= f.submit "Ok", class: "btn btn-primary" %>
+            <%= f.button :submit, class: "btn btn-primary" %>
           </div>
           <div class="col-md-2">
             <%= link_to "Cancelar", backoffice_users_path, class: "btn btn-default" %>

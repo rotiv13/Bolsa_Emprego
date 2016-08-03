@@ -1,21 +1,19 @@
-<%= form_for(@user, html: {multipart: true}) do |f| %>
+<%= simple_form_for(@user, html: {multipart: true}) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div>
       <% if yield(:data) == 'register' || params[:data] == 'password' %>
           <div class="row" id="login_candidate_info">
             <div class="col-md-6">
-              <%= f.label :email %>
-              <%= f.email_field :email, class: 'form-control' %>
+              <%= f.input :email %>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6"><%= f.label :password %>
-              <%= f.password_field :password, class: 'form-control' %>
+            <div class="col-md-6">
+              <%= f.input :password %>
             </div>
             <%= f.hidden_field :entitie, value: '2' %>
             <div class="col-md-6">
-              <%= f.label :password_confirmation, "Confirmação da Password" %>
-              <%= f.password_field :password_confirmation, class: 'form-control' %>
+              <%= f.input :password_confirmation, label: "Confirmação da Password" %>
             </div>
           </div>
           <hr>
@@ -24,65 +22,54 @@
           <div id="info_candidate" class="profile">
             <div class="row">
               <div class="col-md-6 ">
-                <%= f.label :name, "Nome" %>
-                <%= f.text_field :name, class: 'form-control'%>
+                <%= f.input :name, label: "Nome" %>
               </div>
               <div class="col-md-3">
-                <%= f.label :picture, "Foto" %>
-                <%= f.file_field :picture %>
+                <%= f.input :picture, as: :file, label: "Foto" %>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <%= f.label :address, "Morada" %>
-                <%= f.text_area :address, class: 'form-control' %>
+                <%= f.input :address, as: :text, label: "Morada"  %>
               </div>
               <div class="col-md-2">
-                <%= f.label :postal_code, "Código Postal" %>
-                <%= f.text_field :postal_code, class: 'form-control' %>
+                <%= f.input :postal_code, label: "Código Postal" %>
               </div>
               <div class="col-md-2 col-md-offset-4">
-                <%= f.label :locality, "Localidade" %>
-                <%= f.text_field :locality, class: 'form-control' %>
+                <%= f.input :locality, label: "Localidade" %>
               </div>
             </div>
             <div class="row">
               <div class="col-md-2">
-                <%= f.label :phone, "Telefone" %>
-                <%= f.telephone_field :phone, class: 'form-control' %>
+                <%= f.input :phone, label: "Telefone" %>
               </div>
               <div class="col-md-2">
-                <%= f.label :cellphone, "Telemóvel" %>
-                <%= f.telephone_field :cellphone, class: 'form-control' %>
+                <%= f.input :cellphone, label: "Telemóvel" %>
               </div>
               <div class="col-md-6 col-md-offset-2">
-                <%= f.label :page, "Página/Website" %>
-                <%= f.text_field :page, class: 'form-control' %>
+                <%= f.input :page, label: "Página/Website" %>
               </div>
             </div>
             <div class="row">
               <div class="col-md-2">
-                <%= f.label :idnum, yield(:idnumber) %>
-                <%= f.text_field :idnum, class: 'form-control' %>
+                <%= f.input :idnum, label: yield(:idnumber) %>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-md-2">
-                <%= f.label :prof_area, "Atividade Profissional" %>
-                <%= f.select(:prof_area, options_for_select([['Informática'],['Educação'],['Saúde'],['Metalúrgica'],['Prestação de Serviços']])) %>
+                <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços']) %>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <%= f.label :presentation, "Apresentação" %>
-              <%= f.text_area :presentation, class: 'form-control', placeholder: 'Descrição da empresa (max. 140 carácteres)' %>
+              <%= f.input :presentation, as: :text, label:  "Apresentação", placeholder: 'Descrição da empresa (max. 140 carácteres)' %>
             </div>
           </div>
       <% end %>
       <div class="col-md-2">
-        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        <%= f.button :submit, class: "btn btn-primary" %>
       </div>
     </div>
 <% end %>

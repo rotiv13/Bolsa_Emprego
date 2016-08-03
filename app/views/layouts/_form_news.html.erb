@@ -1,12 +1,11 @@
-<%= form_for @news do |f| %>
+<%= simple_form_for @news do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <div>
       <div id="new_info">
         <div class="row">
           <div class="col-md-6 ">
-            <%= f.label :title, "Título" %>
-            <%= f.text_field :title, class: 'form-control' %>
+            <%= f.input :title, label: "Título" %>
           </div>
           <div class="col-md-6">
             <%= f.label :date, "Data" %>
@@ -15,50 +14,33 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <%= f.label :summary, "Sumário da Notícia" %>
-            <%= f.text_area :summary, class: 'form-control',placeholder: 'Breve descrição da notícia (max. 140 caracteres)' %>
+            <%= f.input :summary, as: :text, label: "Sumário da Notícia", placeholder: 'Breve descrição da notícia (max. 140 caracteres)' %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <%= f.label :text, "Texto da Notícia" %>
-            <%= f.text_area :text, class: 'form-control' %>
+            <%= f.input :text, as: :text, label: "Texto da Notícia" %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-3">
-            <%= f.label :picture, "Imagem" %>
-            <%= f.file_field :picture, class:'form-control' %>
+            <%= f.input :picture, as: :file, label: "Foto" %>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-4">
             <h5><strong>Destaque</strong></h5>
             <br>
             <div class="checkbox">
-              <%= f.label :destaque do %>
-                  Aparece em destaque <%= f.check_box :destaque, {}, 'true' , 'false' %>
-                  <% if :destaque == 'true' %>
-                      <% puts :destaque %>
-                      <% @news.destaques %>
-                  <% else %>
-                      <% @news.not_destaque %>
-                  <% end %>
-              <% end %>
+              <%= f.input :destaque, inline_label: "Aparece me destaque" %>
             </div>
           </div>
-          <div class="col-md-2 col-md-offset-4">
+          <div class="col-md-2 col-md-offset-2">
             <h5><strong>Activa</strong></h5>
             <br>
             <div class="checkbox ">
-              <%= f.label :active do %>
-                  Sim <%= f.check_box :active, {}, 'true', 'false' %>
-                  <% if :active == 'true' %>
-                      <% @news.activate %>
-                  <% else %>
-                      <% @news.deactivate %>
-                  <% end %>
-              <% end %>
+              <%= f.input :active, inline_label: "Sim" %>
+
             </div>
 
           </div>
@@ -66,7 +48,7 @@
       </div>
       <div class="row" style="margin-top: 20px;">
         <div class="col-md-2">
-          <%= f.submit "Ok", class: "btn btn-primary" %>
+          <%= f.button :submit, class: 'btn btn-primary' %>
 
         </div>
         <div class="col-md-2">
