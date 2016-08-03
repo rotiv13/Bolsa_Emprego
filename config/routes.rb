@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
-  get '/users/candidate' , to:'users#new_candidate', as: 'new_candidate'
-  get '/users/entitie' , to:'users#new_entitie', as: 'new_entitie'
+  get '/new_candidate' , to:'users#new_candidate'
+  get '/new_entitie' , to:'users#new_entitie'
   get '/entities', to: 'users#index_entitie', as: 'index_entitie'
   get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
 

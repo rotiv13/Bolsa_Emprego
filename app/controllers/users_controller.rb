@@ -69,12 +69,10 @@ class UsersController < ApplicationController
 
   def new_candidate
     @user = User.new
-    store_location
   end
 
   def new_entitie
     @user = User.new
-    store_location
   end
 
   private
