@@ -10,22 +10,22 @@ Rails.application.routes.draw do
   resources :news
   get '/new_news', to: 'news#new'
   post '/new_news', to: 'news#create'
+
   #USERS
-  get '/signup', to: 'users#new'
-  get  '/help',    to: 'static_pages#help'
-  get  '/about',   to: 'static_pages#about'
-  get  '/contact', to: 'static_pages#contact'
-  get '/new_candidate' , to:'users#new_candidate'
-  post '/new_candidate', to:'users#create_candidate'
-  get '/new_entitie' , to:'users#new_entitie'
-  post '/new_entitie', to:'users#create_entitie'
-  get '/entities', to: 'users#index_entitie', as: 'index_entitie'
-  get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
   resources :users do
     member do
       get :following, :followers, :offerings, :offerends
     end
   end
+  get '/signup', to: 'users#new'
+  get  '/help',    to: 'static_pages#help'
+  get  '/about',   to: 'static_pages#about'
+  get  '/contact', to: 'static_pages#contact'
+  get '/users/candidate' , to:'users#new_candidate', as: 'new_candidate'
+  get '/users/entitie' , to:'users#new_entitie', as: 'new_entitie'
+  get '/entities', to: 'users#index_entitie', as: 'index_entitie'
+  get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
+
   #SESSIONS
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
