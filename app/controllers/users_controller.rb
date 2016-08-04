@@ -34,6 +34,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
+  def edit_user
+    @user = User.find(params[:id])
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Utilizador apagado!"
@@ -59,11 +67,29 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Perfil Atualizado!"
-      redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
+    if params[:user][:current_password].present?
+      current_password = params[:user].delete(:current_password)
+      user = @user.authenticate(current_password)
+      puts "#{current_password}"
+      if @user && user
+        if params[:user][:password] == params[:user][:password_confirmation]
+          puts "enter authenticated"
+          user.update_attribute(:password, params[:user][:password])
+          flash[:success] = "Password Atualizada!"
+          redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
+        else
+          render 'edit_password'
+        end
+      else
+        render 'edit_password'
+      end
     else
-      render 'edit'
+      if @user.update_attributes(user_params)
+        flash[:success] = "Perfil Atualizado!"
+        redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
+      else
+        render 'edit_user'
+      end
     end
   end
 

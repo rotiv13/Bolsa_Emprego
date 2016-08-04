@@ -1,17 +1,10 @@
 <%= simple_form_for(@user, html: {multipart: true}) do |f| %>
     <div>
-      <% if yield(:data) == 'register' || params[:data] == 'password' %>
+      <% if yield(:data) == 'register'%>
           <div class="row" id="login_candidate_info">
             <div class="col-md-6">
               <%= f.input :email %>
             </div>
-          </div>
-          <div class="row">
-            <% if params[:data] == 'password' %>
-                <div class="col-md-6">
-                  <%= f.input :old_password, label: "Password Atual" %>
-                </div>
-            <% end %>
           </div>
           <div class="row">
             <div class="col-md-6">

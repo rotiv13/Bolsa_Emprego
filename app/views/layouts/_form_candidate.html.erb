@@ -1,5 +1,5 @@
 <%= simple_form_for @user, html: {multipart: true}  do |f| %>
-    <% if yield(:data) == 'register' || params[:data] == 'password' %>
+    <% if yield(:data) == 'register' %>
         <div class="row" id="login_candidate_info">
           <div class="col-md-6">
             <%= f.input :email %>
@@ -8,7 +8,7 @@
         <div class="row">
           <% if params[:data] == 'password' %>
               <div class="col-md-6">
-                <%= f.input :old_password, label: "Password Atual" %>
+                <%= f.input :current_password, label: "Password Atual" %>
               </div>
           <% end %>
         </div>
@@ -47,31 +47,16 @@
                 <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']) %>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <%= f.input :presentation, as: :text, label:  "Apresentação", placeholder: 'Descrição do candidato (max. 140 carácteres)' %>
-
-            </div>
-            <div class="col-md-2">
-              <%= f.input :skill_level, label: "Nível de Habilitações", collection: (['Secundário','Licenciatura','Mestrado','Doutoramento']) %>
-            </div>
-            <div class="col-md-12">
-              <%= f.input :skills,as: :text, label: "Habilitações Literárias", placeholder: 'Percurso académico, habilitações, etc.' %>
-            </div>
-            <div class="col-md-2">
-              <%= f.input :prof_situation, label: "Situação Profissional" ,collection: (['Empregado','Desempregado']) %>
-            </div>
-            <div class="col-md-12">
-              <%= f.input :prof_experience,as: :text, label: "Experiência Profissional", placeholder:'Projecto e tecnologias que trabalhou na empresa anterior.' %>
+            <div class="row">
+              <%= render 'layouts/form_user_skills', :f => f %>
             </div>
           </div>
+        </div>
     <% end %>
     <div class="col-md-2">
       <%= f.button :submit, class: "btn btn-primary" %>
     </div>
 <% end %>
-</div>
 <script type="text/javascript">
   $('#user_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;

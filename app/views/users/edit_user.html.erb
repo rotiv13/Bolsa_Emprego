@@ -1,0 +1,47 @@
+<% provide(:title, 'Editar Dados') %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <h3>Editar Dados</h3>
+  </aside>
+</div>
+
+<%= simple_form_for @user, html: {multipart: true}  do |f| %>
+    <div id="info_candidate" class="profile">
+      <div class="row">
+        <%= render 'layouts/form_personal_data', :f => f %>
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.label :birth_date, "Data de Nascimento" %>
+            <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
+          </div>
+          <div class="col-md-3 col-md-offset-4">
+            <%= f.input :idnum,label: yield(:idnumber)  %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <%= f.input :curriculum, label: "Curriculum Vitae"  %>
+          </div>
+          <div class="col-md-2 col-md-offset-3">
+            <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']) %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :presentation, as: :text, label:  "Apresentação", placeholder: 'Descrição do candidato (max. 140 carácteres)' %>
+          </div>
+          <% if @user.entitie == '1' %>
+              <%= render 'layouts/form_user_skills', :f => f %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.button :submit, class:'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+<% end %>

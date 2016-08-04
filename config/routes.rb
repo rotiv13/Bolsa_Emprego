@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get '/new_entitie' , to:'users#new_entitie'
   get '/entities', to: 'users#index_entitie', as: 'index_entitie'
   get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
-
+  get '/users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
+  get 'users/:id/edit_user', to: 'users#edit_user', as: 'users_edit'
   #SESSIONS
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
