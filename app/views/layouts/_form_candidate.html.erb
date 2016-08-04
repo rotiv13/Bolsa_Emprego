@@ -1,129 +1,77 @@
-<%= form_for @user, html: {multipart: true}  do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div>
-      <% if yield(:data) == 'register' || params[:data] == 'password' %>
-          <div class="row" id="login_candidate_info">
-            <div class="col-md-6">
-              <%= f.label :email %>
-              <%= f.email_field :email, class: 'form-control' %>
-            </div>
+<%= simple_form_for @user, html: {multipart: true}  do |f| %>
+    <% if yield(:data) == 'register' || params[:data] == 'password' %>
+        <div class="row" id="login_candidate_info">
+          <div class="col-md-6">
+            <%= f.input :email %>
           </div>
-          <div class="row">
-            <% if params[:data] == 'password' %>
-                <div class="col-md-6">
-                  <%= f.label :password_actual, "Password Atual" %>
-                  <%= f.password_field :password_actual, class: 'form-control' %>
-                </div>
-            <% end %>
+        </div>
+        <div class="row">
+          <% if params[:data] == 'password' %>
+              <div class="col-md-6">
+                <%= f.input :old_password, label: "Password Atual" %>
+              </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :password %>
           </div>
-          <div class="row">
+          <%= f.hidden_field :entitie, value: '1' %>
+          <div class="col-md-6">
+            <%= f.input :password_confirmation, label: "Confirmação Password" %>
+          </div>
+        </div>
+        <hr>
+    <% end %>
+    <% if yield(:data) == 'register' || params[:data] == 'edit' %>
 
-            <div class="col-md-6">
-              <%= f.label :password %>
-              <%= f.password_field :password, class: 'form-control' %>
-            </div>
-            <%= f.hidden_field :entitie, value: '1' %>
-            <div class="col-md-6">
-              <%= f.label :password_confirmation, "Confirmação Password" %>
-              <%= f.password_field :password_confirmation, class: 'form-control' %>
-            </div>
-          </div>
-          <hr>
-      <% end %>
-      <% if yield(:data) == 'register' || params[:data] == 'edit' %>
-
-          <div id="info_candidate" class="profile">
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.label :name, "Nome" %>
-                <%= f.text_field :name, class: 'form-control'%>
-              </div>
-              <div class="col-md-3">
-                <%= f.label :picture, "Foto" %>
-                <%= f.file_field :picture %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <%= f.label :address, "Morada" %>
-                <%= f.text_area :address, class: 'form-control' %>
-              </div>
-              <div class="col-md-2">
-                <%= f.label :postal_code, "Código Postal" %>
-                <%= f.text_field :postal_code, class: 'form-control' %>
-              </div>
-              <div class="col-md-3 col-md-offset-4">
-                <%= f.label :locality, "Localidade" %>
-                <%= f.text_field :locality, class: 'form-control' %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <%= f.label :phone, "Telefone" %>
-                <%= f.telephone_field :phone, class: 'form-control' %>
-              </div>
-              <div class="col-md-2">
-                <%= f.label :cellphone, "Telemóvel" %>
-                <%= f.telephone_field :cellphone, class: 'form-control' %>
-              </div>
-              <div class="col-md-6 col-md-offset-2">
-                <%= f.label :page, "Página/Website" %>
-                <%= f.text_field :page, class: 'form-control' %>
-              </div>
-            </div>
+        <div id="info_candidate" class="profile">
+          <div class="row">
+            <%= render 'layouts/form_personal_data', :f => f %>
             <div class="row">
               <div class="col-md-2">
                 <%= f.label :birth_date, "Data de Nascimento" %>
                 <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
               </div>
-              <div class="col-md-2 col-md-offset-4">
-                <%= f.label :idnum, yield(:idnumber) %>
-                <%= f.text_field :idnum, class: 'form-control' %>
+              <div class="col-md-3 col-md-offset-4">
+                <%= f.input :idnum,label: yield(:idnumber)  %>
               </div>
 
             </div>
             <hr>
             <div class="row">
               <div class="col-md-3">
-                <%= f.label :curriculum, "Curriculum Vitae" %>
-                <%= f.file_field :curriculum %>
+                <%= f.input :curriculum, label: "Curriculum Vitae"  %>
               </div>
               <div class="col-md-2 col-md-offset-3">
-
-                <%= f.label :prof_area, "Área Profissional" %>
-                <%= f.select(:prof_area, options_for_select(['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes'])) %>
+                <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']) %>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <%= f.label :presentation, "Apresentação" %>
-              <%= f.text_area :presentation, class: 'form-control', placeholder: 'Apresentação geral do candidato (max. 140 carácteres)' %>
+              <%= f.input :presentation, as: :text, label:  "Apresentação", placeholder: 'Descrição do candidato (max. 140 carácteres)' %>
+
             </div>
             <div class="col-md-2">
-              <%= f.label :skill_level, "Nível de Habilitações" %>
-              <%= f.select(:skill_level, options_for_select([['Secundário'],['Licenciatura'],['Mestrado'],['Doutoramento']])) %>
+              <%= f.input :skill_level, label: "Nível de Habilitações", collection: (['Secundário','Licenciatura','Mestrado','Doutoramento']) %>
             </div>
             <div class="col-md-12">
-              <%= f.label :skills, "Habilitações Literárias" %>
-              <%= f.text_area :skills, class: 'form-control', placeholder: 'Percurso académico, habilitações, etc.' %>
+              <%= f.input :skills,as: :text, label: "Habilitações Literárias", placeholder: 'Percurso académico, habilitações, etc.' %>
             </div>
             <div class="col-md-2">
-              <%= f.label :prof_situation, "Situação Profissional" %>
-              <%= f.select(:prof_situation, options_for_select([['Empregado'],['Desempregado']])) %>
+              <%= f.input :prof_situation, label: "Situação Profissional" ,collection: (['Empregado','Desempregado']) %>
             </div>
             <div class="col-md-12">
-              <%= f.label :prof_experience, "Experiência Profissional" %>
-              <%= f.text_area :prof_experience, class: 'form-control', placeholder:'Projecto e tecnologias que trabalhou na empresa anterior.' %>
+              <%= f.input :prof_experience,as: :text, label: "Experiência Profissional", placeholder:'Projecto e tecnologias que trabalhou na empresa anterior.' %>
             </div>
           </div>
-      <% end %>
-      <div class="col-md-2">
-        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-      </div>
+    <% end %>
+    <div class="col-md-2">
+      <%= f.button :submit, class: "btn btn-primary" %>
     </div>
 <% end %>
-
+</div>
 <script type="text/javascript">
   $('#user_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;

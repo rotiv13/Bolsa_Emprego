@@ -1,11 +1,17 @@
 <%= simple_form_for(@user, html: {multipart: true}) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
     <div>
       <% if yield(:data) == 'register' || params[:data] == 'password' %>
           <div class="row" id="login_candidate_info">
             <div class="col-md-6">
               <%= f.input :email %>
             </div>
+          </div>
+          <div class="row">
+            <% if params[:data] == 'password' %>
+                <div class="col-md-6">
+                  <%= f.input :old_password, label: "Password Atual" %>
+                </div>
+            <% end %>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -20,36 +26,7 @@
       <% end %>
       <% if yield(:data) == 'register' || params[:data] == 'edit' %>
           <div id="info_candidate" class="profile">
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.input :name, label: "Nome" %>
-              </div>
-              <div class="col-md-3">
-                <%= f.input :picture, as: :file, label: "Foto" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <%= f.input :address, as: :text, label: "Morada"  %>
-              </div>
-              <div class="col-md-2">
-                <%= f.input :postal_code, label: "Código Postal" %>
-              </div>
-              <div class="col-md-2 col-md-offset-4">
-                <%= f.input :locality, label: "Localidade" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <%= f.input :phone, label: "Telefone" %>
-              </div>
-              <div class="col-md-2">
-                <%= f.input :cellphone, label: "Telemóvel" %>
-              </div>
-              <div class="col-md-6 col-md-offset-2">
-                <%= f.input :page, label: "Página/Website" %>
-              </div>
-            </div>
+            <%= render 'layouts/form_personal_data', :f => f %>
             <div class="row">
               <div class="col-md-2">
                 <%= f.input :idnum, label: yield(:idnumber) %>
