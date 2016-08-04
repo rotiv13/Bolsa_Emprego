@@ -5,7 +5,11 @@
         <h1>
           Ofertas
         </h1>
-        <%= render @offers_limit %>
+        <% if @offers_limit.any? %>
+            <%= render @offers_limit %>
+        <% else %>
+            <p>Não tem quaisquer ofertas activas.</p>
+        <% end %>
 
         <%= link_to "Inserir Oferta", new_offer_path, class: 'btn btn-default' %>
       </div>
@@ -33,6 +37,8 @@
         </h1>
         <% if @user.followers.any? %>
             <%= render @user.followers %>
+        <% else %>
+            <p>Ainda não tem candidatos interssados em si.</p>
         <% end %>
       </div>
     </section>
