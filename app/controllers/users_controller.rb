@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @offers = @user.offers
-    @offers_active = @offers.where(active: true).paginate(page:params[:page], per_page:2)
+    @offers_active = @offers.active.paginate(page:params[:page], per_page:2)
     @offers_limit = @offers_active.paginate(page:params[:page], per_page:2)
     @offers_deactive = @offers.where(active: false).paginate(page:params[:page], per_page:2)
-    @offers_candidature = @user.offerings.paginate(page:params[:page], per_page:2)
+    @offers_candidature = @user.offerings.active.paginate(page:params[:page], per_page:2)
     @followers = @user.followers.where(entitie: '2').paginate(page:params[:page], per_page:2)
   end
 
