@@ -1,40 +1,46 @@
-<div class="row"><aside class="col-md-6">
+<div class="row">
   <div class="row">
-    <aside class="col-md-12">
-      <section class="user_info">
-        <h1>
+    <div class="col-md-6">
+      <div class="user_info">
+        <h3>
           Candidaturas
-        </h1>
-        <%= render @offers_candidature %>
-        <%= will_paginate @offers_candidature %>
-      </section>
-    </aside>
-    <aside class="col-md-12">
-      <section class="entity_interest">
-        <h1>
-          Empresas interessadas em mim
-        </h1>
-        <%= render @followers %>
-      </section>
-    </aside>
+        </h3>
+        <% if @offers_candidature.any? %>
+            <%= render @offers_candidature %>
+            <%= will_paginate @offers_candidature %>
+        <% else %>
+            <p>Ainda não se candidatou a nenhuma oferta</p>
+        <%end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="user_edit">
+        <h3>
+          <%= @user.name %>
+        </h3>
+        <%= link_to "Editar dados", users_edit_path(@user), class: 'btn btn-default' %>
+        <%= link_to "Alterar password", edit_password_path(@user), class: 'btn btn-default' %>
+        <div class="prof_img">
+          <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</aside>
-  <aside class="col-md-6">
-    <div class="row">
-      <aside class="col-md-12">
-        <section class="user_edit">
-          <h1>
-            <%= @user.name %>
-          </h1>
-          <%= link_to "Editar dados", users_edit_path(@user), class: 'btn btn-default' %>
-          <%= link_to "Alterar password", edit_password_path(@user), class: 'btn btn-default' %>
-          <div class="prof_img">
-            <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' %>
-          </div>
-        </section>
-      </aside>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="entity_interest">
+        <h3>
+          Empresas interessadas em mim
+        </h3>
+        <% if  @followers.any? %>
+            <%= render @followers %>
+        <% else %>
+            <p>Ainda não tem empresas interessadas em si.</p>
+        <% end %>
+      </div>
     </div>
-  </aside>
+  </div>
 
 </div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :destroy,:edit_user,:edit_password]
+  before_action :correct_user, only: [:edit, :update, :edit_user,:edit_password]
   before_action :admin_user, only: [:destroy]
 
   def show
@@ -109,9 +109,6 @@ class UsersController < ApplicationController
                                  :phone, :cellphone, :page, :birth_date, :idnum, :prof_area, :presentation,
                                  :skill_level, :skills, :prof_situation, :prof_experience, :picture, :activated, :curriculum)
   end
-
-
-
 
   def filtering_params(params)
     params.slice(:search,:prof_area,:prof_situation,:locality)
