@@ -88,7 +88,7 @@ class UsersController < ApplicationController
         flash[:success] = "Perfil Atualizado!"
         redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
       else
-        render 'edit_user'
+        render 'edit'
       end
     end
   end

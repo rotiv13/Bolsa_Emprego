@@ -7,6 +7,7 @@
 </div>
 
 <%= simple_form_for @user, html: {multipart: true}  do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div id="info_candidate" class="profile">
       <div class="row">
         <%= render 'layouts/form_personal_data', :f => f %>

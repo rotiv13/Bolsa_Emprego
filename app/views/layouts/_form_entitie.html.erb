@@ -1,4 +1,6 @@
 <%= simple_form_for(@user, html: {multipart: true}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
     <div>
       <% if yield(:data) == 'register'%>
           <div class="row" id="login_candidate_info">

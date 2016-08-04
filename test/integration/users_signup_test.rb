@@ -13,28 +13,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get new_candidate_path
     assert_response :success
     assert_no_difference 'User.count' do
-      post new_candidate_path, params: { user: { name:  "",
+      post users_path, params: { user: { name:  "",
                                          email: "user@invalid",
                                          password:              "foo",
                                          password_confirmation: "bar" } }
     end
-    assert_template 'users/new_candidate'
-    assert_select 'div#error_explanation'
-    assert_select 'div.field_with_errors'
-
-    get signup_path
-    assert_response :success
-    get new_entitie_path
-    assert_response :success
-    assert_no_difference 'User.count' do
-      post new_entitie_path, params: { user: { name:  "",
-                                                 email: "user@invalid",
-                                                 password:              "foo",
-                                                 password_confirmation: "bar" } }
-    end
-    assert_select 'div#error_explanation'
-    assert_select 'div.field_with_errors'
-
   end
 
   test "valid signup information" do
