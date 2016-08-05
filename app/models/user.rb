@@ -50,7 +50,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true, allow_nil: true
   validates :idnum, presence: true, allow_nil: true
   validates :presentation, presence: true, allow_nil: true
-  validates :prof_sitatuion, presence: true, allow_nil: true
+  validates :prof_situation, presence: true, allow_nil: true
   validate :picture_size
   validate :curriculum_size
 
