@@ -41,7 +41,7 @@
     <p><strong>Contactos</strong></p>
     <p>Telemóvel: <%= @user.cellphone %> | Telefone: <%= @user.cellphone%></p>
     <p><%= @user.email %></p>
-    <p><%= @user.page %><p>
+    <p><%= link_to @user.page, "http://#{@user.page}" %><p>
   </section>
 </aside>
 
