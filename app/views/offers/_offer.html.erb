@@ -1,7 +1,5 @@
-
 <aside>
   <section>
-
     <div class="col-md-3">
       <%= image_tag offer.picture? ? offer.picture.url : 'default_avatar.png', style: 'width:100% ;' %>
     </div>
@@ -9,9 +7,9 @@
       <p><%= link_to offer.title, offer %><br><%= offer.date_begin %> a <%= offer.date_end %><br><%= offer.user.name %><br><%= offer.description.first(80) %>...</p>
     </div>
     <% if offer.active %>
-        <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
+        <% unless current_page?(root_path) %>
             <% if logged_in? && current_user.entitie == '2' &&  current_user?(offer.user) %>
-                <% if !current_page?(:controller => 'offers', :action => 'index') %>
+                <% if !current_page?(offers_path) %>
                     <div class="col-md-2">
                       <%=  link_to 'Editar', edit_offer_path(offer.id) , class: 'btn btn-default' %>
                     </div>
@@ -24,17 +22,15 @@
                 <% end %>
             <% else %>
                 <div class="col-md-12" style="min-height: 40px;">
-                  <% if logged_in? && current_user.entitie == '1' %>
-                      <% unless current_user?(offer.user) %>
-                          <% @offer = offer %>
-                          <div class="col-md-4">
-                            <% if current_user.offerings?(offer) %>
-                                <%= render 'offers/unfollow_offer' %>
-                            <% else %>
-                                <%= render 'offers/follow_offer' %>
-                            <% end %>
-                          </div>
-                      <% end %>
+                  <% if logged_in? && current_user.entitie == '1' && !current_user?(offer.user)%>
+                      <% @offer = offer %>
+                      <div class="col-md-4">
+                        <% if current_user.offerings?(offer) %>
+                            <%= render 'offers/unfollow_offer' %>
+                        <% else %>
+                            <%= render 'offers/follow_offer' %>
+                        <% end %>
+                      </div>
                   <% end %>
                   <% if admin_user?(current_user) || current_user?(offer.user) %>
                       <%=  link_to 'Editar', edit_offer_path(offer.id), class: 'btn btn-default' %>
@@ -46,5 +42,4 @@
         <%= link_to "Reativar", offer_activate_path(offer.id), method: :put, class: 'btn btn-default' %>
     <% end %>
   </section>
-
 </aside>

@@ -1,56 +1,29 @@
 <%= simple_form_for @user, html: {multipart: true}  do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <% if yield(:data) == 'register' %>
-        <div class="row" id="login_candidate_info">
-          <div class="col-md-6">
-            <%= f.input :email %>
-          </div>
-        </div>
-        <div class="row">
-          <% if params[:data] == 'password' %>
-              <div class="col-md-6">
-                <%= f.input :current_password, label: "Password Atual" %>
-              </div>
-          <% end %>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <%= f.input :password %>
-          </div>
-          <%= f.hidden_field :entitie, value: '1' %>
-          <div class="col-md-6">
-            <%= f.input :password_confirmation, label: "Confirmação Password" %>
-          </div>
-        </div>
+        <%= render 'layouts/form_password', :f => f %>
         <hr>
     <% end %>
     <% if yield(:data) == 'register' || params[:data] == 'edit' %>
 
         <div id="info_candidate" class="profile">
-          <div class="row">
             <%= render 'layouts/form_personal_data', :f => f %>
-            <div class="row">
-              <div class="col-md-2">
-                <%= f.label :birth_date, "Data de Nascimento" %>
-                <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
-              </div>
-              <div class="col-md-3 col-md-offset-4">
-                <%= f.input :idnum,label: yield(:idnumber)  %>
-              </div>
+          <div class="row">
+            <div class="col-md-2">
+              <%= f.label :birth_date, "Data de Nascimento" %>
+              <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
+            </div>
+            <div class="col-md-3 col-md-offset-4">
+              <%= f.input :idnum,label: "Nº Cartão do Cidadão"  %>
+            </div>
 
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-3">
-                <%= f.input :curriculum, label: "Curriculum Vitae"  %>
-              </div>
-              <div class="col-md-2 col-md-offset-3">
-                <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']) %>
-              </div>
-            </div>
-            <div class="row">
-              <%= render 'layouts/form_user_skills', :f => f %>
-            </div>
+          </div>
+          <hr>
+          <div class="row">
+           <% render 'users/form_activity_with_curriculum', :f => f %>
+          </div>
+          <div class="row">
+            <%= render 'layouts/form_user_skills', :f => f %>
           </div>
         </div>
     <% end %>

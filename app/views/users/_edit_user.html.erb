@@ -1,48 +1,47 @@
-<% provide(:title, 'Editar Dados') %>
-
-<div class="row">
-  <aside class="col-md-4">
-    <h3>Editar Dados</h3>
-  </aside>
-</div>
-
-<%= simple_form_for @user, html: {multipart: true}  do |f| %>
+<%= simple_form_for @user, html: {multipart: true} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div id="info_candidate" class="profile">
+      <%= render 'layouts/form_personal_data', :f => f %>
       <div class="row">
-        <%= render 'layouts/form_personal_data', :f => f %>
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.label :birth_date, "Data de Nascimento" %>
-            <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
-          </div>
-          <div class="col-md-3 col-md-offset-4">
-            <%= f.input :idnum,label: yield(:idnumber)  %>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-3">
-            <%= f.input :curriculum, label: "Curriculum Vitae"  %>
-          </div>
-          <div class="col-md-2 col-md-offset-3">
-            <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes']) %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <%= f.input :presentation, as: :text, label:  "Apresentação", placeholder: 'Descrição do candidato (max. 140 carácteres)' %>
-          </div>
-          <% if @user.entitie == '1' %>
-              <%= render 'layouts/form_user_skills', :f => f %>
-          <% end %>
-        </div>
+        <% if @user.entitie == '1' %>
+            <div class="col-md-2">
+              <%= f.label :birth_date, "Data de Nascimento" %>
+              <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
+            </div>
+        <% end %>
+
+        <% if @user.entitie == '2' %>
+            <div class="col-md-2 ">
+              <%= f.input :idnum, label: "NIF" %>
+            </div>
+        <% else %>
+            <div class="col-md-3 col-md-offset-4">
+              <%= f.input :idnum, label: "Nº do Cartão de Cidadão" %>
+            </div>
+        <% end %>
+      </div>
+      <hr>
+      <div class="row">
+        <% if @user.entitie == '1' %>
+            <%= render 'form_activity_with_curriculum', :f => f %>
+        <% else %>
+            <div class="col-md-2">
+              <%= f.input :prof_area, label: "Atividade Profissional",collection: (['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços']) %>
+            </div>
+        <% end %>
       </div>
       <div class="row">
-        <div class="col-md-2">
-          <%= f.button :submit, class:'btn btn-primary' %>
+        <div class="col-md-12">
+          <%= f.input :presentation, as: :text, label: "Apresentação", placeholder: 'Descrição do candidato (max. 140 carácteres)' %>
         </div>
+        <% if @user.entitie == '1' %>
+            <%= render 'layouts/form_user_skills', :f => f %>
+        <% end %>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+    </div>
 <% end %>
