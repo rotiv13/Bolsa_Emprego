@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @offers = @user.offers
+    @offers = @user.offers.order(created_at: :desc)
     @offers_active = @offers.active.paginate(page:params[:page], per_page:2)
     @offers_deactive = @offers.where(active: false).paginate(page:params[:page], per_page:2)
     @offers_candidature = @user.offerings.active.paginate(page:params[:page], per_page:2)
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def index_candidate
-    @users = User.candidate
+    @users = User.candidate.order(created_at: :desc)
     filtering_params(params).each do |key, value|
       @users = @users.public_send(key,value) if value.present?
     end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def index_entitie
-    @users = User.entitie
+    @users = User.entitie.order(created_at: :desc)
     filtering_params(params).each do |key, value|
       @users = @users.public_send(key,value) if value.present?
     end

@@ -7,7 +7,7 @@ class OffersController < ApplicationController
     @user ||= current_user
   end
   def index
-    @offers = Offer.active
+    @offers = Offer.active.order(created_at: :desc)
     filtering_params(params).each do |key, value|
       @offers = @offers.public_send(key,value) if value.present?
     end
