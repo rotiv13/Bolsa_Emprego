@@ -22,7 +22,7 @@
           <% end %>
     <% end %>
     <% if admin_user?(@user) || current_user?(@user) %>
-        <%= link_to "Editar", users_edit_path(@user), class: 'btn btn-default' %>
+        <%= link_to "Editar", edit_user_path(@user), class: 'btn btn-default' %>
     <% end %>
   </section>
 </aside>

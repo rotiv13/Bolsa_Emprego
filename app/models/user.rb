@@ -1,31 +1,29 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   has_many :offers, dependent: :destroy
+  #Users relations
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",
            dependent: :destroy
-
-
   has_many :passive_relationships, class_name: "Relationship",
            foreign_key: "followed_id",
            dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  #User offer relation
   has_many :offer_active_relationships, class_name: "OfferRelationship",
            foreign_key: "cand_id",
            dependent: :destroy
-
   has_many :offer_passive_relationships, class_name: "OfferRelationship",
            foreign_key: "of_cand_id",
            dependent: :destroy
-
   has_many :offerings, through: :offer_active_relationships, source: :of_cand
   has_many :offerends, through: :offer_passive_relationships, source: :cand
 
+  #Scopes
   scope :entitie, -> { where(entitie: '2')}
   scope :candidate, -> { where(entitie: '1')}
-
   scope :search, -> (search) {where("name like ? OR presentation like ?","#{search}%","%#{search}%")}
   scope :locality, -> (local) { where locality: local}
   scope :prof_situation, -> (situation) { where prof_situation: situation}
@@ -56,7 +54,6 @@ class User < ApplicationRecord
   validate :curriculum_size
 
   class << self
-
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
           BCrypt::Engine.cost
@@ -106,6 +103,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  def entitie?
+    current_user.entitie == '2'
+  end
+
   #Relationships
 
   def follow(other_user)
@@ -153,6 +154,7 @@ class User < ApplicationRecord
       errors.add(:picture, "tamanho deve ser menor que 5MB")
     end
   end
+
   def curriculum_size
     if curriculum.size > 5.megabytes
       errors.add(:curriculum, "tamanho deve ser menor que 5MB")

@@ -5,8 +5,8 @@
         <h1>
           Ofertas
         </h1>
-        <% if @offers_limit.any? %>
-            <%= render @offers_limit %>
+        <% if @offers_active.any? %>
+            <%= render @offers_active %>
         <% else %>
             <p>Não tem quaisquer ofertas activas.</p>
         <% end %>
@@ -17,7 +17,7 @@
         <h1>
           <%= @user.name %>
         </h1>
-        <%= link_to "Editar dados", users_edit_path(@user), class: 'btn btn-default' %>
+        <%= link_to "Editar dados", edit_user_path(@user), class: 'btn btn-default' %>
         <%= link_to "Alterar password", edit_password_path(@user), class: 'btn btn-default' %>
         <div class="prof_img">
           <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' %>
@@ -38,7 +38,7 @@
         <% if @user.followers.any? %>
             <%= render @user.followers %>
         <% else %>
-            <p>Ainda não tem candidatos interssados em si.</p>
+            <p>Ainda não tem candidatos interssados na sua empresa.</p>
         <% end %>
       </div>
     </section>

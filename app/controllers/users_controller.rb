@@ -7,10 +7,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @offers = @user.offers
     @offers_active = @offers.active.paginate(page:params[:page], per_page:2)
-    @offers_limit = @offers_active.paginate(page:params[:page], per_page:2)
     @offers_deactive = @offers.where(active: false).paginate(page:params[:page], per_page:2)
     @offers_candidature = @user.offerings.active.paginate(page:params[:page], per_page:2)
-    @followers = @user.followers.where(entitie: '2').paginate(page:params[:page], per_page:2)
+    @followers = @user.followers.entitie.paginate(page:params[:page], per_page:2)
   end
 
   def index_candidate
@@ -67,13 +66,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if params[:user][:current_password].present?
+    if params[:user][:current_password].present? #check if it is a password update by seeing if current_password is there
       current_password = params[:user].delete(:current_password)
       user = @user.authenticate(current_password)
       puts "#{current_password}"
-      if @user && user
+      if @user && user #check if the @user exists and authentication by current_password was successfull
         if params[:user][:password] == params[:user][:password_confirmation]
-          puts "enter authenticated"
           user.update_attribute(:password, params[:user][:password])
           flash[:success] = "Password Atualizada!"
           redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
@@ -84,7 +82,7 @@ class UsersController < ApplicationController
         render 'edit_password'
       end
     else
-      if @user.update_attributes(user_params)
+      if @user.update_attributes(user_params) #updates all params of user
         flash[:success] = "Perfil Atualizado!"
         redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
       else
@@ -110,6 +108,7 @@ class UsersController < ApplicationController
                                  :skill_level, :skills, :prof_situation, :prof_experience, :picture, :activated, :curriculum)
   end
 
+  #filters parameters from params
   def filtering_params(params)
     params.slice(:search,:prof_area,:prof_situation,:locality)
   end

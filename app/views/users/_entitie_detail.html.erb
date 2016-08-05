@@ -10,13 +10,16 @@
     <%= image_tag @user.picture? ? @user.picture.url : 'default_avatar.png' , style: 'width: 100%' %>
   </section>
   <section>
+
     <% if logged_in? && !current_user?(@user) && current_user.entitie == '1' %>
+        <!-- shows the user the follow button to the entitie if it's not the current user and it is a candidate-->
         <%= render 'form_follow' %>
     <% end %>
   </section>
   <% if admin_user?(@user) || current_user?(@user) %>
+      <!-- edit button to the entitie itself -->
       <section>
-        <%= link_to "Editar", users_edit_path(@user), class: 'btn btn-default' %>
+        <%= link_to "Editar", edit_user_path(@user), class: 'btn btn-default' %>
       </section>
   <% end %>
 </aside>
@@ -45,11 +48,14 @@
 <aside class="col-md-12">
   <section>
     <h1>Ofertas Activas</h1>
-    <% @offers_active.each do |offer| %>
-        <div class="col-md-6">
-          <%= render offer %>
-
-        </div>
+    <% if @offers_active.any? %>
+        <% @offers_active.each do |offer| %>
+            <div class="col-md-6">
+              <%= render offer %>
+            </div>
+        <% end %>
+    <% else %>
+        <p><%= @user.name %> não tem ofertas activas de momento.</p>
     <% end %>
   </section>
 </aside>
