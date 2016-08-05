@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside >
     <section>
       <h3>Utilizadores</h3>
     </section>
@@ -7,7 +7,6 @@
 </div>
 
 <div class="row">
-  <aside >
     <%= form_for backoffice_users_path,  method: 'get' do |f| %>
         <div class="col-md-3">
           <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
@@ -16,17 +15,14 @@
           <%= select_tag(:entitie, options_for_select([['Backoffice',0],['Candidato',1],['Entidade',2]]),{ include_blank: 'Tipo...', :onChange => "javascript: this.form.submit();"})  %>
         </div>
     <% end %>
-  </aside>
-
 </div>
-<div id="users" class="row">
-  <aside class="tables">
-    <table class="col-md-12 ">
+<div id="users" class="row table-responsive">
+    <table class="table table-striped">
       <tr>
-        <th class="col-md-3">Nome</th>
-        <th class="col-md-3">Tipo</th>
-        <th class="col-md-3">Activo</th>
-        <th class="col-md-3">Ações</th>
+        <th >Nome</th>
+        <th>Tipo</th>
+        <th >Activo</th>
+        <th >Ações</th>
       </tr>
       <% @users.each do |user| %>
           <tr>
@@ -43,11 +39,10 @@
           </tr>
       <% end %>
     </table>
-  </aside>
 </div>
 
 <div class="row">
-  <aside class="col-md-3">
+  <aside >
     <section>
       <%= link_to "Inserir", new_backoffice_path, class: 'btn btn-default' %>
     </section>

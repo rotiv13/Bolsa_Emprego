@@ -1,6 +1,4 @@
-<%= simple_form_for @user, remote: true do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
+<%= simple_form_for @user do |f| %>
     <div>
       <div id="new_info">
         <% if yield(:data) != 'password' %>

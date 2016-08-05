@@ -181,7 +181,12 @@ users = User.all
 user  = users.second
 following = users[3..20]
 followers = users[20..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+following.each { |followed| user.follow(followed) if user.entitie != followed.entitie }
+followers.each { |follower| follower.follow(user) if user.entitie != follower.entitie }
 
 
+users = User.all
+cand_ids = users[4..5]
+offers = Offer.all
+offer_id = offers[1..10]
+offer_id.each { |ids| cand_ids.each { |cand| cand.offer_follow(ids) } }

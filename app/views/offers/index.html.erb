@@ -8,14 +8,15 @@
   <aside>
     <%= form_for offers_path, method: 'get' do %>
         <div class="col-md-3">
-          <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
+          <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa', class: 'form-control' %>
         </div>
         <div class="col-md-3">
-          <%= select_tag(:prof_area , options_for_select(['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços']),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();"}) %>
+          <% field_array = Offer.all.distinct.pluck(:prof_area) %>
+          <%= select_tag(:prof_area , options_for_select(field_array),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
         <div class="col-md-3">
           <% field_array = Offer.all.distinct.pluck(:locality) %>
-          <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();"}) %>
+          <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
     <% end %>
   </aside>

@@ -9,7 +9,7 @@
       <% if user.entitie == '2' %>
           <p>
             <% unless current_page?(:controller => 'static_pages', :action => 'home') %>
-                <%= pluralize(user.offers.count, "ofertas activas") %><br>
+                <%= pluralize(user.offers.active.count, "ofertas activas") %><br>
             <% end %>
             <%= user.presentation.first(70) %></p>
       <% else %>

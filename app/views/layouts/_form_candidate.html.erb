@@ -1,5 +1,4 @@
 <%= simple_form_for @user, html: {multipart: true}  do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
     <% if yield(:data) == 'register' %>
         <%= render 'layouts/form_password', :f => f %>
         <hr>
@@ -20,7 +19,7 @@
           </div>
           <hr>
           <div class="row">
-           <% render 'users/form_activity_with_curriculum', :f => f %>
+           <%= render 'users/form_activity_with_curriculum', :f => f %>
           </div>
           <div class="row">
             <%= render 'layouts/form_user_skills', :f => f %>

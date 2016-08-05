@@ -60,7 +60,11 @@ class UsersController < ApplicationController
       end
       redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : root_url
     else
-      render(@user.entitie == '2' ? 'users/new_entitie' : 'users/new_candidate', :user => @user)
+      if admin_user?(current_user)
+        render 'backoffice/new'
+      else
+        render(@user.entitie == '2' ? 'users/new_entitie' : 'users/new_candidate', :user => @user)
+      end
     end
   end
 

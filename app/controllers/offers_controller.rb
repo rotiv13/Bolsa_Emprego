@@ -4,7 +4,7 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @user ||= current_user
+    @user = current_user
   end
   def index
     @offers = Offer.active.order(created_at: :desc)
@@ -26,7 +26,8 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = current_user.offers.build(offer_params)
+    @user = current_user
+    @offer = @user.offers.build(offer_params)
     if @offer.save
       flash[:success] = "Oferta guardada com Sucesso!"
       redirect_to offers_path
