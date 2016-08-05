@@ -1,4 +1,4 @@
-<%= simple_form_for @user, html: {multipart: true}  do |f| %>
+<%= simple_form_for @user, html: {multipart: true}, url: new_candidate_path  do |f| %>
     <% if yield(:data) == 'register' %>
         <%= render 'layouts/form_password', :f => f %>
         <hr>

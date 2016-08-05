@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   #ROOT
   root 'static_pages#home'
   #OFFERS
+  post '/offers/new', to: 'offers#create'
   #NEWS
   resources :news
-  get '/new_news', to: 'news#new'
-  post '/new_news', to: 'news#create'
+  post '/news/new', to: 'news#create'
 
   #USERS
   resources :users do
@@ -22,11 +22,15 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get '/new_candidate' , to:'users#new_candidate'
+  post '/new_candidate' , to:'users#create'
+
   get '/new_entitie' , to:'users#new_entitie'
+  post '/new_entitie' , to:'users#create'
+
   get '/entities', to: 'users#index_entitie', as: 'index_entitie'
   get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
   get '/users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
-  get 'users/:id/edit_user', to: 'users#edit_user', as: 'users_edit'
+
   #SESSIONS
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

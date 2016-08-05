@@ -1,4 +1,4 @@
-<%= simple_form_for(@user, html: {multipart: true}) do |f| %>
+<%= simple_form_for @user, html: {multipart: true}, url: new_entitie_path do |f| %>
     <div>
       <% if yield(:data) == 'register'%>
           <div class="row" id="login_candidate_info">

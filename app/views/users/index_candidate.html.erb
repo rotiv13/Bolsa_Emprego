@@ -16,8 +16,7 @@
           <%= select_tag(:prof_area, options_for_select(field_array),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();", class: 'form-control'})  %>
         </div>
         <div class="col-md-3">
-          <% field_array = User.candidate.distinct.pluck(:prof_situation) %>
-          <%= select_tag(:prof_situation, options_for_select(field_array),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
+          <%= select_tag(:prof_situation, options_for_select(['Empregado', 'Desempregado']),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
         <div class="col-md-3">
           <% field_array = User.candidate.distinct.pluck(:locality) %>
