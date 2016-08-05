@@ -1,7 +1,6 @@
 class Offer < ApplicationRecord
   belongs_to :user
 
-  default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
   validates :description, presence: true
@@ -16,8 +15,6 @@ class Offer < ApplicationRecord
 
   has_many :offerends, through: :offer_passive_relationships, source: :cand
 
-  scope :entitie, -> { where(entitie: '2')}
-  scope :candidate, -> { where(entitie: '1')}
   scope :active, -> { where active: true}
   scope :search, -> (search) {where "title like ? ","%#{search}%"}
   scope :locality, -> (local) { where locality: local}

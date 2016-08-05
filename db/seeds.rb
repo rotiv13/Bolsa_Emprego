@@ -168,7 +168,7 @@ users = User.order(:created_at).where(entitie: 2).take(6)
 5.times do
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
-  prof_area = ['Programador Web','Web Designer','Administrador Sistemas','Administrador Redes','Asistente Social'].shuffle.sample
+  prof_area = ['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços'].shuffle.sample
   date_begin = Faker::Date.between(Date.today, 2.months.from_now)
   date_end = Faker::Date.between(2.months.from_now, 4.months.from_now)
   users.each { |user| user.offers.create!(title:title, description: content,

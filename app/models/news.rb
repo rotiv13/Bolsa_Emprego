@@ -4,6 +4,7 @@ class News < ApplicationRecord
   validates :title, presence: true
   validates :summary, presence: true, length: {maximum: 140}
   validates :text, presence: true
+
   scope :title, -> (search) { where('title like ?', "#{search}%")}
 
   def activate

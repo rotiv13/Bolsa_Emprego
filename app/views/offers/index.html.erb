@@ -11,8 +11,7 @@
           <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa' %>
         </div>
         <div class="col-md-3">
-          <% field_array = Offer.all.distinct.pluck(:prof_area) %>
-          <%= select_tag(:prof_area , options_for_select(field_array),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();"}) %>
+          <%= select_tag(:prof_area , options_for_select(['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços']),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();"}) %>
         </div>
         <div class="col-md-3">
           <% field_array = Offer.all.distinct.pluck(:locality) %>
