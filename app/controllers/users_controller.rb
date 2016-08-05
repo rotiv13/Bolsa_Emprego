@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Utilizador apagado!"
-    redirect_to admin_user?(current_user) ? backoffice_index_url(data: 'users') : index_url
+    redirect_to backoffice_users_path
   end
 
   def new

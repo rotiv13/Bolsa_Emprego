@@ -36,6 +36,10 @@ class BackofficeController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit_user_password
+    @user = User.find(params[:id])
+  end
+
   def edit_news
     @news = News.find(params[:id])
   end

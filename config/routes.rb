@@ -45,8 +45,12 @@ Rails.application.routes.draw do
   get '/backoffice/users/:id', to: 'backoffice#show_users', as: 'backoffice_show_users'
   get '/backoffice/news/:id', to: 'backoffice#show_news', as: 'backoffice_show_news'
   get '/backoffice/news/:id/edit', to:'backoffice#edit_news', as: 'backoffice_edit_news'
+  patch '/backoffice/news/:id/edit', to:'news#update'
   get '/backoffice/users/:id/edit', to:'backoffice#edit_users', as: 'backoffice_edit_users'
-
+  get '/backoffice/users/:id/edit_password', to:'backoffice#edit_user_password', as: 'backoffice_edit_user_password'
+  patch '/backoffice/users/:id/edit_password', to:'users#update'
+  patch '/backoffice/users/:id/edit', to:'users#update'
+  post '/backoffice/new', to:'users#create'
   resources :backoffice
 
   #OFFERS

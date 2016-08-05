@@ -1,56 +1,35 @@
-<%= simple_form_for @user do |f| %>
     <div>
       <div id="new_info">
-        <% if yield(:data) != 'password' %>
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.input :name,label: "Nome" %>
-              </div>
-              <div class="col-md-6">
-                <%= f.label :entitie, "Tipo" %>
-                <% if @user.entitie %>
-                    <%= f.hidden_field :entitie, value: @user.entitie %>
-                <% else %>
-                    <%= f.hidden_field :entitie, value: 0 %>
-                <% end %>
-                <p><%= type(@user) %></p>
-              </div>
+        <div class="row">
+          <div class="col-md-6 ">
+            <%= f.input :name,label: "Nome" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :entitie, "Tipo" %>
+            <% if @user.entitie %>
+                <%= f.hidden_field :entitie, value: @user.entitie %>
+            <% else %>
+                <%= f.hidden_field :entitie, value: 0 %>
+            <% end %>
+            <p><%= type(@user) %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :email, label: "Email" ,placeholder: 'Example: example@example.com' %>
+          </div>
+          <% if @user.password_digest.nil? %>
+              <%= f.hidden_field :password, value: '123456 ' %>
+              <%= f.hidden_field :password_confirmation, value: '123456 ' %>
+          <% end %>
+          <div class="col-md-6">
+            <h5><strong>Activo</strong></h5>
+            <br>
+            <div class="col-md-4">
+              <%=  f.input :activated, inline_label: "Sim" %>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <%= f.input :email, label: "Email" ,placeholder: 'Example: example@example.com' %>
-              </div>
-              <% if @user.password_digest.nil? %>
-                  <%= f.hidden_field :password, value: '123456 ' %>
-                  <%= f.hidden_field :password_confirmation, value: '123456 ' %>
-              <% end %>
-              <div class="col-md-6">
-                <h5><strong>Activo</strong></h5>
-                <br>
-                <div class="col-md-4">
-                  <%=  f.input :activated, inline_label: "Sim" %>
-                </div>
-              </div>
-            </div>
-
-        <% else %>
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.label :name, "Nome" %>
-                <p> <%= @user.name %></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.input :password, label: "Password", hint:"Minímo de 6 carácteres" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 ">
-                <%= f.input :password_confirmation, label: "Confirmação da Password" %>
-              </div>
-            </div>
-        <% end %>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-2">
             <%= f.button :submit, class: "btn btn-primary" %>
@@ -61,5 +40,3 @@
         </div>
       </div>
     </div>
-
-<% end %>
