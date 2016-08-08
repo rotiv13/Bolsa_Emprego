@@ -154,11 +154,14 @@ users = User.order(:created_at).where(entitie: 2).take(6)
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
   prof_area = ['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços'].shuffle.sample
+  type_contract = ['Full-Time','Part-Time'].shuffle.sample
+  salary = ['500-1000','1000-1500','1500-2000','2000-2500'].shuffle.sample
   date_begin = Faker::Date.between(Date.today, 2.months.from_now).strftime("%d-%m-%Y")
   date_end = Faker::Date.between(2.months.from_now, 4.months.from_now).strftime("%d-%m-%Y")
   users.each { |user| user.offers.create!(title:title, description: content,
                                           date_begin: date_begin, date_end: date_end,
-                                          active: true, prof_area: prof_area, locality: user.locality)
+                                          active: true, prof_area: prof_area, locality: user.locality,
+                                          type_contract: type_contract, salary: salary)
   }
 end
 
