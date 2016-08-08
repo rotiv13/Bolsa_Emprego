@@ -171,7 +171,7 @@ followers.each { |follower| follower.follow(user) if user.entitie != follower.en
 
 
 users = User.all
-cand_ids = users[4..5]
+cand_ids = users[4..10]
 offers = Offer.all
 offer_id = offers[1..10]
 offer_id.each { |ids| cand_ids.each { |cand| cand.offer_follow(ids) } }
