@@ -12,13 +12,13 @@ class BackofficeController < ApplicationController
   end
 
   def index_news
-    @news = News.all
+    @news = News.all.order(updated_at: :desc)
     @news  = @news.title(params[:title]) if params[:title].present?
     @news = @news.paginate(page: params[:page], per_page: 10)
   end
 
   def index_users
-    @users = User.all.order(created_at: :desc)
+    @users = User.all.order(updated_at: :desc)
     @users = @users.type(params[:entitie]) if params[:entitie].present?
     @users = @users.search(params[:search]) if params[:search].present?
     @users = @users.paginate(page: params[:page], per_page: 10)

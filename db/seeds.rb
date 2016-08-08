@@ -136,7 +136,7 @@ end
 
 20.times do |n|
   title  = Faker::Book.title
-  date = Faker::Date.between(Date.today, 2.years.from_now)
+  date = Faker::Date.between(Date.today, 2.years.from_now).strftime("%d-%m-%Y")
   summary = Faker::Lorem.sentence(10)
   text = Faker::Lorem.paragraph(4)
   destaque = true
@@ -149,28 +149,13 @@ end
                active: active)
 end
 
-# 15.times do |n|
-#   title  = Faker::Book.title
-#   date_begin = Faker::Date.between(Date.today, 1.month.from_now)
-#   date_end = Faker::Date.between(1.month.from_now, 2.month.from_now)
-#   summary = Faker::Lorem.sentence(20)
-#   Offer.create!(title: title,
-#                 date_begin: date_begin,
-#                 date_end: date_end,
-#                 prof_area: 'Informática',
-#                 description:summary,
-#                 type_contract: "Full-time",
-#                 salary: '1000-1500',
-#   user_id: 1)
-# end
-
 users = User.order(:created_at).where(entitie: 2).take(6)
 5.times do
   title = Faker::Book.title
   content = Faker::Lorem.sentence(10)
   prof_area = ['Informática','Educação','Saúde','Metalúrgica','Prestação de Serviços'].shuffle.sample
-  date_begin = Faker::Date.between(Date.today, 2.months.from_now)
-  date_end = Faker::Date.between(2.months.from_now, 4.months.from_now)
+  date_begin = Faker::Date.between(Date.today, 2.months.from_now).strftime("%d-%m-%Y")
+  date_end = Faker::Date.between(2.months.from_now, 4.months.from_now).strftime("%d-%m-%Y")
   users.each { |user| user.offers.create!(title:title, description: content,
                                           date_begin: date_begin, date_end: date_end,
                                           active: true, prof_area: prof_area, locality: user.locality)

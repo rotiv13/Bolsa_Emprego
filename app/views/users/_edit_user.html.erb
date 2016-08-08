@@ -1,13 +1,12 @@
 
-<%= simple_form_for @user, html: {multipart: true} do |f| %>
+<%= simple_form_for @user, html: {multipart: true}, url: edit_user_path do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div id="info_candidate" class="profile">
       <%= render 'layouts/form_personal_data', :f => f %>
       <div class="row">
         <% if @user.entitie == '1' %>
             <div class="col-md-2">
-              <%= f.label :birth_date, "Data de Nascimento" %>
-              <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
+              <%= f.input :birth_date, label: "Data de Nascimento" ,  class: 'form-control' %>
             </div>
         <% end %>
 
@@ -46,3 +45,9 @@
       </div>
     </div>
 <% end %>
+
+<script type="application/javascript">
+  $('#user_birth_date').datepicker({
+    format: "yyyy-mm-dd"
+  });
+</script>

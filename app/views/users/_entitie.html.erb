@@ -1,8 +1,6 @@
 <% provide(:entitie, 'true') %>
-<div class="row">
   <% if current_user?(@user)  && params[:data] == 'profile' %>
       <%= render 'entitie_profile' %>
   <% else %>
       <%= render 'entitie_detail'  %>
   <% end %>
-</div>

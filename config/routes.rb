@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/entities', to: 'users#index_entitie', as: 'index_entitie'
   get '/candidates', to: 'users#index_candidate', as: 'index_candidate'
   get '/users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
+  patch '/users/:id/edit', to: 'users#update'
 
   #SESSIONS
   get    '/login',   to: 'sessions#new'

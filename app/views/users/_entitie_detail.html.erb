@@ -12,12 +12,10 @@
   <section>
 
     <% if logged_in? && !current_user?(@user) && current_user.entitie == '1' %>
-        <!-- shows the user the follow button to the entitie if it's not the current user and it is a candidate-->
         <%= render 'form_follow' %>
     <% end %>
   </section>
-  <% if admin_user?(@user) || current_user?(@user) %>
-      <!-- edit button to the entitie itself -->
+  <% if admin_user?(current_user) || current_user?(@user) %>
       <section>
         <%= link_to "Editar", edit_user_path(@user), class: 'btn btn-default' %>
       </section>

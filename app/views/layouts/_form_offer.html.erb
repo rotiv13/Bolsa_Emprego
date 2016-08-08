@@ -11,6 +11,8 @@
 
           </div>
           <%= f.hidden_field :user , value: current_user %>
+          <%= f.hidden_field :locality, value: current_user.locality %>
+
           <div class="col-md-3">
             <%= f.label :date_end, "Data Fim: "%>
             <%= f.text_field :date_end,'data-provide' => 'datepicker', class: 'form-control' %>
@@ -63,12 +65,19 @@
       </div>
       <div class="row">
         <div class="col-md-2">
-        <%= f.button :submit, class: "btn btn-primary" %>
+          <%= f.button :submit, class: "btn btn-primary" %>
         </div>
         <div class="col-md-2">
-            <%= link_to "Cancelar", user_path(current_user.id), class: "btn btn-default" %>
-          </div>
+          <%= link_to "Cancelar", user_path(current_user.id, data: 'profile'), class: "btn btn-default" %>
         </div>
       </div>
     </div>
 <% end %>
+<script type="application/javascript ">
+  $('#offer_date_begin').datepicker({
+    format: "dd-mm-yyyy"
+  });
+  $('#offer_date_end').datepicker({
+    format: "dd-mm-yyyy"
+  });
+</script>

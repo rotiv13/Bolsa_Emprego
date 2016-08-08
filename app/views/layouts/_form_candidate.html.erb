@@ -6,11 +6,10 @@
     <% if yield(:data) == 'register' || params[:data] == 'edit' %>
 
         <div id="info_candidate" class="profile">
-            <%= render 'layouts/form_personal_data', :f => f %>
+          <%= render 'layouts/form_personal_data', :f => f %>
           <div class="row">
             <div class="col-md-2">
-              <%= f.label :birth_date, "Data de Nascimento" %>
-              <%= f.date_field :birth_date, 'data-provide' => 'datepicker', class: 'form-control' %>
+              <%= f.input :birth_date,label: "Data de Nascimento", class: 'form-control' %>
             </div>
             <div class="col-md-3 col-md-offset-4">
               <%= f.input :idnum,label: "Nº Cartão do Cidadão"  %>
@@ -19,7 +18,7 @@
           </div>
           <hr>
           <div class="row">
-           <%= render 'users/form_activity_with_curriculum', :f => f %>
+            <%= render 'users/form_activity_with_curriculum', :f => f %>
           </div>
           <div class="row">
             <%= render 'layouts/form_user_skills', :f => f %>
@@ -42,5 +41,9 @@
     if (size_in_megabytes > 5) {
       alert('O tamanho máximo é de 5MB. Por favor escolha um formato do currículo mais pequeno.');
     }
+  });
+
+  $('#user_birth_date').datepicker({
+    format: "dd-mm-yyyy"
   });
 </script>

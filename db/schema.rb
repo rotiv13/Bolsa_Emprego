@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160802162243) do
 
   create_table "news", force: :cascade do |t|
     t.string   "title"
-    t.date     "date"
+    t.string   "date"
     t.text     "summary"
     t.text     "text"
     t.datetime "created_at", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20160802162243) do
     t.string   "phone"
     t.string   "cellphone"
     t.string   "page"
-    t.date     "birth_date"
+    t.string   "birth_date"
     t.string   "idnum"
     t.string   "prof_area"
     t.text     "presentation"

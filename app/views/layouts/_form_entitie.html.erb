@@ -1,20 +1,7 @@
 <%= simple_form_for @user, html: {multipart: true}, url: new_entitie_path do |f| %>
     <div>
       <% if yield(:data) == 'register'%>
-          <div class="row" id="login_candidate_info">
-            <div class="col-md-6">
-              <%= f.input :email %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <%= f.input :password %>
-            </div>
-            <%= f.hidden_field :entitie, value: '2' %>
-            <div class="col-md-6">
-              <%= f.input :password_confirmation, label: "Confirmação da Password" %>
-            </div>
-          </div>
+          <%= render 'layouts/form_password', :f => f %>
           <hr>
       <% end %>
       <% if yield(:data) == 'register' || params[:data] == 'edit' %>

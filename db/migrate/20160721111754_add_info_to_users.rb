@@ -6,7 +6,7 @@ class AddInfoToUsers < ActiveRecord::Migration[5.0]
     add_column :users, :phone, :string
     add_column :users, :cellphone, :string
     add_column :users, :page, :string
-    add_column :users, :birth_date, :date
+    add_column :users, :birth_date, :string
     add_column :users, :idnum, :string
     add_column :users, :prof_area, :string
     add_column :users, :presentation, :text
