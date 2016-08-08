@@ -63,7 +63,7 @@ class UsersController < ApplicationController
       if admin_user?(current_user)
         render 'backoffice/new'
       else
-        render(@user.entitie == '2' ? 'users/new_entitie' : 'users/new_candidate', :user => @user)
+        render(params[:user][:entitie] == '2' ? 'users/new_entitie' : 'users/new_candidate', :user => @user)
       end
     end
   end

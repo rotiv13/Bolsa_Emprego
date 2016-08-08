@@ -12,11 +12,11 @@
         </div>
         <div class="col-md-3">
           <% field_array = Offer.all.distinct.pluck(:prof_area) %>
-          <%= select_tag(:prof_area , options_for_select(field_array),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
+          <%= select_tag(:prof_area , options_for_select(field_array,params[:prof_area]),{include_blank: 'Área de actividade...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
         <div class="col-md-3">
           <% field_array = Offer.all.distinct.pluck(:locality) %>
-          <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
+          <%= select_tag(:locality, options_for_select(field_array, params[:locality]),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
     <% end %>
   </aside>

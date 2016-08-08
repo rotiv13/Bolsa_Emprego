@@ -12,7 +12,7 @@
           <%= text_field_tag :search, params[:search], placeholder: 'Pesquisa',class:'form-control' %>
         </div>
         <div class="col-md-3">
-          <%= select_tag(:entitie, options_for_select([['Backoffice',0],['Candidato',1],['Entidade',2]]),{ include_blank: 'Tipo...', :onChange => "javascript: this.form.submit();",class:'form-control'})  %>
+          <%= select_tag(:entitie, options_for_select([['Backoffice',0],['Candidato',1],['Entidade',2]], params[:entitie]),{ include_blank: 'Tipo...', :onChange => "javascript: this.form.submit();",class:'form-control'})  %>
         </div>
     <% end %>
 </div>

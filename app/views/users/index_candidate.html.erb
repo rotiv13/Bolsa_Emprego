@@ -13,14 +13,14 @@
         </div>
         <div class="col-md-3">
           <% field_array = User.candidate.distinct.pluck(:prof_area) %>
-          <%= select_tag(:prof_area, options_for_select(field_array),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();", class: 'form-control'})  %>
+          <%= select_tag(:prof_area, options_for_select(field_array,params[:prof_area]),{include_blank: 'Área Profissional...',:onChange => "javascript: this.form.submit();", class: 'form-control'})  %>
         </div>
         <div class="col-md-3">
-          <%= select_tag(:prof_situation, options_for_select(['Empregado', 'Desempregado']),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
+          <%= select_tag(:prof_situation, options_for_select(['Empregado', 'Desempregado'], params[:prof_situation]),{include_blank: 'Situação Profissional...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
         <div class="col-md-3">
           <% field_array = User.candidate.distinct.pluck(:locality) %>
-          <%= select_tag(:locality, options_for_select(field_array),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
+          <%= select_tag(:locality, options_for_select(field_array,params[:locality]),{include_blank: 'Concelho...', :onChange => "javascript: this.form.submit();", class: 'form-control'}) %>
         </div>
     <% end %>
 
