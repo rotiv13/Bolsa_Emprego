@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :destroy, :create, :update, :deactivate, :activate]
-  before_action :correct_offer_user, only: [:edit,:update, :deactivate, :activate]
+  before_action :correct_offer_user, only: [:edit, :update, :deactivate, :activate]
 
   def new
     @offer = Offer.new
@@ -73,7 +73,7 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer).permit(:title, :date_begin, :date_end, :description,
-                                  :salary, :type_contract, :prof_area, :active, :picture )
+                                  :salary, :type_contract, :prof_area, :active, :picture, :locality )
   end
 
   def filtering_params(params)

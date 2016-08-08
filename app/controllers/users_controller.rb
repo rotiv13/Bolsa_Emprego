@@ -78,7 +78,7 @@ class UsersController < ApplicationController
         if params[:user][:password] == params[:user][:password_confirmation]
           user.update_attribute(:password, params[:user][:password])
           flash[:success] = "Password Atualizada!"
-          redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
+          redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : user_path(current_user.id, data: 'profile')
         else
           render 'edit_password'
         end
@@ -88,9 +88,9 @@ class UsersController < ApplicationController
     else
       if @user.update_attributes(user_params) #updates all params of user
         flash[:success] = "Perfil Atualizado!"
-        redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : @user
+        redirect_to admin_user?(current_user) ? backoffice_show_users_path(@user) : user_path(current_user.id, data: 'profile')
       else
-        if params[:password].present?
+        if params[:user][:password].present?
           render 'backoffice/edit_user_password'
         elsif params[:user][:backoffice].present? && params[:user][:backoffice]
           render 'backoffice/edit_users'

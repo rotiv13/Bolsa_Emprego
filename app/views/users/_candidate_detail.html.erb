@@ -21,7 +21,7 @@
               <%= render 'follow' %>
           <% end %>
     <% end %>
-    <% if admin_user?(@user) || current_user?(@user) %>
+    <% if admin_user?(current_user) || current_user?(@user) %>
         <%= link_to "Editar", edit_user_path(@user), class: 'btn btn-default' %>
     <% end %>
   </section>

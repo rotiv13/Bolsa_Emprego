@@ -15,3 +15,7 @@
 //= require turbolinks
 //= require bootstrap-datepicker
 //= require_tree .
+
+$('input').datepicker({
+    format: "yyyy-mm-dd"
+});

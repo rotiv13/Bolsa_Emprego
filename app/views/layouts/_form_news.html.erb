@@ -6,8 +6,7 @@
             <%= f.input :title, label: "Título" %>
           </div>
           <div class="col-md-6">
-            <%= f.label :date, "Data" %>
-            <%= f.text_field :date, 'data-provide' => 'datepicker', class: 'form-control' %>
+            <%= f.input :date, label: "Data",  class: 'form-control' %>
           </div>
         </div>
         <div class="row">
@@ -54,3 +53,9 @@
       </div>
     </div>
 <% end %>
+
+<script type="application/javascript">
+  $('#news_date').datepicker({
+    format: "dd-mm-yyyy"
+  });
+</script>
