@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     @users = User.all.order(created_at: :desc)
     @entities = @users.where(entitie: '2').limit(3)
     @candidates = @users.where(entitie: '1').limit(3)
-    @newss = News.all.limit(3)
+    @newss = News.all.limit(3).order(updated_at: :desc)
     @offers = Offer.all.where(active: true).limit(3).order(created_at: :desc)
   end
 
